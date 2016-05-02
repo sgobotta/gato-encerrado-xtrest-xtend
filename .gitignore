@@ -1,0 +1,21 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.classpath
+*.project
+.settings/
+
+/target
+
+# No java generated
+/src/main/xtend-gen
+/src/test/xtend-gen
+/src/main/generated-sources/xtend
+/src/test/generated-sources/xtend
+
