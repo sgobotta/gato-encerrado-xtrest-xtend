@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+.playground {
+	
+	margin: 50px;
+	height: 400px;
+	background-color: black
+}
+
+.lab-selection {
+    width: 20%;
+    height:inherit;
+    background-color: cyan
+}
+
+.lab-game {
+	width: 80%;
+	height:inherit
+}
+
+.hab-scene {
+	width: 70%;
+	height:inherit;
+	background-color: red
+}
+
+.lab-inventory {
+	width: 30%;
+	height:inherit;
+	background-color: green;
+}
+
+.hab-display {
+	width: 70%;
+	height:inherit;
+	background-color: blue
+}
+
+.hab-actions-selection {
+	width: 30%;
+	background-color: maroon;
+	height:inherit;
+}
