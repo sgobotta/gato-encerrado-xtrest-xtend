@@ -27,6 +27,7 @@
 .lab-inventory {
     width: 270px;   
     margin-left: 20px;
+    background-color: white;
 }
 
 .hab-display {
@@ -37,6 +38,7 @@
 .hab-actions-selection {
 	width: 270px;
 	margin-left: 10px;
+	background-color: white;
 }
 
 .ge-container {
