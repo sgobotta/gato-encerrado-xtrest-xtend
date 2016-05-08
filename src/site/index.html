@@ -26,91 +26,89 @@
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
 	    <script src="js/bootstrap.min.js"></script>
 	    
-		<div class="page-header">
-	        <h3>Acá hay Gato Encerrado</h3>
-	    </div>
+	    <div class="ge-container row">
+			<div class="page-header ge-header col-sm-3">
+		        <h3>Acá hay Gato Encerrado</h3>
+		    </div>
 	    
-	    <div class="playground row">
-	
-	        <div class="lab-selection col-sm-2">
-	            
-	            <ul class="nav nav-pills nav-stacked">
-	            
-	            <!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
-	                    los tres <li> que muestran labs
-	
-	                 <li ng-repeat="laberinto in laberintos">
-	                    <p>{{laberinto.name}}</p>
-	                 </li>
-	                 -->
-	                 
-					<li class="active"><a href="#">Lab1</a></li>
-					<li><a href="#">Lab2</a></li>
-					<li><a href="#">Lab3</a></li>
-	            </ul>
-	        </div>
-	        
-	        <div class="lab-game row col-sm-2">
-	        
-	            <div class="hab-scene row col-sm-2">
-	            
-	                <div class="hab-display col-sm-2">
-	                    <img alt="Imagen de Habitación" src=""> 
-	                </div>
-	            
-	                <div class="hab-actions-selection col-sm-2">
-	                    <ul class="nav nav-pills nav-stacked">
-	            
-		                    <!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
-		                    los tres <li> que muestran actions
+		    <div class="playground row col-sm-3">
 		
-		                 <li ng-repeat="accion in acciones">
-		                    <p>{{accion.name}}</p>
+		        <div class="lab-selection col-sm-2 rounded-corners">
+		            
+		            <ul class="nav nav-pills nav-stacked">
+		            
+		            <!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
+		                    los tres <li> que muestran labs
+		
+		                 <li ng-repeat="laberinto in laberintos">
+		                    <p>{{laberinto.name}}</p>
 		                 </li>
 		                 -->
-			                <li class="active"><a href="#">Accion1</a></li>
-			                <li><a href="#">Accion2</a></li>
-			                <li><a href="#">Accion3</a></li>
-	                    </ul>        
-	                </div>
-	                
-	            </div>
-	            
-	            <div class="lab-inventory col-sm-6">
-	                
-	                <div class="lab-inventory">
-	                    <ul class="nav nav-pills nav-stacked">
-	            
-	                        <!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
-	                        los tres <li> que muestran actions
-	    
-	                     <li ng-repeat="intem in items">
-	                        <p>{{item.name}}</p>
-	                     </li>
-	                     -->
-	                        <li class="active"><a href="#">Item1</a></li>
-	                        <li><a href="#">Item2</a></li>
-	                        <li><a href="#">item3</a></li>
-	                    </ul>
-	                    <button type="button" class="btn btn-default">Tirar</button>
-	                </div>
-	            </div>
-	            
-	        </div>
+		                 
+						<li class="active"><a href="#">Lab1</a></li>
+						<li><a href="#">Lab2</a></li>
+						<li><a href="#">Lab3</a></li>
+		            </ul>
+		        </div>
+		        
+		        <div class="lab-game row col-sm-2 rounded-corners">
+		        
+		            <div class="hab-scene row col-sm-2">
+		            
+		                <div class="hab-display col-sm-2">
+		                    <img alt="Imagen de Habitación" src=""> 
+		                </div>
+		            
+		                <div class="hab-actions-selection col-sm-2 rounded-corners">
+		                    <ul class="nav nav-pills nav-stacked">
+		            
+			                    <!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
+			                    los tres <li> que muestran actions
+			
+			                 <li ng-repeat="accion in acciones">
+			                    <p>{{accion.name}}</p>
+			                 </li>
+			                 -->
+				                <li><a href="#">Accion1</a></li>
+				                <li><a href="#">Accion2</a></li>
+				                <li><a href="#">Accion3</a></li>
+		                    </ul>        
+		                </div>
+		                
+		            </div>
+		            
+		            <div class="lab-inventory col-sm-2 rounded-corners">
+		                    <ul class="nav nav-pills nav-stacked ">
+		            
+		                        <!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
+		                        los tres <li> que muestran actions
+		    
+		                     <li ng-repeat="intem in items">
+		                        <p>{{item.name}}</p>
+		                     </li>
+		                     -->
+		                        <li><a href="#">Item1</a></li>
+		                        <li><a href="#">Item2</a></li>
+		                        <li><a href="#">item3</a></li>
+		                    </ul>
+		                    <button type="button" class="btn btn-default">Tirar</button>
+		            </div>
+		            
+		        </div>
+		        
+		    
+		    </div>
+		
 	        
-	    
-	    </div>
-	
-        <!--
-        <div class="panel-footer">
-        
-            <div>
-                <h5>Construcción Interfaces de Usuarios: 2016</h5>
-                <h5>Grupo 3: integrantes...</h5>
-            </div>
+	        <div class="panel-footer ge-footer col-sm-3">
+	        
+	            <div>
+	                <h5>Construcción Interfaces de Usuarios: 2016</h5>
+	                <h5>Grupo 3: integrantes...</h5>
+	            </div>
+	        
+	        </div>
         
         </div>
-        -->
-	
     </body>
 </html>
