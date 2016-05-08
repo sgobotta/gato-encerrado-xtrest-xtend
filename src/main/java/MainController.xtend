@@ -147,7 +147,14 @@ class MainController {
         
         ok("new RespuestaDeRealizarAccion()")
     }
-    
+ 
+    @Get("/gato_encerrado")
+    def index2() {
+        val data = #{
+            
+        }
+        render('gatoencerrado.html', data)
+    }   
     
     def static void main(String[] args) {
         XTRest.start(MainController, 9000)
