@@ -1,0 +1,20 @@
+Entrega 2: Cliente web + Servidor REST: TODO
+
+Servidor
+
+Laberintos: Done
+
+Iniciar Laberinto:
+
+	Respuepsta Json
+
+		"Todos los elementos del inventario del Jugador"
+			cada elemento debe tener id, nombre, descripción
+
+			-> Se creó una nueva clase Elemento para cumplir con éste pedido. Asimismo se agrego una variable de instancia en Labertinto "jugador" para representar
+			que ese jugador esta involucrado con ese laberinto aunque podríamos discutir no hacer esto y suplantarlo por una clase que represente el Laberinto en juego con ese jugador, un inventario, y cualquier otro atributo que se necesite para un laberinto en juego.
+
+Realizar accion habitacion:
+	Respuesta Json:
+		No estoy seguro que tenemos que mostrar acá
+		Lo interpreté como algo que muestre el "estado del juego" al realizarse una acción en una habitacion, lo que implicaría tener una clase aparte que represente la respuesta de una interacción Jugador-Habitacion
