@@ -12,6 +12,7 @@ import org.uqbar.jugador.Elemento
 import java.util.List
 import org.uqbar.jugador.Jugador
 import java.util.ArrayList
+import org.uqbar.appmodel.XTRestAppModel
 
 @Data
 class RespuestaDeLaberintos {
@@ -32,6 +33,8 @@ class RespuestaDeRealizarAccion {
 
 @Controller
 class MainController {
+
+    XTRestAppModel appmodel
 
     extension JSONUtils = new JSONUtils
 
@@ -111,13 +114,13 @@ class MainController {
         val elemento1 = new Elemento => [
             id            = 01
             nombre        = "Soga"
-            descripcion   = "¿Qué hago con una soga?"       
+            descripcion   = "Que hago con una soga?"       
         ]
         
         val elemento2 = new Elemento => [
             id            = 02
-            nombre        = "Paracaídas"
-            descripcion   = "¡¿Un paracaídas en una cueva?!"
+            nombre        = "Paracaidas"
+            descripcion   = "Un paracaidas en una cueva?!"
         ]
         
         val inventario = new ArrayList<Elemento>()
@@ -144,8 +147,8 @@ class MainController {
     @Get("/realizar_accion/:id_habitacion/:id_accion")
     def realizarAccionHabitacion() {
         
-        
-        ok("new RespuestaDeRealizarAccion()")
+        var res = appmodel.realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_habitacion))
+        ok(res.toJson)
     }
  
     @Get("/gato_encerrado")
