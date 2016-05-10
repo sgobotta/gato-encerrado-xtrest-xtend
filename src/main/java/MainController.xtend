@@ -96,7 +96,9 @@ class MainController {
        
         val accion1 = new AgarrarItem => [
             id          = 01
-            nombreItem  = "mapa"            
+            item  = new Elemento() => [
+            	nombre = "mapa"   
+            ]         
         ]
 
         val accion2 = new IrAHabitacion => [
@@ -106,7 +108,9 @@ class MainController {
         
         val accion3 = new AgarrarItem => [
             id          = 03
-            nombreItem  = "diamante"            
+            item  = new Elemento() => [
+            	nombre = "diamante"   
+            ]         
         ]
 
         val jugador = new Jugador
