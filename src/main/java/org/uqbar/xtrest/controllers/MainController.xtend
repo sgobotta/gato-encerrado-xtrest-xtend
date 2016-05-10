@@ -1,3 +1,4 @@
+package org.uqbar.xtrest.controllers
 
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
@@ -9,27 +10,11 @@ import org.uqbar.Habitacion
 import org.uqbar.acciones.AgarrarItem
 import org.uqbar.acciones.IrAHabitacion
 import org.uqbar.jugador.Elemento
-import java.util.List
 import org.uqbar.jugador.Jugador
 import java.util.ArrayList
 import org.uqbar.appmodel.XTRestAppModel
-
-@Data
-class RespuestaDeLaberintos {
-    Usuario usuario
-}
-
-@Data
-class RespuestaDeIniciarLaberinto {
-    Usuario usuario
-    Laberinto laberinto
-    List<Elemento> inventario
-}
-
-@Data
-class RespuestaDeRealizarAccion {
-    Jugador jugador
-}
+import org.uqbar.xtrest.respuestas.RespuestaDeLaberintos
+import org.uqbar.xtrest.respuestas.RespuestaDeIniciarLaberinto
 
 @Controller
 class MainController {
