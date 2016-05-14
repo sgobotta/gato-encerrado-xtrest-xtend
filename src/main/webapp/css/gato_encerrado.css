@@ -20,35 +20,26 @@
 }
 
 .playground {
-	width: 100%;
-	height: 520px;
-	margin-bottom: 30px;
-	margin-top: -21px;
+	padding-bottom:100px;	
 }
 
 .lab-selection {
+	margin-left: 30px;
+	margin-top: 10px;
 	width: 200px;
-	height: inherit;
-	margin-left: 15px;
-	background-color:silver
+	background-color:silver;
 }
 
 .lab-game {
-    margin-left: 30px;
-    margin-top: 20px;
-	width: 80%;
-	height: 500px;
+    margin-left: 25px;
+	height: 600px;
 	background-color:silver
 }
 
 .hab-scene {
-	width: 790px;
-	height:inherit;
 }
 
 .lab-inventory {
-    width: 270px;   
-    margin-left: 20px;
     background-color: white;
 }
 
@@ -60,14 +51,12 @@
 }
 
 .hab-actions-selection {
-	width: 270px;
-	margin-left: 10px;
 	background-color: white;
 }
 
 .rounded-corners {
 	border-radius: 20px;
-    border: 1px solid black;
+
     padding: 12px; 
 }
 
