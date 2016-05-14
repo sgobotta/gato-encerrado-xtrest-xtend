@@ -6,17 +6,25 @@
 .ge-header {
     width:100%;
     margin-top: -5px;
+    padding-top:20px;
     margin-left: 10px;
     background-color: grey
 }
 
-.ge-user {
-	width: 100px;
+#ge-header-title{
+	margin-left: 20px;
+	font-size: 30px; 
+}
+
+#ge-user {
+	font-size: 30px; 
+	float: right;
 }
 
 .ge-footer {
     width:100%;
     margin-left: 10px;
+    bottom:0;
 }
 
 .playground {
@@ -56,7 +64,6 @@
 
 .rounded-corners {
 	border-radius: 20px;
-
     padding: 12px; 
 }
 
