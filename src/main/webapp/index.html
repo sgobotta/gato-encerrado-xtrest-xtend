@@ -52,18 +52,18 @@
 			                 </li>
 			                 -->
 	
-						<li>{{laberinto.nombre}}</li>
+						<li><a href="#" data-ng-click="labList.labSelectedChange(laberinto)">{{laberinto.nombre}}</a></li>
 					</ul>
 				</div>
 	
-				<div class="lab-game rounded-corners">
+				<div class="lab-game rounded-corners" data-ng-show="labList.isLabSelected">
 	
 					<div class="hab-scene">
 	
 						<div class="col-sm-3">
-							<h4>Laberinto nombre</h4>
+							<h4>{{labList.labSelected.nombre}}</h4>
 							<img class="rounded-corners-img" alt="Imagen de Habitación"
-								src="src/main/resources/images/cueva_hobbit.jpg">
+								data-ng-src="{{labList.labSelected.imgPath}}">
 						</div>
 	
 						<div class="col-sm-3">

@@ -12,6 +12,16 @@ var app = angular.module('ge-main', []);
 		
 		this.laberintos = [lab1, lab2, lab3];
 		
+		this.labSelected = {};
+		
+		this.isLabSelected = false;
+		
+		this.labSelectedChange = function(lab){
+			this.labSelected = lab;
+			this.isLabSelected = true;
+		};
+		
+		
 	});
 	
 	var usuario = {
@@ -21,15 +31,18 @@ var app = angular.module('ge-main', []);
 	};
 	
 	var lab1 = {
-		nombre: "Caverna Embrujada"
+		nombre: "Caverna Embrujada",
+		imgPath: ""
 	};
 	
 	var lab2 = {
-		nombre: "Paraiso Maldito"
+		nombre: "Paraiso Maldito",
+		imgPath: ""
 	};
 	
 	var lab3 = {
-		nombre: "Asgard"
+		nombre: "Asgard",
+		imgPath: ""
 	};
 
 })();
