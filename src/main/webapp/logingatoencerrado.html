@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Sistema de logeo para Hay Gato Encerrado</title>
+		<meta charset="utf-8">
+		<!-- me traigo los js files -->
+		<script src="js/angular.js"></script>
+		<script src="js/controllers.js"></script>
+	    <link href="css/login_gato_encerrado.css" rel="stylesheet">
+	</head>
+	<body>
+	<div id="headerMain">
+		<label for="Bienvenida">Bienvenido al Sistema de Logeo de GATO ENCERRADO</label>	
+	</div>
+	<div id="bodyMain" ng-app="loginApp">
+		<div id="Login" >
+			<div id="headerLogin">
+				<label for="BienvenidaLogin">Sistema de login</label>	
+			</div>
+
+			<fieldset class="fieldset-auto-width">
+				<legend>Informacion de Ingreso:</legend>
+					<div id="Login" ng-controller="LoginCtrl">
+						<form name="loginForm" action="#" ng-submit="submitLoginForm()">
+							<label for="username">Username:</label><br>
+							<input type="text" ng-model="username" required="false"></input><br>
+			
+							<label for="password">Password:</label><br>
+							<input type="password" ng-model="password" required="false"></input><br>
+			
+							<input type="submit" value="Login" ngClick="Submit"></input>
+						</form>
+					</div>
+			</fieldset>
+		</div>
+		<div id="SignUp">
+			<div id="headerSignUp">
+				<label for="BienvenidaSignUp">Sistema de Registro</label>	
+			</div>
+
+			<fieldset class="fieldset-auto-width">
+				<legend>Informacion de Registro:</legend>
+					<div id="SignUp" ng-controller="SignUpCtrl">
+						<form name="signupForm" accept-charset="utf-8" ng-submit="submitSignUpForm()" method="post">
+							<label for="username">Username:</label><br>
+							<input type="text" ng-model="username" required="true"></input><br>
+
+							<label for="password">Password:</label><br>
+							<input type="password" ng-model="password" required="true"></input><br>
+							
+							<label for="repeatpassword">Repeat Password</label><br>
+							<input type="password" ng-model="repeatpassword" required="true"></input><br>
+
+							<input type="submit" value="Sign up"></input>
+						</form>
+					</div>
+			</fieldset>
+		</div>
+	</div>	     	
+	</body>
+</html>
