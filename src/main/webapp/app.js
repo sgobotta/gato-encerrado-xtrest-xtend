@@ -10,7 +10,7 @@ var app = angular.module('ge-main', []);
 	
 	app.controller('LabListCtrl', function(){
 		
-		this.laberintos = [lab1, lab2, lab3];
+		this.laberintos = [{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"src/main/entrada.png","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}]
 		
 		this.labSelected = {};
 		

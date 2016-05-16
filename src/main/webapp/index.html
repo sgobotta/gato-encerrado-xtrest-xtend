@@ -30,12 +30,12 @@
 	<script src="js/bootstrap.min.js"></script>
 
 
-
+    <!--  Header -->
 	<div class="container-fluid ge-container">
 		<div class="page-header ge-header row"
 			data-ng-controller="UserCtrl as userCtrl">
-			<span id="ge-header-title">Acá hay Gato Encerrado</span> 
-			<span id="ge-user"> Usuario: {{userCtrl.user.nombre}} </span>
+			<span id="ge-header-title">Acá hay Gato Encerrado</span> <span
+				id="ge-user"> Usuario: {{userCtrl.user.nombre}} </span>
 
 		</div>
 
@@ -45,15 +45,15 @@
 			<div class="lab-selection rounded-corners col-sm-4">
 
 				<ul class="nav nav-pills nav-stacked">
-					<li data-ng-repeat="laberinto in labList.laberintos">
-						<a href="#" data-ng-click="labList.labSelectedChange(laberinto)">{{laberinto.nombre}}</a>
+					<li data-ng-repeat="laberinto in labList.laberintos"><a
+						href="#" data-ng-click="labList.labSelectedChange(laberinto)">{{laberinto.nombre}}</a>
 					</li>
 				</ul>
 			</div>
 
-			<div class="lab-game rounded-corners" data-ng-show="labList.isLabSelected">
+			<div class="lab-game rounded-corners">
 
-				<div class="hab-scene">
+				<div class="hab-scene" data-ng-show="labList.isLabSelected">
 
 					<div class="col-sm-3">
 						<h4>{{labList.labSelected.nombre}}</h4>
@@ -63,7 +63,8 @@
 
 					<div class="col-sm-3">
 
-						<ul class="nav nav-pills nav-stacked hab-actions-selection rounded-corners">
+						<ul
+							class="nav nav-pills nav-stacked hab-actions-selection rounded-corners">
 
 							<!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
 				                    los tres <li> que muestran actions
@@ -78,25 +79,24 @@
 						</ul>
 					</div>
 
-				</div>
 
-				<div class="lab-inventory col-sm-2 rounded-corners">
-					<ul class="nav nav-pills nav-stacked ">
+					<div class="lab-inventory col-sm-2 rounded-corners">
+						<ul class="nav nav-pills nav-stacked ">
 
-						<!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
+							<!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
 			                        los tres <li> que muestran actions
 			    
 			                     <li ng-repeat="intem in items">
 			                        <p>{{item.name}}</p>
 			                     </li>
 			                     -->
-						<li><a href="#">Item1</a></li>
-						<li><a href="#">Item2</a></li>
-						<li><a href="#">item3</a></li>
-					</ul>
-					<button type="button" class="btn btn-default">Tirar</button>
+							<li><a href="#">Item1</a></li>
+							<li><a href="#">Item2</a></li>
+							<li><a href="#">item3</a></li>
+						</ul>
+						<button type="button" class="btn btn-default">Tirar</button>
+					</div>
 				</div>
-
 			</div>
 
 
