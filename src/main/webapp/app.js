@@ -44,5 +44,33 @@ var app = angular.module('ge-main', []);
 		nombre: "Asgard",
 		imgPath: ""
 	};
+	
+	app.directive('actionsList', function() {
+		return {
+		    restrict: 'A',
+		    templateUrl: "action_list.html"
+		}
+	})
+	
+	app.directive('labList', function() {
+		return {
+			restrict: 'A',
+			templateUrl: 'lab_list.html'
+		}
+	})
+	
+	app.directive('gatoEncerradoTitle', function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'gato_encerrado_title.html'
+		}
+	})
+	
+	app.directive('itemList', function() {
+		return {
+			restrict: 'A',
+			templateUrl: 'item_list.html'
+		}
+	})
 
 })();
