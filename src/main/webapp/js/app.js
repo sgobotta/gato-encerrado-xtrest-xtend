@@ -8,9 +8,13 @@ var app = angular.module('ge-main', []);
 		
 	});
 	
-	app.controller('LabListCtrl', function(){
+	app.controller('LabListCtrl', '$http', [ function('$http'){
 		
-		this.laberintos = [{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"src/main/entrada.png","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}]
+		var laberintos = this
+			
+		laberintos.labs = []
+		
+		//[{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"src/main/entrada.png","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}]
 		
 		this.labSelected = {};
 		
@@ -21,8 +25,13 @@ var app = angular.module('ge-main', []);
 			this.isLabSelected = true;
 		};
 		
+		// ROTO
+		$http.get('/laberintos/1.json').success(function(data) {
+			
+			laberintos.labs = data
+		})
 		
-	});
+	}]);
 	
 	var usuario = {
 		id: 1,
