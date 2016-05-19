@@ -1,63 +1,51 @@
-var loginApp = angular.module('loginApp',[]);
+angular.module('loginApp.controllers').controller(
+		'LoginController',
+		[
+				'$scope',
+				'LoginService',
+				function($scope, LoginService) {
 
-loginApp.controller('LoginCtrl', function($scope, $http, $window){
+					$scope.login = {};
+					$scope.login.username = "";
+					$scope.login.password = "";
+					$scope.loginFailure = false;
+					$scope.spanLog = "";
 
+					$scope.ingresar = function() {
+						LoginService.login($scope.login, $scope.callback,
+								$scope.errorHandler);
+					};
+					$scope.callback = function(data) {
+						var nuevoUser = data.id;
+						alert("funciono call back");
+					};
+					$scope.errorHandler = function(error) {
+						$scope.spanLog = error.descripcion;
+						$scope.loginFailure = true;
+					};
+				} ]);
+angular.module('loginApp.controllers').controller(
+		'SignUpController',
+		[
+				'$scope',
+				'LoginService',
+				function($scope, LoginService) {
 
-	$scope.username = $scope.username || "";
-	$scope.password = $scope.password || "";
-	$scope.user = {};
-	$scope.urlToPost = 'localhost:9001/login';
-	
-//	$scope.user = {} || "";
-    $scope.submitLoginForm = function() {
-    var formpost = {
-    		method  : 'POST',
-            url     : '/login',
-            data    : {},//$scope.user,
-            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-    };
-    var formjson = JSON.stringify(user);
-    //ver como submitear forms
-    console.log("posting data....");
-    $http.post('/login', form, {headers: {'Content-Type': 'application/json'} })
-    	.success(function(data, status, headers, config){
-        	$window.alert('me logee');
-        	console.log(data);
-        })
-        .error(function (data, status, headers, config){
-        	$window.alert('No pude registrarme');
-        });
-};
+					$scope.signup = {};
+					$scope.signup.username = "";
+					$scope.signup.password = "";
+					$scope.signup.repeatpassword = "";
 
-
-loginApp.controller('SignUpCtrl', function($scope, $http){
-
-
-	$scope.username = $scope.username;
-	$scope.password = $scope.password;
-	$scope.repeatpassword = $scope.repeatpassword;
-	$scope.user = {};
-	$scope.urlToPost = 'localhost:9001/login';
-	
-    $scope.submitSignUpForm = function() {
-    
-    var formpost= {
-    	      method  : 'POST',
-    	      url     : '/signup',
-    	      data    : $scope.user,
-    	      headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
-    };
-    var formjson = JSON.stringify($scope.user);
-    
-        console.log("posting data....");
-        $http.post('/signup', formjson, {headers: {'Content-Type': 'application/json'} })
-        	.success(function(data, status, headers, config){
-        		$window.alert('me registre');
-                console.log(data);
-        })
-        	.error(function (data, status, headers, config){
-        		$window.alert('No pude registrarme');
-	  		});
-        };
-    });
-});
+					$scope.registrar = function() {
+						LoginService.signup($scope.signup, $scope.callback,
+								$scope.errorHandler);
+					};
+					$scope.callback = function(data) {
+						var nuevoUser = data.id;
+						alert("funciono call back");
+					};
+					$scope.errorHandler = function(error) {
+						$scope.spanLog = error.descripcion;
+						$scope.loginFailure = true;
+					};
+				} ]);

@@ -1,61 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>Sistema de logeo para Hay Gato Encerrado</title>
-		<meta charset="utf-8">
-		<!-- me traigo los js files -->
-		<script src="js/angular.js"></script>
-		<script src="js/controllers.js"></script>
-	    <link href="css/login_gato_encerrado.css" rel="stylesheet">
-	</head>
-	<body>
+<html>
+<head>
+<title>Sistema de logeo para Hay Gato Encerrado</title>
+<meta charset="utf-8">
+<!-- me traigo los js files -->
+<script src="js/angular.min.js"></script>
+<script src="js/loginApp.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/loginService.js"></script>
+<link href="css/login_gato_encerrado.css" rel="stylesheet">
+</head>
+<body data-ng-app="loginApp" ng-strict-di>
 	<div id="headerMain">
-		<label for="Bienvenida">Bienvenido al Sistema de Logeo de GATO ENCERRADO</label>	
+		<label for="Bienvenida">Bienvenido al Sistema de Logeo de GATO
+			ENCERRADO</label>
 	</div>
-	<div id="bodyMain" ng-app="loginApp">
-		<div id="Login" >
+	<div id="bodyMain">
+		<div id="Login">
 			<div id="headerLogin">
-				<label for="BienvenidaLogin">Sistema de login</label>	
+				<label for="BienvenidaLogin">Sistema de login</label>
 			</div>
 
 			<fieldset class="fieldset-auto-width">
 				<legend>Informacion de Ingreso:</legend>
-					<div id="Login" ng-controller="LoginCtrl">
-						<form name="loginForm" action="#" ng-submit="submitLoginForm()">
-							<label for="username">Username:</label><br>
-							<input type="text" ng-model="user.username" required="false"></input><br>
-			
-							<label for="password">Password:</label><br>
-							<input type="password" ng-model="user.password" required="false"></input><br>
-			
-							<input type="submit" value="Login" ngClick="Submit"></input>
-						</form>
+				<div id="LoginForm" data-ng-controller="LoginController">
+					<label for="username">Username:</label><br> <input type="text"
+						data-ng-model="login.username" required="required"></input><br>
+
+					<label for="password">Password:</label><br> <input
+						type="password" data-ng-model="login.password" required="required"></input><br>
+
+					<input type="submit" value="Login" data-ng-click="ingresar()"></input>
+					<div data-ng-show="loginFailure" role="alert">
+						<strong>Lo sentimos, hubo un error:</strong> {{spanLog}}
 					</div>
+				</div>
 			</fieldset>
 		</div>
 		<div id="SignUp">
 			<div id="headerSignUp">
-				<label for="BienvenidaSignUp">Sistema de Registro</label>	
+				<label for="BienvenidaSignUp">Sistema de Registro</label>
 			</div>
 
 			<fieldset class="fieldset-auto-width">
 				<legend>Informacion de Registro:</legend>
-					<div id="SignUp" ng-controller="SignUpCtrl">
-						<form name="signupForm" action="#" ng-submit="submitSignUpForm()">
-							<label for="username">Username:</label><br>
-							<input type="text" ng-model="user.username" required="true"></input><br>
+				<div id="SignUpForm" data-ng-controller="SignUpController">
+					<label for="username">Username:</label><br> <input type="text"
+						data-ng-model="signup.username" required="required"></input><br>
 
-							<label for="password">Password:</label><br>
-							<input type="password" ng-model="user.password" required="true"></input><br>
-							
-							<label for="repeatpassword">Repeat Password</label><br>
-							<input type="password" ng-model="user.repeatpassword" required="true"></input><br>
+					<label for="password">Password:</label><br> <input
+						type="password" data-ng-model="signup.password"
+						required="required"></input><br> <label for="repeatpassword">Repeat
+						Password</label><br> <input type="password"
+						data-ng-model="signup.repeatpassword" required="required"></input><br>
 
-							<input type="submit" value="Sign up" ngClick="Submit"></input>
-						</form>
-					</div>
+					<input type="submit" value="Sign up" data-ng-click="registrar()"></input>
+				</div>
 			</fieldset>
 		</div>
-	</div>	     	
-	</body>
+	</div>
+</body>
 </html>
