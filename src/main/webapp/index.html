@@ -24,53 +24,56 @@
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
 
 
 	<!--  Container -->
 	<div class="container-fluid ge-container">
-	
-	    <!--  Header -->
+
+		<!--  Header -->
 		<div class="page-header ge-header row"
 			data-ng-controller="UserCtrl as userCtrl">
-			
+
 			<!-- Header Title-->
 			<gato-encerrado-title></gato-encerrado-title>
-			
+
 		</div>
 
 		<!-- Playground/Body Container -->
-		<div class="playground row" data-ng-controller="LabListCtrl as labList">
-		
+		<div class="playground row"
+			data-ng-controller="GameStateCtrl">
+
 			<!-- Fondo de ventana -->
-			<div class="lab-game rounded-corners">
-			
-           		<!-- Lista de Laberintos -->
+			<div class="lab-game rounded-corners"
+				data-ng-controller="LabListCtrl">
+
+				<!-- Lista de Laberintos -->
 				<lab-list></lab-list>
-				
+
 				<!-- Ventana de Juego -->
-				<div class="hab-scene" data-ng-show="labList.isLabSelected">
+				<div class="hab-scene" data-ng-show="isLabSelected">
 
-					<div class="col-sm-3" >
-						<h4>{{labList.labSelected.nombre}}</h4>
-						<img class="rounded-corners-img" alt="Imagen de Habitación"
-							data-ng-src="{{labList.labSelected.imgPath}}">
-					</div>
+					<pre-initialization-window></pre-initialization-window>
 
-                    <!-- Lista de Acciones -->
-					<div class="col-sm-3" data-actions-list></div>
+					<div data-ng-show="isGameInitiated">
+						<!-- Este div va a tener la imagen de la habitacion -->
+						<div class="col-sm-3"></div>
+						<!-- Lista de Acciones -->
+						<div class="col-sm-3" data-actions-list></div>
 
-                    <!-- Lista de Items -->
-					<div class="lab-inventory col-sm-2 rounded-corners" data-item-list>
-						<button type="button" class="btn btn-default">Tirar</button>
+						<!-- Lista de Items -->
+						<div class="lab-inventory col-sm-2 rounded-corners" data-item-list>
+							<button type="button" class="btn btn-default">Tirar</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-        <!-- Footer -->
+		<!-- Footer -->
 		<div class="panel-footer ge-footer row">
 
 			<div>

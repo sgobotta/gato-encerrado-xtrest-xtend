@@ -11,6 +11,10 @@
     background-color: grey
 }
 
+#lab-activo {
+	float: right;
+}
+
 #ge-header-title{
 	margin-left: 20px;
 	font-size: 30px; 

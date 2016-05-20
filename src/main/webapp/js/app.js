@@ -2,32 +2,56 @@
 	// El wrapping de nuestra app en una funcion anonima es un buen habito segun los tutos, así que...
 var app = angular.module('ge-main', []);
 
-	app.controller('UserCtrl', function(){
+	app.controller('UserCtrl', [ '$scope' , function($scope){
 	
-		this.user = usuario;
+		$scope.user = usuario;
 		
-	});
+	}]);
 	
-	app.controller('LabListCtrl', [ '$http', function($http){
+	app.controller('LabListCtrl', [ '$http', '$scope', function($http, $scope){
+					
+		$scope.laberintos = [{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"src/main/entrada.png","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}];
 		
-		var labListCtrl = this;
-			
-		this.laberintos = [{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"src/main/entrada.png","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}];
+		$scope.labSelected = {};
 		
-		this.labSelected = {};
+		$scope.isLabSelected = false;
 		
-		this.isLabSelected = false;
-		
-		this.labSelectedChange = function(lab){
-			this.labSelected = lab;
-			this.isLabSelected = true;
+		$scope.labSelectedChange = function(lab){
+			if($scope.isGameInitiated && lab !== $scope.labSelected){
+				$scope.finalize();
+			};
+			$scope.labSelected = lab;
+			$scope.isLabSelected = true;
 		};
 		
-		// ROTO
-		$http.get('/laberintos/1').success(function(data) {
-			
-			labListCtrl.laberintos = data;
-		});
+		
+		// Voy a tener que ver un poco más el codigo ahora que meti $scope.
+//		$http.get('/laberintos/1').success(function(data) {
+//			
+//			$scope.laberintos = data;
+//		});
+		
+	}]);
+	
+	app.controller('GameStateCtrl', [ '$scope' , function($scope){
+		
+		$scope.isGameInitiated = false;
+		
+		$scope.initiatedLab = {};
+		
+		$scope.isInitiatedLab = function(lab){
+			return lab === $scope.initiatedLab && $scope.isGameInitiated;
+		};
+		
+		$scope.initiate = function(lab){
+			$scope.isGameInitiated = true;
+			$scope.initiatedLab = lab;
+		};
+		
+		$scope.finalize = function(){
+			$scope.isGameInitiated = false;
+			$scope.initiatedLab = {};
+		};
 		
 	}]);
 	
@@ -77,6 +101,13 @@ var app = angular.module('ge-main', []);
 		return {
 			restrict: 'A',
 			templateUrl: 'item_list.html'
+		};
+	});
+	
+	app.directive('preInitializationWindow', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'ventana-pre-inicializado.html'
 		};
 	});
 
