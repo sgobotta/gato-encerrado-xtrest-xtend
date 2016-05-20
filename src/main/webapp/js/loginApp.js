@@ -1,3 +1,5 @@
+//no puedo crear los controllers y servicios en archivos separados dsp lo vemos
+
 var loginApp = angular.module("loginApp", []);
 
 loginApp.controller('LoginController', function($scope, LoginService, $window) {
