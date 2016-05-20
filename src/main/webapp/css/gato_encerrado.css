@@ -8,7 +8,7 @@
     margin-top: -5px;
     padding-top:20px;
     margin-left: 0px;
-    background-color: grey
+    background-color: grey;
 }
 
 #lab-activo {
@@ -37,7 +37,6 @@
 }
 
 .lab-selection {
-	margin-top: 10px;
 	width: 200px;
 }
 
@@ -45,10 +44,7 @@
     margin-left: 15px;
     margin-right: 15px;
 	height: 600px;
-	background-color:silver
-}
-
-.hab-scene {
+	background-color:silver;
 }
 
 .lab-inventory {

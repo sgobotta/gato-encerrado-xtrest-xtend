@@ -78,7 +78,7 @@ var app = angular.module('ge-main', []);
 	
 	app.directive('actionsList', function() {
 		return {
-		    restrict: 'A',
+		    restrict: 'E',
 		    templateUrl: "action_list.html"
 		};
 	});
@@ -99,7 +99,7 @@ var app = angular.module('ge-main', []);
 	
 	app.directive('itemList', function() {
 		return {
-			restrict: 'A',
+			restrict: 'E',
 			templateUrl: 'item_list.html'
 		};
 	});
