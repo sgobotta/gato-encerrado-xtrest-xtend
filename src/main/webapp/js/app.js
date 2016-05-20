@@ -8,11 +8,11 @@ var app = angular.module('ge-main', []);
 		
 	});
 	
-	app.controller('LabListCtrl', '$http', [ function('$http'){
+	app.controller('LabListCtrl', '$http', [ function($http){
 		
-		var laberintos = this
+		var laberintos = this;
 			
-		laberintos.labs = []
+		laberintos.labs = [];
 		
 		//[{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"src/main/entrada.png","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}]
 		
@@ -28,8 +28,8 @@ var app = angular.module('ge-main', []);
 		// ROTO
 		$http.get('/laberintos/1.json').success(function(data) {
 			
-			laberintos.labs = data
-		})
+			laberintos.labs = data;
+		});
 		
 	}]);
 	
@@ -58,28 +58,28 @@ var app = angular.module('ge-main', []);
 		return {
 		    restrict: 'A',
 		    templateUrl: "action_list.html"
-		}
-	})
+		};
+	});
 	
 	app.directive('labList', function() {
 		return {
 			restrict: 'A',
 			templateUrl: 'lab_list.html'
-		}
-	})
+		};
+	});
 	
 	app.directive('gatoEncerradoTitle', function() {
 		return {
 			restrict: 'E',
 			templateUrl: 'gato_encerrado_title.html'
-		}
-	})
+		};
+	});
 	
 	app.directive('itemList', function() {
 		return {
 			restrict: 'A',
 			templateUrl: 'item_list.html'
-		}
-	})
+		};
+	});
 
 })();

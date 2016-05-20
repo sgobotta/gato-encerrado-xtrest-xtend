@@ -6,11 +6,9 @@
 <!-- me traigo los js files -->
 <script src="js/angular.min.js"></script>
 <script src="js/loginApp.js"></script>
-<script src="js/controllers.js"></script>
-<script src="js/loginService.js"></script>
 <link href="css/login_gato_encerrado.css" rel="stylesheet">
 </head>
-<body data-ng-app="loginApp" ng-strict-di>
+<body data-ng-app="loginApp">
 	<div id="headerMain">
 		<label for="Bienvenida">Bienvenido al Sistema de Logeo de GATO
 			ENCERRADO</label>
@@ -32,7 +30,6 @@
 
 					<input type="submit" value="Login" data-ng-click="ingresar()"></input>
 					<div data-ng-show="loginFailure" role="alert">
-						<strong>Lo sentimos, hubo un error:</strong> {{spanLog}}
 					</div>
 				</div>
 			</fieldset>
