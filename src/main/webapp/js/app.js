@@ -8,13 +8,11 @@ var app = angular.module('ge-main', []);
 		
 	});
 	
-	app.controller('LabListCtrl', '$http', [ function($http){
+	app.controller('LabListCtrl', [ '$http', function($http){
 		
-		var laberintos = this;
+		var labListCtrl = this;
 			
-		laberintos.labs = [];
-		
-		//[{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"src/main/entrada.png","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}]
+		this.laberintos = [{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"src/main/entrada.png","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}];
 		
 		this.labSelected = {};
 		
@@ -26,9 +24,9 @@ var app = angular.module('ge-main', []);
 		};
 		
 		// ROTO
-		$http.get('/laberintos/1.json').success(function(data) {
+		$http.get('/laberintos/1').success(function(data) {
 			
-			laberintos.labs = data;
+			labListCtrl.laberintos = data;
 		});
 		
 	}]);
@@ -39,20 +37,20 @@ var app = angular.module('ge-main', []);
 		pass: "1234"
 	};
 	
-	var lab1 = {
-		nombre: "Caverna Embrujada",
-		imgPath: ""
-	};
-	
-	var lab2 = {
-		nombre: "Paraiso Maldito",
-		imgPath: ""
-	};
-	
-	var lab3 = {
-		nombre: "Asgard",
-		imgPath: ""
-	};
+//	var lab1 = {
+//		nombre: "Caverna Embrujada",
+//		imgPath: ""
+//	};
+//	
+//	var lab2 = {
+//		nombre: "Paraiso Maldito",
+//		imgPath: ""
+//	};
+//	
+//	var lab3 = {
+//		nombre: "Asgard",
+//		imgPath: ""
+//	};
 	
 	app.directive('actionsList', function() {
 		return {
@@ -63,7 +61,7 @@ var app = angular.module('ge-main', []);
 	
 	app.directive('labList', function() {
 		return {
-			restrict: 'A',
+			restrict: 'E',
 			templateUrl: 'lab_list.html'
 		};
 	});

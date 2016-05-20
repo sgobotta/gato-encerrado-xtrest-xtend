@@ -24,34 +24,36 @@
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
 
 
-    <!--  Header -->
+	<!--  Container -->
 	<div class="container-fluid ge-container">
+	
+	    <!--  Header -->
 		<div class="page-header ge-header row"
 			data-ng-controller="UserCtrl as userCtrl">
 			
 			<!-- Header Title-->
 			<gato-encerrado-title></gato-encerrado-title>
 			
-			
-
 		</div>
 
+		<!-- Playground/Body Container -->
 		<div class="playground row" data-ng-controller="LabListCtrl as labList">
-
-            <!-- Lista de Laberintos -->
-			<div class="lab-selection rounded-corners col-sm-4" data-lab-list></div>
-
+		
+			<!-- Fondo de ventana -->
 			<div class="lab-game rounded-corners">
-
+			
+           		<!-- Lista de Laberintos -->
+				<lab-list></lab-list>
+				
+				<!-- Ventana de Juego -->
 				<div class="hab-scene" data-ng-show="labList.isLabSelected">
 
-					<div class="col-sm-3">
+					<div class="col-sm-3" >
 						<h4>{{labList.labSelected.nombre}}</h4>
 						<img class="rounded-corners-img" alt="Imagen de Habitación"
 							data-ng-src="{{labList.labSelected.imgPath}}">

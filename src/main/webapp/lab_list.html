@@ -1,5 +1,9 @@
-<ul class="nav nav-pills nav-stacked">
-    <li data-ng-repeat="laberinto in labList.laberintos"><a
-        href="#" data-ng-click="labList.labSelectedChange(laberinto)">{{laberinto.nombre}}</a>
-    </li>
-</ul>
+<div class="lab-selection rounded-corners col-sm-4">
+
+	<ul class="nav nav-pills nav-stacked">
+		<li data-ng-repeat="laberinto in labList.laberintos"><a href="#"
+			data-ng-click="labList.labSelectedChange(laberinto)">{{laberinto.nombre}}</a>
+		</li>
+	</ul>
+
+</div>
