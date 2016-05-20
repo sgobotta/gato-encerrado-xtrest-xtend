@@ -52,6 +52,8 @@
 						data-ng-model="signup.repeatpassword" required="required"></input><br>
 
 					<input type="submit" value="Sign up" data-ng-click="registrar()"></input>
+					<div data-ng-show="signUpFailure" role="alert">
+					</div>
 				</div>
 			</fieldset>
 		</div>
