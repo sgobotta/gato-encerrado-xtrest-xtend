@@ -5,12 +5,12 @@ var app = angular.module('ge-main', []);
 	app.controller('UserCtrl', [ '$scope' , function($scope){
 	
 		$scope.user = usuario;
-		
+	
 	}]);
 	
 	app.controller('LabListCtrl', [ '$http', '$scope', function($http, $scope){
 					
-		$scope.laberintos = [{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"http://localhost/static/cueva_hobbit.jpg","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}];
+		$scope.laberintos = [{"nombre":"Cueva","habitaciones":[{"nombre":"Entrada"}],"last":null,"first":{"nombre":"Entrada"},"idLaberinto":1,"imagePath":"http://localhost/static/cueva_hobbit.jpg","jugador":null},{"nombre":"Cascada","habitaciones":[{"nombre":"Catarata"}],"last":null,"first":{"nombre":"Catarata"},"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}];
 		
 		$scope.labSelected = {};
 		
@@ -26,9 +26,10 @@ var app = angular.module('ge-main', []);
 		
 		
 		// Voy a tener que ver un poco más el codigo ahora que meti $scope.
-//		$http.get('/laberintos/1').success(function(data) {
+//		$http.get('http://localhost:9001/laberintos/1').then(function successCallback(data) {
+//			$scope.laberintos = data.laberintos;
+//		}, function errorCallback(data){
 //			
-//			$scope.laberintos = data;
 //		});
 		
 	}]);
@@ -46,6 +47,7 @@ var app = angular.module('ge-main', []);
 		$scope.initiate = function(lab){
 			$scope.isGameInitiated = true;
 			$scope.initiatedLab = lab;
+//			$scope.$broadcast('labInitialization', lab);
 		};
 		
 		$scope.finalize = function(){
@@ -55,26 +57,23 @@ var app = angular.module('ge-main', []);
 		
 	}]);
 	
+	app.controller('HabCtrl', [ '$scope' , function($scope){
+		// No lo pude hacer andar como quería pero dejo esto por si puedo en otro momento.
+		$scope.habSelected = {};
+		$scope.habitaciones = {};
+		
+//		$scope.$on('labInitialization', function(event, data){
+//			$scope.habSelected = data.first;
+//			$scope.habitaciones = data.habitaciones;
+//		});
+		
+	}]);
+	
 	var usuario = {
 		id: 1,
 		nombre: "Pepe",
 		pass: "1234"
 	};
-	
-//	var lab1 = {
-//		nombre: "Caverna Embrujada",
-//		imgPath: ""
-//	};
-//	
-//	var lab2 = {
-//		nombre: "Paraiso Maldito",
-//		imgPath: ""
-//	};
-//	
-//	var lab3 = {
-//		nombre: "Asgard",
-//		imgPath: ""
-//	};
 	
 	app.directive('actionsList', function() {
 		return {

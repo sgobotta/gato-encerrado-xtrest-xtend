@@ -26,11 +26,13 @@ class MainController {
     @Get("/laberintos/:id_usuario")
     def listaDeLaberintos() {
         
-        val usuario = new Usuario => [
-            id          = Integer.parseInt(id_usuario)
-            nombre      = "usuario01"
-            password    = "1234"    
-        ]
+//        val usuario = new Usuario => [
+//            id          = Integer.parseInt(id_usuario)
+//            nombre      = "usuario01"
+//            password    = "1234"    
+//        ]
+        
+        var list = new ArrayList<Laberinto>()
         
         val lab1 = new Laberinto => [
             nombreLaberinto = "Cueva"
@@ -44,10 +46,10 @@ class MainController {
             imagePath       = "src/main/exit.png"
         ]
         
-        usuario.agregarLaberinto(lab1)
-        usuario.agregarLaberinto(lab2)
+        list.add(lab1)
+        list.add(lab2)
         
-        ok(new RespuestaDeLaberintos(usuario).toJson)
+        ok(new RespuestaDeLaberintos(list).toJson)
     }
     
     @Get("/iniciar_laberintos/:id_usuario/:id_laberinto")
