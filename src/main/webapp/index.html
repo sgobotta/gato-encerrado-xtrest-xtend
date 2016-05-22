@@ -56,10 +56,10 @@
 
 					<pre-initialization-window></pre-initialization-window>
 
-					<div data-ng-show="isGameInitiated">
+					<div data-ng-show="isGameInitiated" data-ng-controller="InventoryAndHabListCtrl">
 						<div data-ng-controller="HabCtrl">
 							<!-- Este div va a tener la imagen de la habitacion -->
-							<div class="col-sm-3"><span>{{habitacion.nombre}}</span></div>
+							<div class="col-sm-3"><h4>{{habSelected.nombreHabitacion}}</h4></div>
 							<!-- Lista de Acciones -->
 							<actions-list></actions-list>
 						</div>

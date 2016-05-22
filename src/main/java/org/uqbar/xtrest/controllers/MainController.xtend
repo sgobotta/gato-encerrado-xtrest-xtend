@@ -26,12 +26,6 @@ class MainController {
     @Get("/laberintos/:id_usuario")
     def listaDeLaberintos() {
         
-//        val usuario = new Usuario => [
-//            id          = Integer.parseInt(id_usuario)
-//            nombre      = "usuario01"
-//            password    = "1234"    
-//        ]
-        
         var list = new ArrayList<Laberinto>()
         
         val lab1 = new Laberinto => [
@@ -54,31 +48,25 @@ class MainController {
     
     @Get("/iniciar_laberintos/:id_usuario/:id_laberinto")
     def inciarLaberinto() {
-        
-        val usuario = new Usuario => [
-
-            id          = Integer.parseInt(id_usuario)
-            nombre      = "usuario01"
-            password    = "1234"            
-        ]
-
-    
+            
         val laberinto = new Laberinto => [
             nombreLaberinto = "Cueva"
             idLaberinto     = 01
-            imagePath       = "src/images/lab/entrada.png"            
+            imagePath       = "src/images/lab/entrada.png"       
         ]
 
         val hab1 = new Habitacion => [
             id                  = 01
             nombreHabitacion    = "Entrada"
-            imagePath           = "src/images/hab/entrada.png"    
+            imagePath           = "src/images/hab/entrada.png"
+            first				= true    
         ]
         
         val hab2 = new Habitacion => [
             id                  = 02
             nombreHabitacion    = "Salida"
-            imagePath           = "src/images/hab/salida.png"            
+            imagePath           = "src/images/hab/salida.png"
+            last				= true            
         ]
        
         val accion1 = new AgarrarItem => [
@@ -128,10 +116,11 @@ class MainController {
         laberinto.agregarHabitacion(hab2)
         laberinto.jugador = jugador
         
-        usuario.agregarLaberinto(laberinto)
-        
+		var habList = new ArrayList<Habitacion>()
+		habList.add(hab1)
+        habList.add(hab2)
        
-        ok(new RespuestaDeIniciarLaberinto(usuario, laberinto, laberinto.jugador.inventario).toJson)
+        ok(new RespuestaDeIniciarLaberinto(habList, laberinto.jugador.inventario).toJson)
     }
     
     
