@@ -72,6 +72,12 @@ var app = angular.module('ge-main', []);
 	app.controller("InventoryAndHabListCtrl", [ '$scope' , '$http' , function($scope, $http){
 		// Por ahora son las mismas habitaciones y inventario para todos los lab, porque tendría que recibir diferentes
 		// datos desde el server, segun el .get de abajo, que retornaría cosas diferentes dependiendo de el labSelected.
+		
+        // No habría que traer únicamente la habitación inicial?
+        // Al realizar una acción de ir a habitación traeríamos ésa habitación en particular.
+        // No se si traer todas las hab contaría como información de mas, por eso me entró la duda...
+		// Santi B.
+		
 		$scope.habitaciones = [{"id":1,"imagePath":"src/images/hab/entrada.png","nombreHabitacion":"Entrada","first":true,"last":false,"acciones":[{"id":1,"nombre":"Agarrar mapa","item":{"id":null,"nombre":"mapa","descripcion":null},"itemName":"mapa"}],"items":null,"todosLosItemNames":["mapa"]},{"id":2,"imagePath":"src/images/hab/salida.png","nombreHabitacion":"Salida","first":false,"last":true,"acciones":[{"id":2,"nombre":"Ir a la habitacion Entrada","habitacion":{"id":1,"imagePath":"src/images/hab/entrada.png","nombreHabitacion":"Entrada","first":true,"last":false,"acciones":[{"id":1,"nombre":"Agarrar mapa","item":{"id":null,"nombre":"mapa","descripcion":null},"itemName":"mapa"}],"items":null,"todosLosItemNames":["mapa"]},"itemName":null,"item":null},{"id":3,"nombre":"Agarrar diamante","item":{"id":null,"nombre":"diamante","descripcion":null},"itemName":"diamante"}],"items":null,"todosLosItemNames":["diamante"]}];
 		$scope.inventory = [{"id":1,"nombre":"Soga","descripcion":"Que hago con una soga?"},{"id":2,"nombre":"Paracaidas","descripcion":"Un paracaidas en una cueva?!"}];
 		
@@ -80,6 +86,22 @@ var app = angular.module('ge-main', []);
 //			$scope.inventory = data.inventario;
 //		});
 	}]);
+	
+	
+    app.controller('ItemHoverCtrl', [ '$scope', function($scope){
+        
+    	$scope.selectedItem = {};
+    	
+        $scope.showDescription = function(item) {
+    		$scope.selectedItem = item;
+            $scope.descriptionIsVisible = true; 
+        };
+
+        $scope.hideDescription = function () {
+        	$scope.selectedItem = {};
+        	$scope.descriptionIsVisible = false;
+        };
+    }]);
 	
 	var usuario = {
 		id: 1,

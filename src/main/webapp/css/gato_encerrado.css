@@ -71,3 +71,17 @@
 .rounded-corners-img {
 	border-radius: 40px;
 }
+
+.item-hover {
+	color: white;
+    position: absolute;
+    top: 0;
+    left: 120px;
+    transition: transform 0.4s;
+	background-color: blue;
+	padding-left: 8px;
+	padding-top: 8px;
+	padding-right: 8px;
+	padding-bottom: 8px;
+	width: 140px;
+}
