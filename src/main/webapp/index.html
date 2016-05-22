@@ -34,8 +34,7 @@
 	<div class="container-fluid ge-container">
 
 		<!--  Header -->
-		<div class="page-header ge-header row"
-			data-ng-controller="UserCtrl">
+		<div class="page-header ge-header row" data-ng-controller="UserCtrl">
 
 			<!-- Header Title-->
 			<gato-encerrado-title></gato-encerrado-title>
@@ -43,8 +42,7 @@
 		</div>
 
 		<!-- Playground/Body Container -->
-		<div class="playground row"
-			data-ng-controller="GameStateCtrl">
+		<div class="playground row" data-ng-controller="GameStateCtrl">
 
 			<!-- Fondo de ventana -->
 			<div class="lab-game rounded-corners"
@@ -59,19 +57,21 @@
 					<pre-initialization-window></pre-initialization-window>
 
 					<div data-ng-show="isGameInitiated">
-						<!-- Este div va a tener la imagen de la habitacion -->
-						<div class="col-sm-3"></div>
-						<!-- Lista de Acciones -->
-						<actions-list></actions-list>
+						<div data-ng-controller="HabCtrl">
+							<!-- Este div va a tener la imagen de la habitacion -->
+							<div class="col-sm-3"><span>{{habitacion.nombre}}</span></div>
+							<!-- Lista de Acciones -->
+							<actions-list></actions-list>
+						</div>
 
 						<!-- Lista de Items -->
 						<item-list></item-list>
 					</div>
-					
+
 				</div>
-				
+
 			</div>
-			
+
 		</div>
 
 		<!-- Footer -->
