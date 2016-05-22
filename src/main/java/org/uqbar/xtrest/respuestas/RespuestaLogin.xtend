@@ -1,7 +1,9 @@
 package org.uqbar.xtrest.respuestas
 
+import org.uqbar.Account
+
 @Data
 class RespuestaLogin {
-	String nickname
-	String password
+	Account account
+	
 }

@@ -15,6 +15,7 @@ loginApp.controller('LoginController', function($scope, LoginService, $window) {
 	};
 	$scope.callback = function(data) {
 		alert("logeando");
+		alert(data.account)
 		//hay que cambiarlo pero ya funcioan el post
         var url = "http://" + $window.location.host;
         $window.location.href = url;
@@ -66,7 +67,8 @@ loginApp.service("LoginService", function($http) {
 			method : method,
 			data : user,
 			headers : {
-				'Content-Type' : 'application/x-www-form-urlencoded'
+				//'Content-Type' : 'application/x-www-form-urlencoded'
+	            'Content-Type': 'application/json'
 			}
 		}).success(callback).error(errorHandler);
 		
