@@ -90,15 +90,15 @@ var app = angular.module('ge-main', []);
 	
     app.controller('ItemHoverCtrl', [ '$scope', function($scope){
         
-    	$scope.selectedItem = {};
+    	$scope.hoveredItem = {};
     	
         $scope.showDescription = function(item) {
-    		$scope.selectedItem = item;
+    		$scope.hoveredItem = item;
             $scope.descriptionIsVisible = true; 
         };
 
         $scope.hideDescription = function () {
-        	$scope.selectedItem = {};
+        	$scope.hoveredItem = {};
         	$scope.descriptionIsVisible = false;
         };
     }]);
