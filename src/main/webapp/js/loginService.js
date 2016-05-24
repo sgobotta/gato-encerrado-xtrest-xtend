@@ -1,22 +1,24 @@
-angular.module('loginApp').service('LoginService', function($http) {
-	this.login = function(jsonObject, callback, errorHandler) {
+app.service("LoginService", function($http) {
+
+	this.httpFunction = function(url, method, user, callback, errorHandler) {
 		$http({
-			url : 'http://localhost:9001/login',
-			method : "POST",
-			data : jsonObject,
+			url : url,
+			method : method,
+			data : user,
 			headers : {
-				'Content-Type' : 'application/x-www-form-urlencoded'
+				'Content-Type' : 'application/json'
 			}
 		}).success(callback).error(errorHandler);
+
 	};
-	this.signup = function(jsonObject, callback, errorHandler) {
-		$http({
-			url : 'http://localhost:9001/signup',
-			method : "POST",
-			data : jsonObject,
-			headers : {
-				'Content-Type' : 'application/x-www-form-urlencoded'
-			}
-		}).success(callback).error(errorHandler);
+
+	this.login = function(user, callback, errorHandler) {
+		this.httpFunction('http://localhost:9001/login', "POST", user,
+				callback, errorHandler);
+	};
+
+	this.signup = function(user, callback, errorHandler) {
+		this.httpFunction('http://localhost:9001/signup', "POST", user,
+				callback, errorHandler);
 	};
 });

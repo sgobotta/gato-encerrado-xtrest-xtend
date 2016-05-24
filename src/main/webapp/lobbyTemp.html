@@ -1,0 +1,106 @@
+<div id="Lobby" data-ng-controller="LobbyController">
+	<div class="container-fluid ge-container">
+
+		<!--  Header -->
+		<div class="page-header ge-header row">
+
+			<!-- Header Title, usa user.nombre-->
+			<span id="ge-header-title">Aca hay Gato Encerrado</span> <span
+				id="ge-user"> Usuario: {{usuario.nombre}} </span>
+		</div>
+
+		<!-- Playground/Body Container -->
+		<div class="playground row" data-ng-controller="GameController">
+
+			<!-- Fondo de ventana -->
+			<div class="lab-game rounded-corners"
+				data-ng-controller="LabListCtrl">
+
+				<!-- Lista de Laberintos usa -->
+				<div class="lab-selection rounded-corners col-sm-4">
+
+					<ul class="nav nav-pills nav-stacked">
+						<li data-ng-repeat="laberinto in laberintos"><a href=""
+							data-ng-click="labSelectedChange(laberinto)">{{laberinto.nombreLaberinto}}
+								<span data-ng-show="isInitiatedLab(laberinto)" id="lab-activo">Activo</span>
+						</a></li>
+					</ul>
+
+				</div>
+
+				<!-- Ventana de Juego -->
+				<div data-ng-show="isLabSelected">
+
+					<div class="col-sm-8" data-ng-hide="isGameInitiated">
+						<h4>{{labSelected.nombreLaberinto}}</h4>
+						<img class="rounded-corners-img" alt="Imagen de Habitacion"
+							data-ng-src="{{labSelected.imagePath}}"> <br>
+						<button type="button" class="btn btn-default"
+							data-ng-click="initiate(labSelected)">Iniciar Laberinto</button>
+					</div>
+
+					<div data-ng-show="isGameInitiated">
+						<div data-ng-controller="HabCtrl">
+							<!-- Este div va a tener la imagen de la habitacion -->
+							<!--<div class="col-sm-3"><span>{{habitacion.nombreHabitacion}}</span></div> -->
+							<div class="col-sm-3">
+								<span>Habitacion Inicial</span>
+							</div>
+							<!-- Lista de Acciones -->
+							<div class="col-sm-3">
+								<ul
+									class="nav nav-pills nav-stacked hab-actions-selection rounded-corners">
+
+									<!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
+             los tres <li> que muestran actions
+
+          <li ng-repeat="accion in acciones">
+             <p>{{accion.name}}</p>
+          </li>
+          -->
+									<li><a href="">Accion1</a></li>
+									<li><a href="">Accion2</a></li>
+									<li><a href="">Accion3</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<!-- Lista de Items -->
+						<div class="lab-inventory col-sm-2 rounded-corners">
+							<ul class="nav nav-pills nav-stacked ">
+
+								<!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
+            los tres <li> que muestran actions
+
+         <li ng-repeat="item in items">
+            <p>{{item.name}}</p>
+         </li>
+         -->
+								<li><a href="">Item1</a></li>
+								<li><a href="">Item2</a></li>
+								<li><a href="">item3</a></li>
+							</ul>
+							<button type="button" class="btn btn-default">Tirar</button>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Footer -->
+		<div class="panel-footer ge-footer row">
+
+			<div>
+				<h5>Construcción Interfaces de Usuarios: 2016</h5>
+				<h5>Grupo 3: Jesús Laime - Juan Manuel Rodriguez Defago -
+					Santiago Botta</h5>
+			</div>
+
+		</div>
+
+	</div>
+</div>

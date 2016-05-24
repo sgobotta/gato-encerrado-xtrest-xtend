@@ -1,0 +1,48 @@
+<div id="loginControl" data-ng-controller="LoginController">
+
+	<div id="headerMain">
+		<label for="Bienvenida">Bienvenido al Sistema de Logeo de GATO
+			ENCERRADO</label>
+	</div>
+	<div id="bodyMain">
+		<div id="Login">
+			<div id="headerLogin">
+				<label for="BienvenidaLogin">Sistema de login</label>
+			</div>
+
+			<fieldset class="fieldset-auto-width">
+				<legend>Informacion de Ingreso:</legend>
+				<!-- 				<div id="LoginForm" data-ng-controller="LoginController"> -->
+
+				<label for="username">Username:</label><br> <input type="text"
+					data-ng-model="login.username" required="required"></input><br>
+
+				<label for="password">Password:</label><br> <input
+					type="password" data-ng-model="login.password" required="required"></input><br>
+
+				<input type="submit" value="Login" data-ng-click="ingresar()"></input>
+				<!-- 				</div> -->
+			</fieldset>
+		</div>
+		<div id="SignUp">
+			<div id="headerSignUp">
+				<label for="BienvenidaSignUp">Sistema de Registro</label>
+			</div>
+
+			<fieldset class="fieldset-auto-width">
+				<legend>Informacion de Registro:</legend>
+				<!-- 				<div id="SignUpForm" data-ng-controller="SignUpController"> -->
+				<label for="username">Username:</label><br> <input type="text"
+					data-ng-model="signup.username" required="required"></input><br>
+
+				<label for="password">Password:</label><br> <input
+					type="password" data-ng-model="signup.password" required="required"></input><br>
+				<label for="repeatpassword">Repeat Password</label><br> <input
+					type="password" data-ng-model="signup.repeatpassword"
+					required="required"></input><br> <input type="submit"
+					value="Sign up" data-ng-click="registrar()"></input>
+				<!-- 				</div> -->
+			</fieldset>
+		</div>
+	</div>
+	</div>

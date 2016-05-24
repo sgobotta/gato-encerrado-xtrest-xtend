@@ -15,6 +15,7 @@ import java.util.ArrayList
 import org.uqbar.appmodel.XTRestAppModel
 import org.uqbar.xtrest.respuestas.RespuestaDeLaberintos
 import org.uqbar.xtrest.respuestas.RespuestaDeIniciarLaberinto
+import org.uqbar.xtrest.respuestas.RespuestaDeRealizarAccion
 
 @Controller
 class MainController {
@@ -130,7 +131,7 @@ class MainController {
         
         usuario.agregarLaberinto(laberinto)
         
-       
+       //esto deberia devolver los laberintos!!!
         ok(new RespuestaDeIniciarLaberinto(usuario, laberinto, laberinto.jugador.inventario).toJson)
     }
     
@@ -138,7 +139,10 @@ class MainController {
     @Get("/realizar_accion/:id_habitacion/:id_accion")
     def realizarAccionHabitacion() {
         
-        var res = appmodel.realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_habitacion))
+        var habitacion = Integer.parseInt(id_habitacion)
+        var accion = Integer.parseInt(id_accion)
+        var res = appmodel.realizarAccion(habitacion, accion)
+        var test = new RespuestaDeRealizarAccion(appmodel.laberintoActual, appmodel.jugador, appmodel.findHabitacionById(habitacion))
         ok(res.toJson)
     }
  
@@ -149,6 +153,14 @@ class MainController {
         }
         render('gatoencerrado.html', data)
     }   
+    
+    @Get("/pruebaGato")
+    def prueba(){
+    	        val data = #{
+            
+        }
+        render('inicio.html', data)
+    }
     
     def static void main(String[] args) {
         XTRest.start(MainController, 9001)

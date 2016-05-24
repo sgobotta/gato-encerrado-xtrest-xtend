@@ -1,27 +1,3 @@
-app.service("LoginService", function($scope, $http) {
-
-	$scope.httpFunction = function(url, method, user, callback, errorHandler) {
-		$http({
-			url : url,
-			method : method,
-			data : user,
-			headers : {
-				'Content-Type' : 'application/json'
-			}
-		}).success(callback).error(errorHandler);
-
-	};
-
-	$scope.login = function(user, callback, errorHandler) {
-		$scope.httpFunction('http://localhost:9001/login', "POST", user,
-				callback, errorHandler);
-	};
-
-	$scope.signup = function(user, callback, errorHandler) {
-		$scope.httpFunction('http://localhost:9001/signup', "POST", user,
-				callback, errorHandler);
-	};
-});
 app.controller('LoginController', ['$scope', 'LobbyService','LoginService','$state',function($scope, LobbyService, LoginService, $state) {
 
 			$scope.login = {};

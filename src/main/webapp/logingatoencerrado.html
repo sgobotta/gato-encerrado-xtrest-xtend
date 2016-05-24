@@ -1,62 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="ge-main" lang="en">
 <head>
-<title>Sistema de logeo para Hay Gato Encerrado</title>
 <meta charset="utf-8">
-<!-- me traigo los js files -->
-<script src="js/angular.min.js"></script>
-<script src="js/loginApp.js"></script>
-<link href="css/login_gato_encerrado.css" rel="stylesheet">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Aqui hay Gato Encerrado</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<link href="css/gato_encerrado.css" rel="stylesheet" type="text/css">
+<link href="css/login_gato_encerrado.css" rel="stylesheet"
+	type="text/css">
+
+<script type="text/javascript" src="js/angular.js"></script>
+<script type="text/javascript" src="js/angular-ui-router.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/refactorApp.js"></script>
+<script type="text/javascript" src="js/lobbyService.js"></script>
+<script type="text/javascript" src="js/loginService.js"></script>
+<script type="text/javascript" src="js/geRestService.js"></script>
+<script type="text/javascript" src="js/lobbyController.js"></script>
+<script type="text/javascript" src="js/gameController.js"></script>
+<script type="text/javascript" src="js/laberintosController.js"></script>
+<script type="text/javascript" src="js/habitacionController.js"></script>
+<script type="text/javascript" src="js/loginController.js"></script>
+
+
 </head>
-<body data-ng-app="loginApp">
-	<div id="headerMain">
-		<label for="Bienvenida">Bienvenido al Sistema de Logeo de GATO
-			ENCERRADO</label>
-	</div>
-	<div id="bodyMain">
-		<div id="Login">
-			<div id="headerLogin">
-				<label for="BienvenidaLogin">Sistema de login</label>
-			</div>
+<body>
 
-			<fieldset class="fieldset-auto-width">
-				<legend>Informacion de Ingreso:</legend>
-				<div id="LoginForm" data-ng-controller="LoginController">
-					<label for="username">Username:</label><br> <input type="text"
-						data-ng-model="login.username" required="required"></input><br>
+	<ui-view></ui-view>
 
-					<label for="password">Password:</label><br> <input
-						type="password" data-ng-model="login.password" required="required"></input><br>
-
-					<input type="submit" value="Login" data-ng-click="ingresar()"></input>
-					<div data-ng-show="loginFailure" role="alert">
-					</div>
-				</div>
-			</fieldset>
-		</div>
-		<div id="SignUp">
-			<div id="headerSignUp">
-				<label for="BienvenidaSignUp">Sistema de Registro</label>
-			</div>
-
-			<fieldset class="fieldset-auto-width">
-				<legend>Informacion de Registro:</legend>
-				<div id="SignUpForm" data-ng-controller="SignUpController">
-					<label for="username">Username:</label><br> <input type="text"
-						data-ng-model="signup.username" required="required"></input><br>
-
-					<label for="password">Password:</label><br> <input
-						type="password" data-ng-model="signup.password"
-						required="required"></input><br> <label for="repeatpassword">Repeat
-						Password</label><br> <input type="password"
-						data-ng-model="signup.repeatpassword" required="required"></input><br>
-
-					<input type="submit" value="Sign up" data-ng-click="registrar()"></input>
-					<div data-ng-show="signUpFailure" role="alert">
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
 </body>
 </html>
