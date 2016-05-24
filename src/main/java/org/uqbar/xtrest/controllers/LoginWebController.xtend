@@ -15,6 +15,7 @@ import org.uqbar.Account
 import org.uqbar.xtrest.respuestas.RespuestaLogin
 import org.uqbar.xtrest.respuestas.PedidoLogin
 import org.uqbar.Habitacion
+import org.uqbar.dummyData.GEWebDummyData
 
 @Controller
 class LoginWebController {
@@ -32,42 +33,13 @@ class LoginWebController {
 		val pedidoLogin = body.fromJson(PedidoLogin)
 
 		try {
-
-			var labs = new ArrayList<Laberinto>()
-
-			var entrada = new Habitacion()
-			entrada.nombreHabitacion = "Entrada"
-
-			var cueva = new Laberinto()
-			cueva.nombreLaberinto = "OtraCueva"
-			cueva.habitaciones.add(entrada)
-			cueva.first = entrada
-			cueva.last = null
-			cueva.idLaberinto = 1
-			cueva.imagePath = "http://localhost/static/cueva_hobbit.jpg"
-			cueva.jugador = null
-
-			var catarata = new Habitacion()
-			catarata.nombreHabitacion = "Catarata"
-
-			var cascada = new Laberinto()
-			cascada.nombreLaberinto = "OtraCascada"
-			cascada.habitaciones.add(catarata)
-			cascada.first = catarata
-			cascada.last = null
-			cascada.idLaberinto = 2
-			cascada.imagePath = "src/main/exit.png"
-			cascada.jugador = null
-
-			labs.add(cueva)
-			labs.add(cascada)
-
-			
+			var dummy = new GEWebDummyData()
+						
 			var usuario = new Usuario()
 			usuario.id = 1
 			usuario.nombre = pedidoLogin.username
 			usuario.password = pedidoLogin.password
-			usuario.laberintos = labs
+			usuario.laberintos = dummy.getLabs()
 			
 			var account = loginService.login(pedidoLogin.username, pedidoLogin.password)
 			account.usuario = usuario
@@ -87,7 +59,8 @@ class LoginWebController {
 		lab1.nombreLaberinto = "laberinto"
 		laberintos.add(lab1)
 		val user = new Usuario
-		user.nombre = "admin"
+		user.nombre = pedidoSignUp.username
+		user.password = pedidoSignUp.password
 		user.laberintos = laberintos
 
 		val cuenta = new Account() => [
