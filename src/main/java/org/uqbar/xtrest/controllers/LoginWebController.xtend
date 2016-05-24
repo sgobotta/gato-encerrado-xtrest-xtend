@@ -14,7 +14,6 @@ import org.uqbar.Usuario
 import org.uqbar.Account
 import org.uqbar.xtrest.respuestas.RespuestaLogin
 import org.uqbar.xtrest.respuestas.PedidoLogin
-import org.uqbar.Habitacion
 import org.uqbar.dummyData.GEWebDummyData
 
 @Controller
@@ -33,17 +32,18 @@ class LoginWebController {
 		val pedidoLogin = body.fromJson(PedidoLogin)
 
 		try {
+
+			var account = loginService.login(pedidoLogin.username, pedidoLogin.password)
 			var dummy = new GEWebDummyData()
-						
+
 			var usuario = new Usuario()
 			usuario.id = 1
 			usuario.nombre = pedidoLogin.username
 			usuario.password = pedidoLogin.password
 			usuario.laberintos = dummy.getLabs()
-			
-			var account = loginService.login(pedidoLogin.username, pedidoLogin.password)
+			usuario.laberintos.add(dummy.laberinto)
 			account.usuario = usuario
-			
+
 			ok(new RespuestaLogin(account).toJson)
 		} catch (Exception a) {
 			badRequest("No se pudo logear a " + pedidoLogin.username)
