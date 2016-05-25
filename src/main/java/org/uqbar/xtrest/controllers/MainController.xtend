@@ -10,7 +10,7 @@ import org.uqbar.xtrest.dummyData.GatoEncerradoWebDummyData
 @Controller
 class MainController {
 
-    XTRestAppModel game
+    static XTRestAppModel game
 
     extension JSONUtils = new JSONUtils
 
@@ -22,7 +22,7 @@ class MainController {
     
     @Get("/iniciar_laberintos/:id_usuario/:id_laberinto")
     def inciarLaberinto() {
-        ok(GatoEncerradoWebDummyData.iniciarLaberinto(Integer.parseInt(id_usuario),Integer.parseInt(id_laberinto), this.game).toJson)
+        ok(GatoEncerradoWebDummyData.iniciarLaberinto(Integer.parseInt(id_usuario),Integer.parseInt(id_laberinto), game).toJson)
     }
     
     
@@ -42,6 +42,7 @@ class MainController {
     }   
     
     def static void main(String[] args) {
+    	game = new XTRestAppModel()
         XTRest.start(MainController, 9001)
     }
 }
