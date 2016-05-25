@@ -84,7 +84,7 @@
 		$scope.finalize = function(){
 			$scope.isGameInitiated = false;
 			$scope.initiatedLab = {};
-			$scope.$broadcast('cleanOldGame', null);
+			$scope.$broadcast('cleanOldGame');
 		};
 		
 	}]);
@@ -105,7 +105,7 @@
 			$scope.habSelected = {};
 		});
 		
-		$scope.$on('refreshHabInicial', function(event, args){
+		$scope.$on('refreshHabInicial', function(){
 			$scope.refreshInitialHab();
 		});
 
@@ -122,7 +122,7 @@
 			$scope.labInitiation();
 		};
 		
-		$scope.$on('cleanOldGame', function(event, args){
+		$scope.$on('cleanOldGame', function(){
 			$scope.habitaciones = [];
 			$scope.inventory = [];
 		});
@@ -131,7 +131,7 @@
 			$http.get("/iniciar_laberintos/" + $scope.user.id + "/"+ $scope.labSelected.idLaberinto).then(function(response){
 			$scope.habitaciones = response.data.habitaciones;
 			$scope.inventory = response.data.inventario;
-			$scope.$broadcast('refreshHabInicial', null);
+			$scope.$broadcast('refreshHabInicial');
 			});
 		};
 	}]);
