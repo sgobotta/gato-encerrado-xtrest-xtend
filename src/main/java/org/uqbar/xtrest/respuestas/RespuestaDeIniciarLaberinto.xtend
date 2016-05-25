@@ -1,13 +1,11 @@
 package org.uqbar.xtrest.respuestas
 
-import org.uqbar.Usuario
-import org.uqbar.Laberinto
 import org.uqbar.jugador.Elemento
 import java.util.List
+import org.uqbar.xtrest.minModelObjects.MinHabitacion
 
 @Data
 class RespuestaDeIniciarLaberinto {
-    Usuario usuario
-    Laberinto laberinto
+	List<MinHabitacion> habitaciones
     List<Elemento> inventario
 }

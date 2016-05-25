@@ -1,16 +1,14 @@
-<div class="lab-inventory col-sm-2 rounded-corners">
-	<ul class="nav nav-pills nav-stacked ">
-
-		<!--  Acá va el ng-repeat de Angular para un solo li, reemplaza
-            los tres <li> que muestran actions
-
-         <li ng-repeat="item in items">
-            <p>{{item.name}}</p>
-         </li>
-         -->
-		<li><a href="#">Item1</a></li>
-		<li><a href="#">Item2</a></li>
-		<li><a href="#">item3</a></li>
+<div class="lab-inventory col-sm-2 rounded-corners" data-ng-controller="ItemHoverCtrl">
+	<ul class="nav nav-pills nav-stacked" >
+		<li data-ng-repeat="item in inventory" data-ng-mouseenter="showDescription(item)" data-ng-mouseleave="hideDescription()">
+		<a href="" >
+    		{{item.nombre}}
+		</a>
+		</li>
 	</ul>
+	<div class="item-hover rounded-corners" data-ng-show="descriptionIsVisible">{{hoveredItem.descripcion}}</div>
 	<button type="button" class="btn btn-default">Tirar</button>
 </div>
+
+
+    
