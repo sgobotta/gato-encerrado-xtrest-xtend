@@ -210,7 +210,11 @@ class GatoEncerradoWebDummyData {
 		var minResponse = new RespuestaDeRealizarAccion => [
 			type = response.type
 			item = response.item
+			if(response.action != null){
 			action = toMinAccion(response.action)
+			} else {
+			action = null
+			}
 			idHabitacion = response.idHabitacion
 		]
 		minResponse
