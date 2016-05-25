@@ -101,7 +101,21 @@
 			}			
 		};
 		
-		$scope.$on('cleanOldGame', function(event, args){
+		$scope.executeAction = function(action){
+			$http.get("/realizar_accion/" + $scope.habSelected.id + "/" + action.id).then(function success(response){
+				$scope.handleActionExecutionResponse(response.data, action);
+			}, function error(response){
+				// handle error
+			});
+		};
+		
+		$scope.handleActionExecutionResponse = function (data){
+			switch(data.type){
+				// do the cases
+			}
+		};
+		
+		$scope.$on('cleanOldGame', function(){
 			$scope.habSelected = {};
 		});
 		
@@ -113,9 +127,8 @@
 	}]);
 	
 	app.controller("InventoryAndHabListCtrl", [ '$scope' , '$http' , function($scope, $http){
-		$scope.habitaciones = [];//[{"id":1,"imagePath":"src/images/hab/entrada.png","nombreHabitacion":"Entrada","first":true,"last":false,"acciones":[{"id":1,"nombre":"Agarrar mapa","item":{"id":null,"nombre":"mapa","descripcion":null},"itemName":"mapa"}],"items":null,"todosLosItemNames":["mapa"]},{"id":2,"imagePath":"src/images/hab/salida.png","nombreHabitacion":"Salida","first":false,"last":true,"acciones":[{"id":2,"nombre":"Ir a la habitacion Entrada","habitacion":{"id":1,"imagePath":"src/images/hab/entrada.png","nombreHabitacion":"Entrada","first":true,"last":false,"acciones":[{"id":1,"nombre":"Agarrar mapa","item":{"id":null,"nombre":"mapa","descripcion":null},"itemName":"mapa"}],"items":null,"todosLosItemNames":["mapa"]},"itemName":null,"item":null},{"id":3,"nombre":"Agarrar diamante","item":{"id":null,"nombre":"diamante","descripcion":null},"itemName":"diamante"}],"items":null,"todosLosItemNames":["diamante"]}];
-		$scope.inventory = [];//[{"id":1,"nombre":"Soga","descripcion":"Que hago con una soga?"},{"id":2,"nombre":"Paracaidas","descripcion":"Un paracaidas en una cueva?!"}];
-		
+		$scope.habitaciones = [];
+		$scope.inventory = [];		
 		
 		$scope.initiateLab = function(lab){
 			$scope.initiate(lab);

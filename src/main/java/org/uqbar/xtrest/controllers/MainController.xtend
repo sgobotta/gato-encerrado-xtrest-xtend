@@ -29,7 +29,8 @@ class MainController {
     @Get("/realizar_accion/:id_habitacion/:id_accion")
     def realizarAccionHabitacion() {
         
-        var res = game.realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_accion))
+        var resTemp = game.realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_accion))
+        var res = GatoEncerradoWebDummyData.toMinResponse(resTemp)
         ok(res.toJson)
     }
  

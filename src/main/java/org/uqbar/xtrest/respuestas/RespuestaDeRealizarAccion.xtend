@@ -1,8 +1,13 @@
 package org.uqbar.xtrest.respuestas
 
-import org.uqbar.jugador.Jugador
+import org.uqbar.jugador.Elemento
+import org.uqbar.xtrest.minModelObjects.MinAccion
+import org.eclipse.xtend.lib.annotations.Accessors
 
-@Data
+@Accessors
 class RespuestaDeRealizarAccion {
-    Jugador jugador
+	String type
+	Elemento item
+	MinAccion action
+	int idHabitacion
 }

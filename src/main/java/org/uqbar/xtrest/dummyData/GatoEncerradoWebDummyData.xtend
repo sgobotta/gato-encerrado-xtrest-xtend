@@ -15,6 +15,8 @@ import org.uqbar.acciones.IrAHabitacion
 import org.uqbar.acciones.UsarItem
 import org.uqbar.jugador.Jugador
 import org.uqbar.xtrest.respuestas.RespuestaDeIniciarLaberinto
+import org.uqbar.acciones.RespuestaDeRealizarAccionModel
+import org.uqbar.xtrest.respuestas.RespuestaDeRealizarAccion
 
 class GatoEncerradoWebDummyData {
 	
@@ -202,6 +204,16 @@ class GatoEncerradoWebDummyData {
 			id	   = acc.id
 		]
 		minAcc
+	}
+	
+	def static toMinResponse(RespuestaDeRealizarAccionModel response){
+		var minResponse = new RespuestaDeRealizarAccion => [
+			type = response.type
+			item = response.item
+			action = toMinAccion(response.action)
+			idHabitacion = response.idHabitacion
+		]
+		minResponse
 	}
 	
 }
