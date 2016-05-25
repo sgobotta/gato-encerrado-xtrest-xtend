@@ -43,17 +43,18 @@
 		
 		$scope.tryChangeLab = function(lab) {
 			
-			if($scope.isGameInitiated) {
+			if($scope.isGameInitiated && lab !== $scope.initiatedLab) {
 				$scope.isModalVisible = true;
-				$scope.labToShow = lab;
+				$scope.tempLab = lab;
 			}
 			else {
 				$scope.labSelectedChange(lab);
+				$scope.isModalVisible = false;
 			};
 		};
 		
 		$scope.confirm = function(){
-			$scope.labSelectedChange($scope.labToShow);
+			$scope.labSelectedChange($scope.tempLab);
 			$scope.tempLab = {};
 			$scope.isModalVisible = false;
 		};
