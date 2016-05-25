@@ -33,7 +33,7 @@ class LoginWebController {
 		
 		try{
 			var account = loginService.login(pedidoLogin.username, pedidoLogin.password)
-			ok(new RespuestaLogin(account.nombre,account.password).toJson)
+			ok(new RespuestaLogin(account.username,account.password).toJson)
 		}
 		catch(Exception a){
 			badRequest("No se pudo logear a " + pedidoLogin.username)
@@ -53,7 +53,7 @@ class LoginWebController {
 		user.laberintos = laberintos
 				
 		val cuenta = new Account() => [
-			nombre = pedidoSignUp.username
+			username = pedidoSignUp.username
 			password = pedidoSignUp.password
 			usuario = user 
 			]

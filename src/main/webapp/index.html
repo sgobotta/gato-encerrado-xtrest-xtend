@@ -32,10 +32,10 @@
 
 
 	<!--  Container -->
-	<div class="container-fluid ge-container">
+	<div class="container-fluid ge-container" data-ng-controller="UserCtrl">
 
 		<!--  Header -->
-		<div class="page-header ge-header row" data-ng-controller="UserCtrl">
+		<div class="page-header ge-header row">
 
 			<!-- Header Title-->
 			<gato-encerrado-title></gato-encerrado-title>
@@ -53,11 +53,11 @@
 				<lab-list></lab-list>
 
 				<!-- Ventana de Juego -->
-				<div data-ng-show="isLabSelected">
+				<div data-ng-show="isLabSelected" data-ng-controller="InventoryAndHabListCtrl">
 
 					<pre-initialization-window></pre-initialization-window>
 
-					<div data-ng-show="isGameInitiated" data-ng-controller="InventoryAndHabListCtrl">
+					<div data-ng-show="isGameInitiated">
 						<div data-ng-controller="HabCtrl">
 							<!-- Este div va a tener la imagen de la habitacion -->
 							<div class="col-sm-3"><h4>{{habSelected.nombreHabitacion}}</h4></div>
