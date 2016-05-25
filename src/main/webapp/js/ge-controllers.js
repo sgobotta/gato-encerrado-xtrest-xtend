@@ -89,7 +89,7 @@
 		
 	}]);
 	
-	app.controller('HabCtrl', [ '$scope' , function($scope){
+	app.controller('HabCtrl', [ '$scope' , '$http' , function($scope, $http){
 		$scope.habSelected = {};
 		
 		$scope.refreshInitialHab = function(){
@@ -101,6 +101,15 @@
 			}			
 		};
 		
+		$scope.changeHabById = function(idHab){
+			var i;
+			for(i = 0; i < $scope.habitaciones.length; i++){
+				if($scope.habitaciones[i].id == idHab){
+					$scope.habSelected = $scope.habitaciones[i];
+				}
+			}				
+		};
+		
 		$scope.executeAction = function(action){
 			$http.get("/realizar_accion/" + $scope.habSelected.id + "/" + action.id).then(function success(response){
 				$scope.handleActionExecutionResponse(response.data, action);
@@ -109,10 +118,49 @@
 			});
 		};
 		
-		$scope.handleActionExecutionResponse = function (data){
+		
+		// Anda todo, pero quizas podríamos agregar una respuesta de error
+		// Por ejemplo, si quiero ir usar un item para algo y no lo tengo
+		// del server me tendrían que avisar que no lo tengo via una 
+		// Respuesta de accion que sea de error y tenga un String mensaje
+		// que se use para avisar en algun lado porque no puedo hacer X cosa.
+		$scope.handleActionExecutionResponse = function (data, action){
 			switch(data.type){
-				// do the cases
+				case "agarrarItem" : 
+					{
+						$scope.inventory.push(data.item);
+						$scope.removeActionFromArray(action);
+					};
+					break;
+				case "usarItem" : 
+					{
+						$scope.habSelected.acciones.push(data.action);
+						$scope.removeItemFromArray(data.item);
+						$scope.removeActionFromArray(action);
+					};
+					break;
+				case "irAHabitacion" : 
+					{
+						$scope.changeHabById(data.idHabitacion);
+					};
+					break;
+				case "ganar" : 
+					{
+						// Hacer saltar una ventana que dice ganar y demás cosas.
+					};
+					break;
+				default : {}
 			}
+		};
+		
+		$scope.removeActionFromArray = function(action){
+		    var i = $scope.habSelected.acciones.length;
+		    while(i--){
+		       if( $scope.habSelected.acciones[i] 
+		           &&  $scope.habSelected.acciones[i] === action ){ 
+		    	   $scope.habSelected.acciones.splice(i,1);
+		       }
+		    }
 		};
 		
 		$scope.$on('cleanOldGame', function(){
@@ -146,6 +194,16 @@
 			$scope.inventory = response.data.inventario;
 			$scope.$broadcast('refreshHabInicial');
 			});
+		};
+		
+		$scope.removeItemFromArray = function(item){
+		    var i = $scope.inventory.length;
+		    while(i--){
+		       if( $scope.inventory[i] 
+		           &&  $scope.inventory[i] === item ){ 
+		    	   $scope.inventory.splice(i,1);
+		       }
+		    }
 		};
 	}]);
 	
