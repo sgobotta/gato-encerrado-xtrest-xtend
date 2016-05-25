@@ -329,5 +329,4 @@ class GatoEncerradoWebDummyData {
 		]
 		minResponse
 	}
-	
 }
