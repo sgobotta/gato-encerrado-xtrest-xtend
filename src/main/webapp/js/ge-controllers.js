@@ -32,6 +32,39 @@
 		
 	}]);
 	
+	/**
+	 * MODAL WINDOW: Lab changes
+	 */
+
+	app.controller('LabChangeModalWindowCtrl', [ '$scope', function($scope) {
+		
+		$scope.isModalVisible = false;
+		$scope.tempLab = {};
+		
+		$scope.tryChangeLab = function(lab) {
+			
+			if($scope.isGameInitiated) {
+				$scope.isModalVisible = true;
+				$scope.labToShow = lab;
+			}
+			else {
+				$scope.labSelectedChange(lab);
+			};
+		};
+		
+		$scope.confirm = function(){
+			$scope.labSelectedChange($scope.labToShow);
+			$scope.tempLab = {};
+			$scope.isModalVisible = false;
+		};
+		
+		$scope.deny = function(){
+			$scope.tempLab = {};
+			$scope.isModalVisible = false;
+		};
+		
+	}]);
+	
 	app.controller('GameStateCtrl', [ '$scope' , function($scope){
 		
 		$scope.isGameInitiated = false;
