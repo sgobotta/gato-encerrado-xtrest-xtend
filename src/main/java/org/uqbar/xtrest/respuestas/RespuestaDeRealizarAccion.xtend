@@ -10,4 +10,5 @@ class RespuestaDeRealizarAccion {
 	Elemento item
 	MinAccion action
 	int idHabitacion
+	String extra
 }

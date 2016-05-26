@@ -301,7 +301,7 @@ class GatoEncerradoWebDummyData {
 		]
 		
 		val hab3 = new Habitacion => [
-			nombreHabitacion 	= "Habitacion de la ni�a"
+			nombreHabitacion 	= "Habitacion de la ninia"
 			id 					= 3
 			imagePath			= ""
 		]
@@ -321,13 +321,13 @@ class GatoEncerradoWebDummyData {
 		
 		val llave = new Elemento() => [
 				nombre 		= "Llave ensangrentada"
-				descripcion	= "P-p-por qu� esta cubierta en sangre? ..."
+				descripcion	= "P-p-por que esta cubierta en sangre? ..."
 				id			= 1
 		]
 		
 		val hacha = new Elemento() => [
 				nombre		= "Hacha oxidada"
-				descripcion	= "Me pregunto por qu� guardarian un hacha en su habitacion..."
+				descripcion	= "Me pregunto por que guardarian un hacha en su habitacion..."
 				id			= 2
 		]
 		
@@ -470,6 +470,7 @@ class GatoEncerradoWebDummyData {
 			action = null
 			}
 			idHabitacion = response.idHabitacion
+			extra        = response.extra
 		]
 		minResponse
 	}

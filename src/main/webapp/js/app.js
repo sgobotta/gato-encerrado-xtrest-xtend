@@ -37,10 +37,10 @@
 		};
 	});
 	
-	app.directive('itemHoverDescription', function(){
+	app.directive('errorPanelDescription', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'item-hover.html'
+			templateUrl: 'error_panel.html'
 		};
 	});
 	

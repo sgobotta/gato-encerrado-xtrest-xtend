@@ -88,13 +88,13 @@
 		};
 		
 		$scope.initiate = function(lab){
-			$scope.isGameInitiated = true;
-			$scope.initiatedLab = lab;
+			$scope.isGameInitiated 	= true;
+			$scope.initiatedLab 	= lab;
 		};
 		
 		$scope.finalize = function(){
-			$scope.isGameInitiated = false;
-			$scope.initiatedLab = {};
+			$scope.isGameInitiated 	= false;
+			$scope.initiatedLab 	= {};
 			$scope.$broadcast('cleanOldGame');
 		};
 		
@@ -143,15 +143,12 @@
 			switch(data.type){
 				case "agarrarItem" : 
 					{
-						$scope.inventory.push(data.item);
-						$scope.removeActionFromArray(action);
+						$scope.pickItem(data, action);
 					};
 					break;
 				case "usarItem" : 
 					{
-						$scope.habSelected.acciones.push(data.action);
-						$scope.removeItemFromArray(data.item);
-						$scope.removeActionFromArray(action);
+						$scope.useItem(data, action);
 					};
 					break;
 				case "irAHabitacion" : 
@@ -164,10 +161,25 @@
 						$scope.$emit('gameWon')
 					};
 					break;
+				case "sinItem" :
+					{
+						$scope.showItemUsageError(data.extra)
+					}
 				default : {}
 			}
 		};
 		
+		$scope.useItem = function(data, action){
+			$scope.habSelected.acciones.push(data.action);
+			$scope.removeItemFromArray(data.item);
+			$scope.removeActionFromArray(action);
+		};
+		
+		$scope.pickItem = function(data, action){
+			$scope.inventory.push(data.item);
+			$scope.removeActionFromArray(action);
+		};
+			
 		$scope.removeActionFromArray = function(action){
 		    var i = $scope.habSelected.acciones.length;
 		    while(i--){
@@ -191,7 +203,7 @@
 	
 	app.controller("InventoryAndHabListCtrl", [ '$scope' , '$http' , function($scope, $http){
 		$scope.habitaciones = [];
-		$scope.inventory = [];	
+		$scope.inventory 	= [];	
 		$scope.itemSelected = {};
 		
 		$scope.initiateLab = function(lab){
@@ -200,14 +212,14 @@
 		};
 		
 		$scope.$on('cleanOldGame', function(){
-			$scope.habitaciones = [];
-			$scope.inventory = [];
+			$scope.habitaciones	 = [];
+			$scope.inventory	 = [];
 		});
 		
 		$scope.labInitiation = function() {
 			$http.get("/iniciar_laberintos/" + $scope.user.id + "/"+ $scope.labSelected.idLaberinto).then(function(response){
 			$scope.habitaciones = response.data.habitaciones;
-			$scope.inventory = response.data.inventario;
+			$scope.inventory 	= response.data.inventario;
 			$scope.$broadcast('refreshHabInicial');
 			});
 		};
@@ -229,6 +241,10 @@
 			//$scope.removeItemFromArray($scope.itemSelected);
 		};
 		
+		$scope.invContainsItem = function(item){
+			return $scope.inventory.indexOf(item);
+		};
+		
 		$scope.removeItemFromArray = function(item){
 		    var i = $scope.inventory.length;
 		    while(i--){
@@ -241,19 +257,25 @@
 	}]);
 	
 	
-    app.controller('ItemHoverCtrl', [ '$scope', function($scope){
+    app.controller('ErrorPanelCtrl', [ '$scope', function($scope){
         
-    	$scope.hoveredItem = {};
+    	$scope.itemNotification = {};
     	
         $scope.showDescription = function(item) {
-    		$scope.hoveredItem = item;
+    		$scope.itemNotification 	= item.descripcion;
             $scope.descriptionIsVisible = true; 
         };
 
         $scope.hideDescription = function () {
-        	$scope.hoveredItem = {};
+        	$scope.itemNotification 	= {};
         	$scope.descriptionIsVisible = false;
         };
+        
+        $scope.showItemUsageError = function(nombreItem) {
+        	$scope.itemNotification 	= nombreItem + " no está en tu inventario!";
+        	$scope.descriptionIsVisible = true;
+        };
+
     }]);
 	
 	var usuario = {

@@ -69,7 +69,8 @@
 	border-radius: 40px;
 }
 
-.item-hover {
+.banner {
+	text-align:center;
 	margin-top:10px;
 	color: white;
     transition: transform 0.4s;
@@ -77,5 +78,9 @@
 	padding-left: 8px;
 	padding-top: 8px;
 	padding-right: 8px;
-	padding-bottom: 8px;
+	padding-bottom: 5px;
+}
+
+.bannerMessage:first-letter {
+	text-transform:capitalize;
 }
