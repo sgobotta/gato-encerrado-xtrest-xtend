@@ -1,6 +1,6 @@
 (function() {
 	
-	var app = angular.module('ge-controllers', []);
+	var app = angular.module('ge-controllers', ['ge-services']);
 	
 	app.controller('UserCtrl', [ '$scope', function($scope){
 		
@@ -209,7 +209,7 @@
 		    var i = $scope.inventory.length;
 		    while(i--){
 		       if( $scope.inventory[i] 
-		           &&  $scope.inventory[i] === item ){ 
+		           &&  $scope.inventory[i].id === item.id ){ 
 		    	   $scope.inventory.splice(i,1);
 		       }
 		    }
