@@ -29,25 +29,25 @@ class GatoEncerradoWebDummyData {
         var lab1 = new Laberinto => [
             nombreLaberinto = "Cueva"
             idLaberinto     = 01
-            imagePath       = "http://localhost/static/cueva_hobbit.jpg"
+            imagePath       = "http://localhost/static/cueva/cueva_hobbit.jpg"
         ]
 
         var lab2 = new Laberinto => [
             nombreLaberinto = "Cascada"
             idLaberinto     = 02
-            imagePath       = "http://localhost/static/cascada.jpg"
+            imagePath       = "http://localhost/static/cascada/cascada.jpg"
         ]
         
         var lab3 = new Laberinto => [
             nombreLaberinto = "Casa Embrujada"
             idLaberinto     = 03
-            imagePath       = "http://localhost/static/casa.jpg"
+            imagePath       = "http://localhost/static/casa/casa.jpg"
         ]
         
         var lab4 = new Laberinto => [
             nombreLaberinto = "Cementerio"
             idLaberinto     = 04
-            imagePath       = "http://localhost/static/cementerio.jpg"
+            imagePath       = "http://localhost/static/cementerio/cementerio.jpg"
         ]
         
         list.add(toMinLaberinto(lab1))
@@ -71,7 +71,7 @@ class GatoEncerradoWebDummyData {
 		var lab = new Laberinto => [
             nombreLaberinto = "Cueva"
             idLaberinto     = 01
-            imagePath       = "http://localhost/static/cueva_hobbit.jpg"
+            imagePath       = "http://localhost/static/cueva/cueva_hobbit.jpg"
         ]
 		
 		var habList = new ArrayList<MinHabitacion>()
@@ -79,26 +79,26 @@ class GatoEncerradoWebDummyData {
 		val hab1 = new Habitacion => [
 			nombreHabitacion 	= "Agujero extraÃ±o"
 			id 					= 1
-			imagePath			= ""
+			imagePath			= "http://localhost/static/cueva/agujero.jpg"
 			first 				= true
 		]
 		
 		val hab2 = new Habitacion => [
 			nombreHabitacion 	= "Tunel"
 			id 					= 2
-			imagePath			= ""
+			imagePath			= "http://localhost/static/cueva/tunel.jpg"
 		]
 		
 		val hab3 = new Habitacion => [
 			nombreHabitacion 	= "Pared enorme"
 			id 					= 3
-			imagePath			= ""
+			imagePath			= "http://localhost/static/cueva/pared.jpg"
 		]
 		
 		val hab4 = new Habitacion => [
 			nombreHabitacion 	= "Salida"
 			id 					= 4
-			imagePath			= ""
+			imagePath			= "http://localhost/static/cueva/salida.jpg"
 			last 				= true
 		]
 		
@@ -176,26 +176,26 @@ class GatoEncerradoWebDummyData {
         val hab1 = new Habitacion => [
             nombreHabitacion    = "Lago"
             id                  = 1
-            imagePath           = ""
+            imagePath           = "http://localhost/static/cascada/lago.jpg"
             first               = true
         ]
         
         val hab2 = new Habitacion => [
             nombreHabitacion    = "Precipicio"
             id                  = 2
-            imagePath           = ""
+            imagePath           = "http://localhost/static/cascada/precipicio.jpg"
         ]
         
         val hab3 = new Habitacion => [
             nombreHabitacion    = "Bosque"
             id                  = 3
-            imagePath           = ""
+            imagePath           = "http://localhost/static/cascada/bosque.jpg"
         ]
         
         val hab4 = new Habitacion => [
             nombreHabitacion    = "Entrada a cueva"
             id                  = 4
-            imagePath           = ""
+            imagePath           = "http://localhost/static/cascada/entrada_cueva.jpg"
             last                = true
         ]
         
@@ -301,7 +301,7 @@ class GatoEncerradoWebDummyData {
 		]
 		
 		val hab3 = new Habitacion => [
-			nombreHabitacion 	= "Habitacion de la niña"
+			nombreHabitacion 	= "Habitacion de la niï¿½a"
 			id 					= 3
 			imagePath			= ""
 		]
@@ -321,13 +321,13 @@ class GatoEncerradoWebDummyData {
 		
 		val llave = new Elemento() => [
 				nombre 		= "Llave ensangrentada"
-				descripcion	= "P-p-por qué esta cubierta en sangre? ..."
+				descripcion	= "P-p-por quï¿½ esta cubierta en sangre? ..."
 				id			= 1
 		]
 		
 		val hacha = new Elemento() => [
 				nombre		= "Hacha oxidada"
-				descripcion	= "Me pregunto por qué guardarian un hacha en su habitacion..."
+				descripcion	= "Me pregunto por quï¿½ guardarian un hacha en su habitacion..."
 				id			= 2
 		]
 		
