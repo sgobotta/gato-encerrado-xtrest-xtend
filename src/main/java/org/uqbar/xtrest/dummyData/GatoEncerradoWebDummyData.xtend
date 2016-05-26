@@ -20,7 +20,7 @@ import org.uqbar.xtrest.respuestas.RespuestaDeRealizarAccion
 
 class GatoEncerradoWebDummyData {
 	
-	// Si pudiera hacer un static { } para instanciar los laberintos y dejarlos staticos lo harï¿½a. 
+	// Si pudiera hacer un static { } para instanciar los laberintos y dejarlos staticos lo haria. 
 	// Por alguna razon no puedo
 	
 	def static getLaberintos(int idUsuario){
@@ -279,7 +279,151 @@ class GatoEncerradoWebDummyData {
 	}
 	
 	def static iniciarLaberinto3(XTRestAppModel game){
-		// TODO
+        var lab = new Laberinto => [
+            nombreLaberinto = "Casa Embrujada"
+            idLaberinto     = 03
+            imagePath       = "http://localhost/static/casa.jpg"
+        ]
+		
+		var habList = new ArrayList<MinHabitacion>()
+		
+		val hab1 = new Habitacion => [
+			nombreHabitacion 	= "Puerta ensangrentada"
+			id 					= 1
+			imagePath			= ""
+			first 				= true
+		]
+		
+		val hab2 = new Habitacion => [
+			nombreHabitacion 	= "Pasillo"
+			id 					= 2
+			imagePath			= ""
+		]
+		
+		val hab3 = new Habitacion => [
+			nombreHabitacion 	= "Habitacion de la niña"
+			id 					= 3
+			imagePath			= ""
+		]
+		
+		val hab4 = new Habitacion => [
+			nombreHabitacion 	= "Habitacion de los padres"
+			id 					= 4
+			imagePath			= ""
+		]
+		
+		val hab5 = new Habitacion => [
+			nombreHabitacion	= "Puerta trasera"
+			id					= 5
+			imagePath			= ""
+			last 				= true			
+		]
+		
+		val llave = new Elemento() => [
+				nombre 		= "Llave ensangrentada"
+				descripcion	= "P-p-por qué esta cubierta en sangre? ..."
+				id			= 1
+		]
+		
+		val hacha = new Elemento() => [
+				nombre		= "Hacha oxidada"
+				descripcion	= "Me pregunto por qué guardarian un hacha en su habitacion..."
+				id			= 2
+		]
+		
+		val picaporte = new Elemento() => [
+				nombre		= "Picaporte viejo"
+				descripcion	= "Puede que todavia sirva para abrir una puerta..."
+				id			= 3
+		]
+		
+		val agarrarLlave = new AgarrarItem() => [
+			item = llave
+			id	 = 1
+		]
+		
+		val irAHab2 = new IrAHabitacion() => [
+			habitacion = hab2
+			id		   = 2
+		]
+		
+		val irAHab1 = new IrAHabitacion() => [
+			habitacion = hab1
+			id 		   = 3
+		]
+		
+		val irAHab3 = new IrAHabitacion() => [
+			habitacion = hab3
+			id		   = 4
+		]
+		
+		val irAHab4 = new IrAHabitacion() => [
+			habitacion	= hab4
+			id 			= 5
+		]
+		
+		val irASalida = new IrAHabitacion() => [
+			habitacion	= hab5
+			id			= 6
+		]
+		
+		val usarLlave = new UsarItem() => [
+			item		= llave
+			accion		= irAHab2
+			id 			= 6
+		]
+		
+		val agarrarHacha = new AgarrarItem() => [
+			item		= hacha
+			id			= 7
+		]
+		
+		val usarHacha = new UsarItem() => [
+			item		= hacha
+			accion		= irASalida
+			id			= 8
+		]
+		
+		val agarrarPicaporte = new AgarrarItem() => [
+			item		= picaporte
+			id			= 9
+		]
+		
+		val usarPicaporte = new UsarItem() => [
+			item		= picaporte
+			accion		= irAHab4
+			id			= 10
+		]
+		
+		hab1.agregarAccion(agarrarLlave)
+		hab1.agregarAccion(usarLlave)
+		hab2.agregarAccion(irAHab1)
+		hab2.agregarAccion(irAHab3)
+		hab2.agregarAccion(usarHacha)
+		hab2.agregarAccion(usarPicaporte)
+		hab3.agregarAccion(irAHab2)
+		hab3.agregarAccion(agarrarPicaporte)
+		hab4.agregarAccion(irAHab2)
+		hab4.agregarAccion(agarrarHacha)
+		
+		lab.agregarHabitacion(hab1)
+		lab.agregarHabitacion(hab2)
+		lab.agregarHabitacion(hab3)
+		lab.agregarHabitacion(hab4)
+		lab.agregarHabitacion(hab5)
+		
+		habList.add(toMinHabitacion(hab1))
+		habList.add(toMinHabitacion(hab2))
+		habList.add(toMinHabitacion(hab3))
+		habList.add(toMinHabitacion(hab4))
+		habList.add(toMinHabitacion(hab5))
+		
+		val jugador = new Jugador()
+		
+		game.nuevoJuego(lab, jugador)
+		
+		val res = new RespuestaDeIniciarLaberinto(habList, jugador.inventario)
+		res
 	}
 	
 	def static iniciarLaberinto4(XTRestAppModel game){
