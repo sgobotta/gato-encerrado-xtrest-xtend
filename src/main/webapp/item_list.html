@@ -1,13 +1,13 @@
-<div class="lab-inventory col-sm-2 rounded-corners" data-ng-controller="ItemHoverCtrl">
+<div class="lab-inventory col-sm-3 rounded-corners">
 	<ul class="nav nav-pills nav-stacked" >
-		<li data-ng-repeat="item in inventory" data-ng-mouseenter="showDescription(item)" data-ng-mouseleave="hideDescription()">
+		<li data-ng-repeat="item in inventory" data-ng-mouseenter="showDescription(item)" 
+		data-ng-mouseleave="hideDescription()" data-ng-click="selectItem(item)">
 		<a href="" >
     		{{item.nombre}}
 		</a>
 		</li>
 	</ul>
-	<div class="item-hover rounded-corners" data-ng-show="descriptionIsVisible">{{hoveredItem.descripcion}}</div>
-	<button type="button" class="btn btn-default">Tirar</button>
+	<button type="button" class="btn btn-default" data-ng-click="dropItemSelected()">Tirar</button>
 </div>
 
 

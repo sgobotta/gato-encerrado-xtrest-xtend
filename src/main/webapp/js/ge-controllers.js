@@ -79,6 +79,8 @@
 		
 		$scope.isGameInitiated = false;
 		
+		$scope.isGameWon = false;
+		
 		$scope.initiatedLab = {};
 		
 		$scope.isInitiatedLab = function(lab){
@@ -95,6 +97,10 @@
 			$scope.initiatedLab = {};
 			$scope.$broadcast('cleanOldGame');
 		};
+		
+		$scope.$on('gameWon', function(){
+			$scope.isGameWon = true;
+		});
 		
 	}]);
 	
@@ -155,7 +161,7 @@
 					break;
 				case "ganar" : 
 					{
-						// Hacer saltar una ventana que dice ganar y demás cosas.
+						$scope.$emit('gameWon')
 					};
 					break;
 				default : {}
@@ -185,7 +191,8 @@
 	
 	app.controller("InventoryAndHabListCtrl", [ '$scope' , '$http' , function($scope, $http){
 		$scope.habitaciones = [];
-		$scope.inventory = [];		
+		$scope.inventory = [];	
+		$scope.itemSelected = {};
 		
 		$scope.initiateLab = function(lab){
 			$scope.initiate(lab);
@@ -203,6 +210,23 @@
 			$scope.inventory = response.data.inventario;
 			$scope.$broadcast('refreshHabInicial');
 			});
+		};
+		
+		$scope.selectItem = function(item){
+			$scope.itemSelected = item;
+		};
+		
+		$scope.dropItemSelected = function(){
+			// Lo dejo comentado para que no borre el item, porque como en el server
+			// no se puede tirar items, nunca se penso en el modelo esta necesidad, 
+			// por lo tanto, el item se tira en el frontend, pero el backend nunca se
+			// entera que el item no esta más en el inventario del jugador, porque
+			// no existe la accion "tirar item". Entonces cuando despues el cliente
+			// pide realizar la accion de usar ese item, el server lo hace, aunque en el
+			// frontend el item se tiro.
+			// Hay que preguntarles a los profes si sacamos el boton o agregamos "tirar item" al modelo.
+			// -Juanma.
+			//$scope.removeItemFromArray($scope.itemSelected);
 		};
 		
 		$scope.removeItemFromArray = function(item){

@@ -36,6 +36,20 @@
 			templateUrl: 'ventana-pre-inicializado.html'
 		};
 	});
+	
+	app.directive('itemHoverDescription', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'item-hover.html'
+		};
+	});
+	
+	app.directive('habSelected', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'hab-selected.html'
+		};
+	});
 
 
 })();

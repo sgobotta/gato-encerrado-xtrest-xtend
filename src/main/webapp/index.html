@@ -25,7 +25,7 @@
 	<script type="text/javascript" src="js/app.js"></script>
 	<script type="text/javascript" src="js/ge-controllers.js"></script>
 	<script type="text/javascript" src="js/ge-services.js"></script>
-	
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -55,22 +55,26 @@
 				<lab-list></lab-list>
 
 				<!-- Ventana de Juego -->
-				<div data-ng-show="isLabSelected" data-ng-controller="InventoryAndHabListCtrl">
+				<div data-ng-show="isLabSelected"
+					data-ng-controller="ItemHoverCtrl" class="col-sm-10">
+					<div class="row" data-ng-controller="InventoryAndHabListCtrl">
+					
+						<pre-initialization-window></pre-initialization-window>
 
-					<pre-initialization-window></pre-initialization-window>
+						<div data-ng-show="isGameInitiated">
+							<div data-ng-controller="HabCtrl">
+								<!-- Este div va a tener la imagen de la habitacion -->
+								<hab-selected></hab-selected>
+								<!-- Lista de Acciones -->
+								<actions-list></actions-list>
+							</div>
 
-					<div data-ng-show="isGameInitiated">
-						<div data-ng-controller="HabCtrl">
-							<!-- Este div va a tener la imagen de la habitacion -->
-							<div class="col-sm-3"><h4>{{habSelected.nombreHabitacion}}</h4></div>
-							<!-- Lista de Acciones -->
-							<actions-list></actions-list>
+							<!-- Lista de Items -->
+							<item-list></item-list>
 						</div>
-
-						<!-- Lista de Items -->
-						<item-list></item-list>
 					</div>
-
+					<!-- Description de item al hacer hover -->
+					<item-hover-description></item-hover-description>
 				</div>
 
 			</div>

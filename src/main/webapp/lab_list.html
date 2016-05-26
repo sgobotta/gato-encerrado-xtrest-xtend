@@ -1,4 +1,4 @@
-<div class="lab-selection rounded-corners col-sm-4" data-ng-controller="LabChangeModalWindowCtrl">
+<div class="rounded-corners col-sm-2" data-ng-controller="LabChangeModalWindowCtrl">
 
 	<ul class="nav nav-pills nav-stacked">
 		<li data-ng-repeat="laberinto in laberintos" data-ng-class="{ active : laberinto === labSelected || laberinto === initiatedLab}">
@@ -10,8 +10,8 @@
    <div>
       <div data-ng-show="isModalVisible">
           <p>Estas seguro que queres salir del laberinto?<p>
-          <span><button class="btn btn-default" data-ng-click="confirm()">Terminar</button></span>
-          <span><button class="btn btn-default" data-ng-click="deny()">Cancelar</button></span>
+          <span><button class="btn btn-default btn-sm" data-ng-click="confirm()">Si</button></span>
+          <span><button class="btn btn-default btn-sm" data-ng-click="deny()">No</button></span>
       </div>
    </div>
 
