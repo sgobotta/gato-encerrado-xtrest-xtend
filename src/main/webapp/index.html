@@ -57,16 +57,15 @@
 				<lab-list></lab-list>
 
 				<!-- Ventana de Juego -->
-				<div data-ng-show="isLabSelected"
-					data-ng-controller="ErrorPanelCtrl" class="col-sm-10">
+				<div data-ng-show="isLabSelected" 
+				    data-ng-controller="ErrorPanelCtrl" class="col-sm-10">
 					<div class="row" data-ng-controller="InventoryAndHabListCtrl">
 					
 						<pre-initialization-window></pre-initialization-window>
 
 						<div data-ng-show="isGameInitiated">
 							<div data-ng-controller="HabCtrl">
-								<!-- Este div va a tener la imagen 
-								y el nombre de la habitacion seleccionada -->
+								<!-- Imagen Seleccionada -->
 								<hab-selected></hab-selected>
 								<!-- Lista de Acciones de la habitacion seleccionada -->
 								<actions-list></actions-list>
@@ -81,6 +80,7 @@
 				</div>
 
 			</div>
+			<modal-window></modal-window>
 
 		</div>
 

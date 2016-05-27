@@ -42,7 +42,7 @@
 	}]);
 	
 	/**
-	 * MODAL WINDOW: Lab changes
+	 * ventanita cambio de lab: Lab changes (ya la cambio por la modal window....) Santi B.
 	 */
 
 	app.controller('LabChangeModalWindowCtrl', [ '$scope', function($scope) {
@@ -79,9 +79,18 @@
 		
 		$scope.isGameInitiated = false;
 		
-		$scope.isGameWon = false;
+		//$scope.isGameWon = false; Como no es un ng-show no utilizo está variable (borrar luego)
 		
 		$scope.initiatedLab = {};
+		
+		/**
+		 * Modal window references (estaría bueno que tenga su Ctrl a parte pero por ahora quedará aca..)
+		 */
+    	$scope.modalAlertToDisplay = {};
+    	$scope.modalMessageToDisplay = {};
+    	
+    	$('#modalWindow').modal({ show: false }); //la ventana modal está oculta por defecto (borrar luego)
+		
 		
 		$scope.isInitiatedLab = function(lab){
 			return lab === $scope.initiatedLab && $scope.isGameInitiated;
@@ -99,12 +108,14 @@
 		};
 		
 		$scope.$on('gameWon', function(){
-			$scope.isGameWon = true;
+    		$scope.modalMessageToDisplay = 'Has conseguido escapar de ' + $scope.initiatedLab.nombreLaberinto;
+    		$scope.modalAlertToDisplay = 'Ganaste!';
+        	$('#modalWindow').modal('show');
 		});
 		
 	}]);
 	
-	app.controller('HabCtrl', [ '$scope' , '$http' , function($scope, $http){
+	app.controller('HabCtrl', [ '$scope', '$http', function($scope, $http){
 		$scope.habSelected = {};
 		
 		$scope.refreshInitialHab = function(){
@@ -159,15 +170,17 @@
 				case "ganar" : 
 					{
 						$scope.$emit('gameWon')
+						//$scope.showVictoryModal();
 					};
 					break;
 				case "sinItem" :
 					{
-						$scope.showItemUsageError(data.extra)
+						$scope.showItemUsageError(data.extra);
 					}
 				default : {}
 			}
 		};
+		
 		
 		$scope.useItem = function(data, action){
 			$scope.habSelected.acciones.push(data.action);

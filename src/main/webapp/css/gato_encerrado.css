@@ -4,6 +4,16 @@
 	background-color: silver;
 }
 
+.ge-modal-window {
+	color: blue;
+	text-align: center;
+}
+
+.ge-modal-window-message {
+	color: black;
+	font-weight: bold;
+}
+
 .ge-header {
 	margin-left:-18px;
 	margin-right: -19px;

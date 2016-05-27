@@ -50,6 +50,12 @@
 			templateUrl: 'hab-selected.html'
 		};
 	});
-
+	
+	app.directive('modalWindow', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'modal_window.html'
+		};
+	});
 
 })();
