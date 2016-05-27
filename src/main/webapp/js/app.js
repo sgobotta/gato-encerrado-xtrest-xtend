@@ -1,6 +1,6 @@
 (function(){
 	// El wrapping de nuestra app en una funcion anonima es un buen habito segun los tutos, así que...
-	var app = angular.module('ge-main', [ 'ge-controllers', 'ge-services' ]);
+	var app = angular.module('ge-main', [ 'ge-controllers', 'ge-services', 'ngResource' ]);
 	
 	app.directive('actionsList', function() {
 		return {

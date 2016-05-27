@@ -8,8 +8,8 @@
 	
 	}]);
 	
-	//app.controller('LabListCtrl', [ '$http', '$scope', 'Laberintos', function($http, $scope, Laberintos){
-	app.controller('LabListCtrl', [ '$http', '$scope', function($http, $scope){
+	app.controller('LabListCtrl', [ '$http', '$scope', 'Laberintos', function($http, $scope, Laberintos){
+	//app.controller('LabListCtrl', [ '$http', '$scope', function($http, $scope){
 		
 		$scope.laberintos = [];//[{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"http://localhost/static/cueva_hobbit.jpg","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}];
 		
@@ -25,19 +25,19 @@
 			$scope.isLabSelected = true;
 		};
 		
-		$http.get("/laberintos/" + $scope.user.id).then(function success(response) {
-			$scope.laberintos = response.data.laberintos;
-		}, function error(data){
-			
-		});
+//		$http.get("/laberintos/" + $scope.user.id).then(function success(response) {
+//			$scope.laberintos = response.data.laberintos;
+//		}, function error(data){
+//			
+//		});
 		
-//		this.getListaDeLaberintos = function() {
-//			Laberintos.query(function(data){
-//				$scope.laberintos = data.laberintos;
-//			}, errorHandler);
-//		};
-//
-//		this.getListaDeLaberintos();
+		this.getListaDeLaberintos = function() {
+			Laberintos.query(function(data){
+				$scope.laberintos = data.laberintos;
+			});
+		};
+
+		this.getListaDeLaberintos();
 		
 	}]);
 	
