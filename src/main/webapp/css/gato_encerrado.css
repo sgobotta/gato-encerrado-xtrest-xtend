@@ -1,14 +1,14 @@
 @CHARSET "UTF-8";
 
 .ge-container {
-	background-color: silver;   
+	background-color: silver;
 }
 
 .ge-header {
-    width:100%;
+	margin-left:-18px;
+	margin-right: -19px;
     margin-top: -5px;
     padding-top:20px;
-    margin-left: 0px;
     background-color: grey;
     border-style: solid;
     border-color: silver;
@@ -30,8 +30,8 @@
 }
 
 .ge-footer {
-    width:100%;
-    margin-left: 5px;
+	
+    margin-left: -18px;
     bottom:0;
 }
 

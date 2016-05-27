@@ -36,7 +36,7 @@
 
 
 	<!--  Container -->
-	<div class="ge-container" data-ng-controller="UserCtrl">
+	<div class="ge-container container-fluid" data-ng-controller="UserCtrl">
 
 		<!--  Header -->
 		<div class="page-header ge-header rounded-bottom-corners row">
@@ -47,7 +47,7 @@
 		</div>
 
 		<!-- Playground/Body Container -->
-		<div class="container playground row" data-ng-controller="GameStateCtrl">
+		<div class="playground row" data-ng-controller="GameStateCtrl">
 
 			<!-- Fondo de ventana -->
 			<div class="lab-game rounded-corners"
@@ -58,7 +58,7 @@
 
 				<!-- Ventana de Juego -->
 				<div data-ng-show="isLabSelected"
-					data-ng-controller="ErrorPanelCtrl" class="container col-sm-10">
+					data-ng-controller="ErrorPanelCtrl" class="col-sm-10">
 					<div class="row" data-ng-controller="InventoryAndHabListCtrl">
 					
 						<pre-initialization-window></pre-initialization-window>
