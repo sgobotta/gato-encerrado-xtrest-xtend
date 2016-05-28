@@ -5,63 +5,63 @@
 	app.directive('actionsList', function() {
 		return {
 		    restrict: 'E',
-		    templateUrl: "action_list.html"
+		    templateUrl: "views/lists/action_list.html"
 		};
 	});
 	
 	app.directive('labList', function() {
 		return {
 			restrict: 'E',
-			templateUrl: 'lab_list.html'
+			templateUrl: 'views/lists/lab_list.html'
 		};
 	});
 	
 	app.directive('gatoEncerradoTitle', function() {
 		return {
 			restrict: 'E',
-			templateUrl: 'gato_encerrado_title.html'
+			templateUrl: 'views/gato_encerrado_title.html'
 		};
 	});
 	
 	app.directive('itemList', function() {
 		return {
 			restrict: 'E',
-			templateUrl: 'item_list.html'
+			templateUrl: 'views/lists/item_list.html'
 		};
 	});
 	
 	app.directive('preInitializationWindow', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'ventana-pre-inicializado.html'
+			templateUrl: 'views/ventana-pre-inicializado.html'
 		};
 	});
 	
 	app.directive('errorPanelDescription', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'error_panel.html'
+			templateUrl: 'views/error_panel.html'
 		};
 	});
 	
-	app.directive('habSelected', function(){
+	app.directive('habScene', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'hab-selected.html'
+			templateUrl: 'views/hab_scene.html'
 		};
 	});
 	
 	app.directive('winModalWindow', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'win_modal_window.html'
+			templateUrl: 'views/modal/win_modal.html'
 		};
 	});
 	
 	app.directive('changeLabModalWindow', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'change_lab_modal_window.html'
+			templateUrl: 'views/modal/change_lab_modal.html'
 		};
 	});
 
