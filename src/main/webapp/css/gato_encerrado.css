@@ -36,13 +36,17 @@
     border-color: silver;
 }
 
+#lab-list {
+	padding-top: 0px; !important
+}
+
 .lab-status-active {
 	color: cyan;
 	float: right;
 }
 
 .lab-status-completed {
-    color: green;
+    color: lightgreen;
     float: right;
 }
 
