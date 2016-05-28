@@ -11,6 +11,7 @@
 
 .ge-change-lab-modal-window {
 	width: 400px;
+	padding:20px;
 }
 
 .ge-modal-window-message {
@@ -44,7 +45,6 @@
 }
 
 .ge-footer {
-	
     margin-left: -18px;
     bottom:0;
 }

@@ -11,7 +11,8 @@
 	app.controller('LabListCtrl', [ '$http', '$scope', 'Laberintos', function($http, $scope, Laberintos){
 	//app.controller('LabListCtrl', [ '$http', '$scope', function($http, $scope){
 		
-		$scope.laberintos = [];//[{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"http://localhost/static/cueva_hobbit.jpg","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}];
+		$scope.laberintos = [];
+		
 		$scope.laberintosCompletados = [];
 		
 		$scope.labSelected = {};
@@ -68,7 +69,7 @@
 
 	app.controller('LabChangeModalWindowCtrl', [ '$scope', function($scope) {
 		
-    	//$('#changeLabModalWindow').modal({ show: false });
+    	//$('#changeLabModalWindow').modal({ show: false }); probablemente a ser borrado cuando revisemos todo al final.
     	    	
 		$scope.tempLab 			= {};
 		$scope.changeLabAlert 	= {};
@@ -96,6 +97,7 @@
 			$scope.tempLab = {};
 		};
 		
+		// No se donde se esta usando esto, por las dudas lo dejo...
 		$scope.cerrarModal = function(){
 			$('#changeLabModalWindow').modal({ show: false });
 			console.log('You tried to close the modal window but failed..');
@@ -181,12 +183,6 @@
 			});
 		};
 		
-		
-		// Anda todo, pero quizas podríamos agregar una respuesta de error
-		// Por ejemplo, si quiero ir usar un item para algo y no lo tengo
-		// del server me tendrían que avisar que no lo tengo via una 
-		// Respuesta de accion que sea de error y tenga un String mensaje
-		// que se use para avisar en algun lado porque no puedo hacer X cosa.
 		$scope.handleActionExecutionResponse = function (data, action){
 			switch(data.type){
 				case "agarrarItem" : 
@@ -290,6 +286,9 @@
 			//$scope.removeItemFromArray($scope.itemSelected);
 		};
 		
+		// Esto no se donde se usa tampoco...
+		// No me acuerdo si lo implemente yo, sino fijate si lo usamos y borralo sino lo usamos.
+		// -Juanma.
 		$scope.invContainsItem = function(item){
 			return $scope.inventory.indexOf(item);
 		};
@@ -309,6 +308,7 @@
     app.controller('ErrorPanelCtrl', [ '$scope' , '$timeout' , function($scope, $timeout){
         
     	$scope.itemNotification = {};
+    	$scope.promiseTimeout = {};
     	
         $scope.showDescription = function(item) {
     		$scope.itemNotification 	= item.descripcion;
@@ -321,10 +321,12 @@
         };
         
         $scope.showItemUsageError = function(nombreItem) {
+        	$timeout.cancel($scope.promiseTimeout);
         	$scope.itemNotification 	= nombreItem + " no está en tu inventario!";
         	$scope.descriptionIsVisible = true;
-        	$timeout(function() { $scope.hideDescription(); }, 3000);
+        	$scope.promiseTimeout = $timeout(function() { $scope.hideDescription(); }, 2500);
         };
+
 
     }]);
 	
