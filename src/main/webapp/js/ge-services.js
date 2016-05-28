@@ -28,8 +28,9 @@
 	 * Realizar acción
 	 */
 	app.factory('RealizarAccion', function($resource) {
-		return $resource('/realizar_accion/:habitacion_id/:action_id', { 'habitacion_id' : '@habitacion_id',
-			  															 'action_id'     : '@action_id' }, {
+		return $resource('/realizar_accion/:habitacion_id/:action_id/:user_id', { 'habitacion_id' : '@habitacion_id',
+			  															 'action_id'     : '@action_id',
+			  															 'user_id'		 : '@user_id' }, {
             'query' : { method: 'GET' }
 		});
 	});

@@ -17,6 +17,7 @@ import org.uqbar.jugador.Jugador
 import org.uqbar.xtrest.respuestas.RespuestaDeIniciarLaberinto
 import org.uqbar.acciones.RespuestaDeRealizarAccionModel
 import org.uqbar.xtrest.respuestas.RespuestaDeRealizarAccion
+import org.uqbar.Usuario
 
 class GatoEncerradoWebDummyData {
 	
@@ -26,48 +27,41 @@ class GatoEncerradoWebDummyData {
 	def static getLaberintos(int idUsuario){
 		var list = new ArrayList<MinLaberinto>()
         
-        var lab1 = new Laberinto => [
-            nombreLaberinto = "Cueva"
-            idLaberinto     = 01
-            imagePath       = "http://localhost/static/cueva/cueva_hobbit.jpg"
-        ]
-
-        var lab2 = new Laberinto => [
-            nombreLaberinto = "Cascada"
-            idLaberinto     = 02
-            imagePath       = "http://localhost/static/cascada/cascada.jpg"
-        ]
-        
-        var lab3 = new Laberinto => [
-            nombreLaberinto = "Casa Embrujada"
-            idLaberinto     = 03
-            imagePath       = "http://localhost/static/casa/casa.jpg"
-        ]
-        
-        var lab4 = new Laberinto => [
-            nombreLaberinto = "Cementerio"
-            idLaberinto     = 04
-            imagePath       = "http://localhost/static/cementerio/cementerio.jpg"
-        ]
-        
-        list.add(toMinLaberinto(lab1))
-        list.add(toMinLaberinto(lab2))
-        list.add(toMinLaberinto(lab3))
-        list.add(toMinLaberinto(lab4))
+		for(laberinto : getUserById(idUsuario).laberintos){
+        list.add(toMinLaberinto(laberinto))			
+		}     
         
         new RespuestaDeLaberintos(list)
 	}
 	
-	def static iniciarLaberinto(int idUsuario, int idLaberinto, XTRestAppModel game){
-		switch(idLaberinto){
-			case 1: iniciarLaberinto1(game)
-			case 2: iniciarLaberinto2(game)
-			case 3: iniciarLaberinto3(game)
-			case 4: iniciarLaberinto4(game)
+	def static getUserById(int id) {
+		var Usuario userToReturn = null;
+		for(user : getUsers()){
+			if(user.id == id){
+				userToReturn = user
+			}
+		}
+		if(userToReturn != null){
+			userToReturn
+		} else {
+			throw new UserDoesNotExistException
 		}
 	}
 	
-	def static iniciarLaberinto1(XTRestAppModel game){
+	def static iniciarLaberinto(int idUsuario, int idLaberinto, XTRestAppModel game){
+		var user = getUserById(idUsuario)
+		if(user.hasLabOfId(idLaberinto)){
+			switch(idLaberinto){
+				case 1: iniciarLaberinto1(game, user)
+				case 2: iniciarLaberinto2(game, user)
+				case 3: iniciarLaberinto3(game, user)
+				case 4: iniciarLaberinto4(game, user)
+			}
+		}
+	}
+	
+	def static iniciarLaberinto1(XTRestAppModel game, Usuario user){
+        
 		var lab = new Laberinto => [
             nombreLaberinto = "Cueva"
             idLaberinto     = 01
@@ -158,13 +152,13 @@ class GatoEncerradoWebDummyData {
 		
 		val jugador = new Jugador()
 		
-		game.nuevoJuego(lab, jugador)
+		game.nuevoJuego(user, lab, jugador)
 		
 		val res = new RespuestaDeIniciarLaberinto(habList, jugador.inventario)
 		res
 	}
 	
-	def static iniciarLaberinto2(XTRestAppModel game){
+	def static iniciarLaberinto2(XTRestAppModel game, Usuario user){
         var lab = new Laberinto => [
             nombreLaberinto = "Cascada"
             idLaberinto     = 01
@@ -272,13 +266,13 @@ class GatoEncerradoWebDummyData {
         
         val jugador = new Jugador()
         
-        game.nuevoJuego(lab, jugador)
+        game.nuevoJuego(user, lab, jugador)
         
         val res = new RespuestaDeIniciarLaberinto(habList, jugador.inventario)
         res
 	}
 	
-	def static iniciarLaberinto3(XTRestAppModel game){
+	def static iniciarLaberinto3(XTRestAppModel game, Usuario user){
         var lab = new Laberinto => [
             nombreLaberinto = "Casa Embrujada"
             idLaberinto     = 03
@@ -420,13 +414,13 @@ class GatoEncerradoWebDummyData {
 		
 		val jugador = new Jugador()
 		
-		game.nuevoJuego(lab, jugador)
+		game.nuevoJuego(user, lab, jugador)
 		
 		val res = new RespuestaDeIniciarLaberinto(habList, jugador.inventario)
 		res
 	}
 	
-	def static iniciarLaberinto4(XTRestAppModel game){
+	def static iniciarLaberinto4(XTRestAppModel game, Usuario user){
 		// TODO
 	}
 
@@ -473,5 +467,58 @@ class GatoEncerradoWebDummyData {
 			extra        = response.extra
 		]
 		minResponse
+	}
+	
+	def static getUsers(){
+        var user1 = new Usuario => [
+        	id			= 1
+        	nombre		= "Pepe"
+        	password	= "1234"
+        ]
+        
+        var user2 = new Usuario => [
+        	id			= 2
+        	nombre		= "Stanley"
+        	password	= "1234"
+        ]
+        
+        var lab1 = new Laberinto => [
+            nombreLaberinto = "Cueva"
+            idLaberinto     = 01
+            imagePath       = "http://localhost/static/cueva/cueva_hobbit.jpg"
+        ]
+
+        var lab2 = new Laberinto => [
+            nombreLaberinto = "Cascada"
+            idLaberinto     = 02
+            imagePath       = "http://localhost/static/cascada/cascada.jpg"
+        ]
+        
+        var lab3 = new Laberinto => [
+            nombreLaberinto = "Casa Embrujada"
+            idLaberinto     = 03
+            imagePath       = "http://localhost/static/casa/casa.jpg"
+        ]
+        
+        var lab4 = new Laberinto => [
+            nombreLaberinto = "Cementerio"
+            idLaberinto     = 04
+            imagePath       = "http://localhost/static/cementerio/cementerio.jpg"
+        ]
+        
+        var list = new ArrayList<Usuario>
+        
+        user1.agregarLaberinto(lab1)
+        user1.agregarLaberinto(lab2)
+        user1.agregarLaberinto(lab3)
+        user1.agregarLaberinto(lab4)
+        
+        user2.agregarLaberinto(lab2)
+        user2.agregarLaberinto(lab4)
+        
+        list.add(user1)
+        list.add(user2)
+        
+        list
 	}
 }

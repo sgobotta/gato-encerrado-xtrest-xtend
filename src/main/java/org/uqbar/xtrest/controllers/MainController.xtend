@@ -27,10 +27,10 @@ class MainController {
     }
     
     
-    @Get("/realizar_accion/:id_habitacion/:id_accion")
+    @Get("/realizar_accion/:id_habitacion/:id_accion/:id_usuario")
     def realizarAccionHabitacion() {
         response.contentType = "application/json"
-        var resTemp = game.realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_accion))
+        var resTemp = game.realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_accion), Integer.parseInt(id_usuario))
         var res = GatoEncerradoWebDummyData.toMinResponse(resTemp)
         ok(res.toJson)
     }

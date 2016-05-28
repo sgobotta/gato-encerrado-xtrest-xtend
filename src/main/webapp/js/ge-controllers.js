@@ -147,7 +147,7 @@
 		 * Realizar acción service
 		 */
 		$scope.executeAction = function(action) {
-			var urlParams = { habitacion_id: $scope.habSelected.id, action_id: action.id };
+			var urlParams = { habitacion_id: $scope.habSelected.id, action_id: action.id , user_id: $scope.user.id};
 			RealizarAccion.query(urlParams, function(data){
 				$scope.handleActionExecutionResponse(data, action);
 			});
@@ -234,7 +234,7 @@
 		});
 		
 		$scope.executeAction = function(action) {
-			var urlParams = { habitacion_id: $scope.habSelected.id, action_id: action.id };
+			var urlParams = { habitacion_id: $scope.habSelected.id, action_id: action.id , user_id: $scope.user.id};
 			RealizarAccion.query(urlData, function(data){
 				$scope.handleActionExecutionResponse(data, action);
 			});
