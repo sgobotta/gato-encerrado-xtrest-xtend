@@ -4,6 +4,13 @@
 	background-color: silver;
 }
 
+.welcome-panel {
+	width: 100%;
+	border: solid navy;
+	background-color: white;
+	text-align: center;
+}
+
 .ge-modal-window {
 	color: blue;
 	text-align: center;
@@ -29,8 +36,14 @@
     border-color: silver;
 }
 
-.lab-status {
+.lab-status-active {
+	color: cyan;
 	float: right;
+}
+
+.lab-status-completed {
+    color: green;
+    float: right;
 }
 
 #ge-header-title{
@@ -54,10 +67,22 @@
 	height: 100%;
 }
 
+.lab-title {
+    text-align: left;
+}
+
+.initiated-lab-title {
+	text-align: left;
+}
+
 .lab-game {
     margin-left: 15px;
     margin-right: 15px;
 	height: 100%;
+}
+
+.inventory-title {
+	text-align: center;
 }
 
 .lab-inventory {
@@ -66,10 +91,26 @@
     margin-bottom: 5px;
 }
 
-.hab-display {
+.hab-scene-title {
+	text-align: center;
+}
 
+.hab-ref {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.hab-name {
+	font-size: 18px;
+}
+
+.hab-display {
 	margin-right: 30px;
 	padding-top: 40px;
+}
+
+.hab-actions-title {
+	text-align: center;
 }
 
 .hab-actions-selection {
@@ -84,6 +125,7 @@
 }
 
 .rounded-bottom-corners {
+	padding-left: 20px;
 	border-bottom-left-radius: 40px;
 }
 

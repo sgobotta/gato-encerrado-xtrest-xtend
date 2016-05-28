@@ -23,6 +23,13 @@
 		};
 	});
 	
+	app.directive('gatoEncerradoFooter', function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'views/gato_encerrado_footer.html'
+		};
+	});
+	
 	app.directive('itemList', function() {
 		return {
 			restrict: 'E',
@@ -37,7 +44,7 @@
 		};
 	});
 	
-	app.directive('errorPanelDescription', function(){
+	app.directive('errorPanel', function(){
 		return {
 			restrict: 'E',
 			templateUrl: 'views/error_panel.html'
@@ -62,6 +69,13 @@
 		return {
 			restrict: 'E',
 			templateUrl: 'views/modal/change_lab_modal.html'
+		};
+	});
+	
+	app.directive('welcomePanel', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'views/welcome.html'
 		};
 	});
 
