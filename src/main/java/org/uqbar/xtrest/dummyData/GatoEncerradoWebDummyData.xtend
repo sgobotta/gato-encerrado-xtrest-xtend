@@ -64,7 +64,7 @@ class GatoEncerradoWebDummyData {
         
 		var lab = new Laberinto => [
             nombreLaberinto = "Cueva"
-            idLaberinto     = 01
+            idLaberinto     = 1
             imagePath       = "http://localhost/static/cueva/cueva_hobbit.jpg"
         ]
 		
@@ -161,7 +161,7 @@ class GatoEncerradoWebDummyData {
 	def static iniciarLaberinto2(XTRestAppModel game, Usuario user){
         var lab = new Laberinto => [
             nombreLaberinto = "Cascada"
-            idLaberinto     = 01
+            idLaberinto     = 2
             imagePath       = "http://localhost/static/cascada.jpg"
         ]
         
@@ -275,7 +275,7 @@ class GatoEncerradoWebDummyData {
 	def static iniciarLaberinto3(XTRestAppModel game, Usuario user){
         var lab = new Laberinto => [
             nombreLaberinto = "Casa Embrujada"
-            idLaberinto     = 03
+            idLaberinto     = 3
             imagePath       = "http://localhost/static/casa.jpg"
         ]
 		
