@@ -12,6 +12,7 @@
 	//app.controller('LabListCtrl', [ '$http', '$scope', function($http, $scope){
 		
 		$scope.laberintos = [];//[{"nombre":"Cueva","habitaciones":[],"last":null,"first":null,"idLaberinto":1,"imagePath":"http://localhost/static/cueva_hobbit.jpg","jugador":null},{"nombre":"Cascada","habitaciones":[],"last":null,"first":null,"idLaberinto":2,"imagePath":"src/main/exit.png","jugador":null}];
+		$scope.laberintosCompletados = [];
 		
 		$scope.labSelected = {};
 		
@@ -30,6 +31,22 @@
 //		}, function error(data){
 //			
 //		});
+		
+		$scope.addCompletedLab = function(id){
+			$scope.laberintosCompletados.push(id);
+		};
+		
+		$scope.isCompletedLab = function(id){
+			if($scope.laberintosCompletados.indexOf(id) === -1){
+				return false;
+			} else {
+				return true;
+			}
+		};
+		
+		$scope.$on('addCompletedLab', function(event, id){
+			$scope.addCompletedLab(id);
+		});
 		
 		this.getListaDeLaberintos = function() {
 			Laberintos.query(function(data){
@@ -51,10 +68,8 @@
 
 	app.controller('LabChangeModalWindowCtrl', [ '$scope', function($scope) {
 		
-    	$('#changeLabModalWindow').modal({ show: false });
-    	
-//		$scope.isModalVisible 	= false;
-    	
+    	//$('#changeLabModalWindow').modal({ show: false });
+    	    	
 		$scope.tempLab 			= {};
 		$scope.changeLabAlert 	= {};
 		$scope.changeLabMessage = {};
@@ -69,19 +84,16 @@
 			}
 			else {
 				$scope.labSelectedChange(lab);
-//				$scope.isModalVisible = false;
 			};
 		};
 		
 		$scope.confirmLabChange = function(){
 			$scope.labSelectedChange($scope.tempLab);
 			$scope.tempLab = {};
-//			$scope.isModalVisible = false;
 		};
 		
 		$scope.deny = function(){
 			$scope.tempLab = {};
-//			$scope.isModalVisible = false;
 		};
 		
 		$scope.cerrarModal = function(){
@@ -95,7 +107,6 @@
 		
 		$scope.isGameInitiated = false;
 		
-		//$scope.isGameWon = false; Como no es un ng-show no utilizo está variable (borrar luego)
 		
 		$scope.initiatedLab = {};
 		
@@ -105,7 +116,7 @@
     	$scope.modalAlertToDisplay = {};
     	$scope.modalMessageToDisplay = {};
     	
-    	$('#winModalWindow').modal({ show: false }); //la ventana modal está oculta por defecto (borrar luego)
+    	// $('#winModalWindow').modal({ show: false }); la ventana modal está oculta por defecto (borrar luego)
 		
 		$scope.isInitiatedLab = function(lab){
 			return lab === $scope.initiatedLab && $scope.isGameInitiated;
@@ -126,6 +137,8 @@
     		$scope.modalMessageToDisplay = 'Has conseguido escapar de ' + $scope.initiatedLab.nombreLaberinto;
     		$scope.modalAlertToDisplay = 'Ganaste!';
         	$('#winModalWindow').modal('show');
+        	$scope.$broadcast('addCompletedLab', $scope.initiatedLab.idLaberinto);
+        	$scope.finalize();
 		});
 		
 	}]);
@@ -193,15 +206,14 @@
 					break;
 				case "ganar" : 
 					{
-						$scope.$emit('gameWon')
-						//$scope.showVictoryModal();
+						$scope.$emit('gameWon');
 					};
 					break;
 				case "sinItem" :
 					{
 						$scope.showItemUsageError(data.extra);
-					}
-				default : {}
+					};
+				default : {};
 			}
 		};
 		
@@ -294,7 +306,7 @@
 	}]);
 	
 	
-    app.controller('ErrorPanelCtrl', [ '$scope', function($scope){
+    app.controller('ErrorPanelCtrl', [ '$scope' , '$timeout' , function($scope, $timeout){
         
     	$scope.itemNotification = {};
     	
@@ -311,6 +323,7 @@
         $scope.showItemUsageError = function(nombreItem) {
         	$scope.itemNotification 	= nombreItem + " no está en tu inventario!";
         	$scope.descriptionIsVisible = true;
+        	$timeout(function() { $scope.hideDescription(); }, 3000);
         };
 
     }]);

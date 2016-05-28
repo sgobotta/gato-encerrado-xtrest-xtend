@@ -28,7 +28,7 @@
     border-color: silver;
 }
 
-#lab-activo {
+.lab-status {
 	float: right;
 }
 
