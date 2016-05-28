@@ -43,34 +43,50 @@
 	
 	/**
 	 * ventanita cambio de lab: Lab changes (ya la cambio por la modal window....) Santi B.
+	 * 
+	 * Cambiado por una modal
+	 * 
+	 * falta que no se active si el juego está ganado, me queda pendiente.
 	 */
 
 	app.controller('LabChangeModalWindowCtrl', [ '$scope', function($scope) {
 		
-		$scope.isModalVisible = false;
-		$scope.tempLab = {};
+    	$('#changeLabModalWindow').modal({ show: false });
+    	
+//		$scope.isModalVisible 	= false;
+    	
+		$scope.tempLab 			= {};
+		$scope.changeLabAlert 	= {};
+		$scope.changeLabMessage = {};
 		
 		$scope.tryChangeLab = function(lab) {
 			
 			if($scope.isGameInitiated && lab !== $scope.initiatedLab) {
-				$scope.isModalVisible = true;
+				$scope.changeLabAlert 	= 'Estas saliendo de ' + $scope.initiatedLab.nombreLaberinto;
+				$scope.changeLabMessage = 'Queres comenzar a jugar en ' + lab.nombreLaberinto + '?'; 
+				$('#changeLabModalWindow').modal('show');
 				$scope.tempLab = lab;
 			}
 			else {
 				$scope.labSelectedChange(lab);
-				$scope.isModalVisible = false;
+//				$scope.isModalVisible = false;
 			};
 		};
 		
-		$scope.confirm = function(){
+		$scope.confirmLabChange = function(){
 			$scope.labSelectedChange($scope.tempLab);
 			$scope.tempLab = {};
-			$scope.isModalVisible = false;
+//			$scope.isModalVisible = false;
 		};
 		
 		$scope.deny = function(){
 			$scope.tempLab = {};
-			$scope.isModalVisible = false;
+//			$scope.isModalVisible = false;
+		};
+		
+		$scope.cerrarModal = function(){
+			$('#changeLabModalWindow').modal({ show: false });
+			console.log('You tried to close the modal window but failed..');
 		};
 		
 	}]);
@@ -89,8 +105,7 @@
     	$scope.modalAlertToDisplay = {};
     	$scope.modalMessageToDisplay = {};
     	
-    	$('#modalWindow').modal({ show: false }); //la ventana modal está oculta por defecto (borrar luego)
-		
+    	$('#winModalWindow').modal({ show: false }); //la ventana modal está oculta por defecto (borrar luego)
 		
 		$scope.isInitiatedLab = function(lab){
 			return lab === $scope.initiatedLab && $scope.isGameInitiated;
@@ -110,7 +125,7 @@
 		$scope.$on('gameWon', function(){
     		$scope.modalMessageToDisplay = 'Has conseguido escapar de ' + $scope.initiatedLab.nombreLaberinto;
     		$scope.modalAlertToDisplay = 'Ganaste!';
-        	$('#modalWindow').modal('show');
+        	$('#winModalWindow').modal('show');
 		});
 		
 	}]);
@@ -135,6 +150,15 @@
 				}
 			}				
 		};
+		
+		/**
+		 * INTENTANDO REALIZAR ACCION
+		 */
+//		$scope.realizarAccion = function(action){
+//			RealizarAccion.query(data){
+//				$scope.handleActionExecutionResponse(data, action);
+//			};
+//		};
 		
 		$scope.executeAction = function(action){
 			$http.get("/realizar_accion/" + $scope.habSelected.id + "/" + action.id).then(function success(response){

@@ -51,10 +51,17 @@
 		};
 	});
 	
-	app.directive('modalWindow', function(){
+	app.directive('winModalWindow', function(){
 		return {
 			restrict: 'E',
-			templateUrl: 'modal_window.html'
+			templateUrl: 'win_modal_window.html'
+		};
+	});
+	
+	app.directive('changeLabModalWindow', function(){
+		return {
+			restrict: 'E',
+			templateUrl: 'change_lab_modal_window.html'
 		};
 	});
 

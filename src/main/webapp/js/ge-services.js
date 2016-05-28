@@ -8,6 +8,13 @@
 	    	'query': { method: 'GET' },
 	    });
 	});
+	
+	/**
+	 * INTENTANDO REALIZAR ACCION
+	 */
+//	app.factory('RealizarAccion', function($resource) {
+//		return $resource()
+//	})
 
 })();
 

@@ -9,6 +9,10 @@
 	text-align: center;
 }
 
+.ge-change-lab-modal-window {
+	width: 400px;
+}
+
 .ge-modal-window-message {
 	color: black;
 	font-weight: bold;
