@@ -50,7 +50,7 @@
 		});
 		
 		this.getListaDeLaberintos = function() {
-			Laberintos.query(function(data){
+			Laberintos.query({id_usuario : $scope.user.id}, function(data){
 				$scope.laberintos = data.laberintos;
 			});
 		};
@@ -59,14 +59,6 @@
 		
 	}]);
 	
-	/**
-	 * ventanita cambio de lab: Lab changes (ya la cambio por la modal window....) Santi B.
-	 * 
-	 * Cambiado por una modal
-	 * 
-	 * falta que no se active si el juego está ganado, me queda pendiente.
-	 */
-
 	app.controller('LabChangeModalWindowCtrl', [ '$scope', function($scope) {
 		
     	//$('#changeLabModalWindow').modal({ show: false }); probablemente a ser borrado cuando revisemos todo al final.
@@ -105,7 +97,7 @@
 		
 	}]);
 	
-	app.controller('GameStateCtrl', [ '$scope' , function($scope){
+	app.controller('GameStateCtrl', [ '$scope', function($scope){
 		
 		$scope.isGameInitiated = false;
 		
@@ -145,7 +137,7 @@
 		
 	}]);
 	
-	app.controller('HabCtrl', [ '$scope', '$http', function($scope, $http){
+	app.controller('HabCtrl', [ '$scope', '$http', 'RealizarAccion', function($scope, $http, RealizarAccion){
 		$scope.habSelected = {};
 		
 		$scope.refreshInitialHab = function(){
@@ -167,21 +159,23 @@
 		};
 		
 		/**
-		 * INTENTANDO REALIZAR ACCION
+		 * Execute Action
 		 */
-//		$scope.realizarAccion = function(action){
-//			RealizarAccion.query(data){
-//				$scope.handleActionExecutionResponse(data, action);
-//			};
-//		};
 		
-		$scope.executeAction = function(action){
-			$http.get("/realizar_accion/" + $scope.habSelected.id + "/" + action.id).then(function success(response){
-				$scope.handleActionExecutionResponse(response.data, action);
-			}, function error(response){
-				// handle error
+		$scope.executeAction = function(action) {
+			var urlData = { habitacion_id: $scope.habSelected.id, action_id: action.id };
+			RealizarAccion.query(urlData, function(data){
+				$scope.handleActionExecutionResponse(data, action);
 			});
 		};
+		
+//		$scope.executeAction = function(action){
+//			$http.get("/realizar_accion/" + $scope.habSelected.id + "/" + action.id).then(function success(response){
+//				$scope.handleActionExecutionResponse(response.data, action);
+//			}, function error(response){
+//				// handle error
+//			});
+//		};
 		
 		$scope.handleActionExecutionResponse = function (data, action){
 			switch(data.type){

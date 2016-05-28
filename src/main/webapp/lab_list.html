@@ -3,7 +3,7 @@
 	<ul class="nav nav-pills nav-stacked">
 		<li data-ng-repeat="laberinto in laberintos" data-ng-class="{ active : laberinto === labSelected || laberinto === initiatedLab}">
 			<a href="" data-ng-click="tryChangeLab(laberinto)">{{laberinto.nombreLaberinto}}
-					<span data-ng-show="isInitiatedLab(laberinto)" class="lab-status">-Activo</span>
+					<span data-ng-show="isInitiatedLab(laberinto)" class="lab-status">Activo</span>
 					<span data-ng-show="isCompletedLab(laberinto.idLaberinto)" class="lab-status">Completado</span>
 			</a>
 		</li>
