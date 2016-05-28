@@ -20,7 +20,7 @@ class MainController {
         ok(GatoEncerradoWebDummyData.getLaberintos(Integer.parseInt(id_usuario)).toJson)
     }
     
-    @Get("/iniciar_laberintos/:id_usuario/:id_laberinto")
+    @Get("/iniciar_laberinto/:id_usuario/:id_laberinto")
     def inciarLaberinto() {
         ok(GatoEncerradoWebDummyData.iniciarLaberinto(Integer.parseInt(id_usuario),Integer.parseInt(id_laberinto), game).toJson)
     }

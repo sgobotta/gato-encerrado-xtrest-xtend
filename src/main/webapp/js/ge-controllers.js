@@ -8,8 +8,7 @@
 	
 	}]);
 	
-	app.controller('LabListCtrl', [ '$http', '$scope', 'Laberintos', function($http, $scope, Laberintos){
-	//app.controller('LabListCtrl', [ '$http', '$scope', function($http, $scope){
+	app.controller('LabListCtrl', [ '$scope', 'Laberintos', function($scope, Laberintos){
 		
 		$scope.laberintos = [];
 		
@@ -26,12 +25,6 @@
 			$scope.labSelected = lab;
 			$scope.isLabSelected = true;
 		};
-		
-//		$http.get("/laberintos/" + $scope.user.id).then(function success(response) {
-//			$scope.laberintos = response.data.laberintos;
-//		}, function error(data){
-//			
-//		});
 		
 		$scope.addCompletedLab = function(id){
 			$scope.laberintosCompletados.push(id);
@@ -89,12 +82,6 @@
 			$scope.tempLab = {};
 		};
 		
-		// No se donde se esta usando esto, por las dudas lo dejo...
-		$scope.cerrarModal = function(){
-			$('#changeLabModalWindow').modal({ show: false });
-			console.log('You tried to close the modal window but failed..');
-		};
-		
 	}]);
 	
 	app.controller('GameStateCtrl', [ '$scope', function($scope){
@@ -105,13 +92,11 @@
 		$scope.initiatedLab = {};
 		
 		/**
-		 * Modal window references (estaría bueno que tenga su Ctrl a parte pero por ahora quedará aca..)
+		 * Win Modal Window
 		 */
     	$scope.modalAlertToDisplay = {};
     	$scope.modalMessageToDisplay = {};
-    	
-    	// $('#winModalWindow').modal({ show: false }); la ventana modal está oculta por defecto (borrar luego)
-		
+    			
 		$scope.isInitiatedLab = function(lab){
 			return lab === $scope.initiatedLab && $scope.isGameInitiated;
 		};
@@ -137,7 +122,7 @@
 		
 	}]);
 	
-	app.controller('HabCtrl', [ '$scope', '$http', 'RealizarAccion', function($scope, $http, RealizarAccion){
+	app.controller('HabCtrl', [ '$scope', 'RealizarAccion', function($scope, RealizarAccion){
 		$scope.habSelected = {};
 		
 		$scope.refreshInitialHab = function(){
@@ -159,24 +144,18 @@
 		};
 		
 		/**
-		 * Execute Action
+		 * Realizar acción service
 		 */
-		
 		$scope.executeAction = function(action) {
-			var urlData = { habitacion_id: $scope.habSelected.id, action_id: action.id };
-			RealizarAccion.query(urlData, function(data){
+			var urlParams = { habitacion_id: $scope.habSelected.id, action_id: action.id };
+			RealizarAccion.query(urlParams, function(data){
 				$scope.handleActionExecutionResponse(data, action);
 			});
 		};
 		
-//		$scope.executeAction = function(action){
-//			$http.get("/realizar_accion/" + $scope.habSelected.id + "/" + action.id).then(function success(response){
-//				$scope.handleActionExecutionResponse(response.data, action);
-//			}, function error(response){
-//				// handle error
-//			});
-//		};
-		
+		/**
+		 * Handler para los tipos de acción
+		 */
 		$scope.handleActionExecutionResponse = function (data, action){
 			switch(data.type){
 				case "agarrarItem" : 
@@ -237,10 +216,9 @@
 			$scope.refreshInitialHab();
 		});
 
-		
 	}]);
 	
-	app.controller("InventoryAndHabListCtrl", [ '$scope' , '$http' , function($scope, $http){
+	app.controller("InventoryAndHabListCtrl", [ '$scope', 'IniciarLaberinto', function($scope, IniciarLaberinto) {
 		$scope.habitaciones = [];
 		$scope.inventory 	= [];	
 		$scope.itemSelected = {};
@@ -255,11 +233,19 @@
 			$scope.inventory	 = [];
 		});
 		
+		$scope.executeAction = function(action) {
+			var urlParams = { habitacion_id: $scope.habSelected.id, action_id: action.id };
+			RealizarAccion.query(urlData, function(data){
+				$scope.handleActionExecutionResponse(data, action);
+			});
+		};
+		
 		$scope.labInitiation = function() {
-			$http.get("/iniciar_laberintos/" + $scope.user.id + "/"+ $scope.labSelected.idLaberinto).then(function(response){
-			$scope.habitaciones = response.data.habitaciones;
-			$scope.inventory 	= response.data.inventario;
-			$scope.$broadcast('refreshHabInicial');
+			var urlParams = { user_id : $scope.user.id, lab_id : $scope.labSelected.idLaberinto };
+			IniciarLaberinto.query(urlParams, function(data){
+				$scope.habitaciones = data.habitaciones;
+				$scope.inventory 	= data.inventario;
+				$scope.$broadcast('refreshHabInicial');
 			});
 		};
 		
