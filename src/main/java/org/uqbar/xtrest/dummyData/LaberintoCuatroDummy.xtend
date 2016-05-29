@@ -22,7 +22,7 @@ class LaberintoCuatroDummy {
         this.lab = new Laberinto => [
             nombreLaberinto = "Cementerio"
             idLaberinto     = 04
-            imagePath       = "http://localhost/static/cementerio/cementerio/cementerio.jpg"
+            imagePath       = "images/cementerio/cementerio.jpg"
         ]
     
         /**
@@ -34,7 +34,7 @@ class LaberintoCuatroDummy {
         val hab1 = new Habitacion => [
             nombreHabitacion    = "Entrada del cementerio"
             id                  = 1
-            imagePath           = "http://localhost/static/cementerio/01_entrada.jpg"
+            imagePath           = "images/cementerio/01_entrada.jpg"
             first               = true
         ]
         
@@ -48,109 +48,109 @@ class LaberintoCuatroDummy {
         val hab3 = new Habitacion => [
             nombreHabitacion    = "Camino de lapidas"
             id                  = 3
-            imagePath           = "http://localhost/static/cementerio/03_camino_lapidas.jpg"
+            imagePath           = "images/cementerio/03_camino_lapidas.jpg"
         ]
         
         val hab4 = new Habitacion => [
             nombreHabitacion    = "Cuarto de utileria"
             id                  = 4
-            imagePath           = "http://localhost/static/cementerio/04_cuarto_utileria.jpg"
+            imagePath           = "images/cementerio/04_cuarto_utileria.jpg"
         ]
         
         val hab5 = new Habitacion => [
             nombreHabitacion    = "Casucha del conserje"
             id                  = 5
-            imagePath           = "http://localhost/static/cementerio/05_casucha_conserje.jpg"
+            imagePath           = "images/cementerio/05_casucha_conserje.jpg"
         ]
 
         val hab6 = new Habitacion => [
             nombreHabitacion    = "Sotano del conserje"
             id                  = 6
-            imagePath           = "http://localhost/static/cementerio/06_sotano_conserje.jpg"         
+            imagePath           = "images/cementerio/06_sotano_conserje.jpg"         
         ]
         
         val hab7 = new Habitacion => [
             nombreHabitacion    = "Panteon del cementerio"
             id                  = 7
-            imagePath           = "http://localhost/static/cementerio/07_panteon.jpg"          
+            imagePath           = "images/cementerio/07_panteon.jpg"          
         ]        
  
         val hab8 = new Habitacion => [
             nombreHabitacion    = "Jardines encantados"
             id                  = 8
-            imagePath           = "http://localhost/static/cementerio/08_jardines_encantados.jpg"
+            imagePath           = "images/cementerio/08_jardines_encantados.jpg"
         ]        
         
         val hab9 = new Habitacion => [
             nombreHabitacion    = "Invernadero incandescente"
             id                  = 9
-            imagePath           = "http://localhost/static/cementerio/09_invernadero.png"
+            imagePath           = "images/cementerio/09_invernadero.png"
         ]        
         
         val hab10 = new Habitacion => [
             nombreHabitacion    = "Barrera magica impenetrable"
             id                  = 10
-            imagePath           = "http://localhost/static/cementerio/10_barrera_magica.jpg"          
+            imagePath           = "images/cementerio/10_barrera_magica.jpg"          
         ]
         
         // va al patio de gengi
         val hab11 = new Habitacion => [
             nombreHabitacion    = "Atmosfera de extrania atraccion"
             id                  = 11
-            imagePath           = "http://localhost/static/cementerio/11_atmosfera.jpg"
+            imagePath           = "images/cementerio/11_atmosfera.jpg"
         ]
         
         val hab12 = new Habitacion => [
             nombreHabitacion    = "Crematorio espeluznante"
             id                  = 12
-            imagePath           = "http://localhost/static/cementerio/12_crematorio.jpg"
+            imagePath           = "images/cementerio/12_crematorio.jpg"
         ]
         
         val hab13 = new Habitacion => [
             nombreHabitacion    = "Salon principal abandonado"
             id                  = 13 
-            imagePath           = "http://localhost/static/cementerio/13_salon_principal.jpg"         
+            imagePath           = "images/cementerio/13_salon_principal.jpg"         
         ]
         
         val hab14 = new Habitacion => [
             nombreHabitacion    = "Cocina de la recepcion"
             id                  = 14
-            imagePath           = "http://localhost/static/cementerio/14_cocina.jpg"          
+            imagePath           = "images/cementerio/14_cocina.jpg"          
         ]
         
         val hab15 = new Habitacion => [
             nombreHabitacion    = "Cripta de la familia Robinson"
             id                  = 15
-            imagePath           = "http://localhost/static/cementerio/15_cripta.jpg"          
+            imagePath           = "images/cementerio/15_cripta.jpg"          
         ]
         
         val hab16 = new Habitacion => [
             nombreHabitacion    = "Claro en el bosque"
             id                  = 16
-            imagePath           = "http://localhost/static/cementerio/16_claro_bosque.png"          
+            imagePath           = "images/cementerio/16_claro_bosque.png"          
         ]
 
         val hab17 = new Habitacion => [
-            nombreHabitacion    = "© Bosque Tenebroso!"
+            nombreHabitacion    = "El Bosque Tenebroso!"
             id                  = 17 
-            imagePath           = "http://localhost/static/cementerio/17_bosque_tenebroso.jpg"
+            imagePath           = "images/cementerio/17_bosque_tenebroso.jpg"
         ]
         
         val hab18 = new Habitacion => [
             nombreHabitacion    = "Casa del Coloso"
             id                  = 18
-            imagePath           = "http://localhost/static/cementerio/18_casa_coloso.jpg"          
+            imagePath           = "images/cementerio/18_casa_coloso.jpg"          
         ]                        
         
         val hab19 = new Habitacion => [
             nombreHabitacion    = "Casa de Jengibre"
             id                  = 19 
-            imagePath           = "http://localhost/static/cementerio/19_casa_jengibre.jpg"         
+            imagePath           = "images/cementerio/19_casa_jengibre.jpg"         
         ]
         val hab20 = new Habitacion => [
             nombreHabitacion    = "Patio de Jengibre"
             id                  = 20 
-            imagePath           = "http://localhost/static/cementerio/20_patio_jengibre.jpg"
+            imagePath           = "images/cementerio/20_patio_jengibre.jpg"
         ]
         
         /**
@@ -201,7 +201,7 @@ class LaberintoCuatroDummy {
         
         val cuchillo = new Elemento() => [
                 nombre      = "Cuchillo"
-                descripcion = "Es tan soo un tramontina cerruchito.. pero podria ser util!"
+                descripcion = "Es tan solo un tramontina cerruchito.. pero podria ser util!"
                 id          = 8
         ]
         
