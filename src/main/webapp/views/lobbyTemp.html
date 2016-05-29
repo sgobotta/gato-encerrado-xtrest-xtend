@@ -1,0 +1,56 @@
+	<div class="ge-container container-fluid" data-ng-controller="UserCtrl">
+
+		<!--  Header -->
+		<div class="page-header ge-header rounded-bottom-corners row">
+
+			<!-- Header Title-->
+			<gato-encerrado-title></gato-encerrado-title>
+
+		</div>
+
+		<!-- Playground/Body Container -->
+		<div class="playground row" data-ng-controller="GameStateCtrl">
+
+			<!-- Fondo de ventana -->
+			<div class="lab-game rounded-corners"
+				data-ng-controller="LabListCtrl">
+
+				<!-- Lista de Laberintos -->
+				<lab-list></lab-list>
+
+                <!-- Ventana de Bienvenida -->
+				<welcome-panel data-ng-hide="isLabSelected" class="col-sm-10" ></welcome-panel>
+				
+				<!-- Ventana de Juego -->
+				<div data-ng-show="isLabSelected" 
+				    data-ng-controller="ErrorPanelCtrl" class="col-sm-10">
+					<div class="row" data-ng-controller="InventoryAndHabListCtrl">
+					
+						<pre-initialization-window></pre-initialization-window>
+
+						<div data-ng-show="isGameInitiated">
+							<div data-ng-controller="HabCtrl">
+								<!-- Imagen Seleccionada -->
+								<hab-scene></hab-scene>
+								<!-- Lista de Acciones de la habitacion seleccionada -->
+								<actions-list></actions-list>
+							</div>
+
+							<!-- Inventario del juego -->
+							<item-list></item-list>
+						</div>
+					</div>
+					<error-panel></error-panel>
+				</div>
+
+			</div>
+			<win-modal-window></win-modal-window>
+
+		</div>
+
+		<!-- Footer -->
+		<div class="panel-footer ge-footer row">
+            <gato-encerrado-footer></gato-encerrado-footer>
+		</div>
+
+	</div>
