@@ -50,13 +50,15 @@ class GatoEncerradoWebDummyData {
 	
 	def static iniciarLaberinto(int idUsuario, int idLaberinto, XTRestAppModel game){
 		var user = getUserById(idUsuario)
-		if(user.hasLabOfId(idLaberinto)){
+		if(idLaberinto <= 4 && idLaberinto >= 1){
 			switch(idLaberinto){
 				case 1: iniciarLaberinto1(game, user)
 				case 2: iniciarLaberinto2(game, user)
 				case 3: iniciarLaberinto3(game, user)
 				case 4: iniciarLaberinto4(game, user)
 			}
+		} else {
+			throw new LabDoesNotExistException
 		}
 	}
 	
