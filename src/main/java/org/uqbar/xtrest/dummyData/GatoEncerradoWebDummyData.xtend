@@ -60,6 +60,9 @@ class GatoEncerradoWebDummyData {
 		}
 	}
 	
+	/**
+	 * Laberinto 1
+	 */
 	def static iniciarLaberinto1(XTRestAppModel game, Usuario user){
         
 		var lab = new Laberinto => [
@@ -158,6 +161,9 @@ class GatoEncerradoWebDummyData {
 		res
 	}
 	
+	/**
+	 * Laberinto 2
+	 */
 	def static iniciarLaberinto2(XTRestAppModel game, Usuario user){
         var lab = new Laberinto => [
             nombreLaberinto = "Cascada"
@@ -272,6 +278,9 @@ class GatoEncerradoWebDummyData {
         res
 	}
 	
+	/**
+	 * Laberinto 3
+	 */
 	def static iniciarLaberinto3(XTRestAppModel game, Usuario user){
         var lab = new Laberinto => [
             nombreLaberinto = "Casa Embrujada"
@@ -420,9 +429,20 @@ class GatoEncerradoWebDummyData {
 		res
 	}
 	
+	/**
+	 * Laberinto 4
+	 */
 	def static iniciarLaberinto4(XTRestAppModel game, Usuario user){
-		// TODO
-	}
+        
+        var lab4 = new LaberintoCuatroDummy()
+        
+        val jugador = new Jugador()
+        
+        game.nuevoJuego(user, lab4.lab, jugador)
+        
+        val res = new RespuestaDeIniciarLaberinto(lab4.habList, jugador.inventario)
+        res
+    }
 
 	def static toMinLaberinto(Laberinto lab){
 		var minLab = new MinLaberinto => [
