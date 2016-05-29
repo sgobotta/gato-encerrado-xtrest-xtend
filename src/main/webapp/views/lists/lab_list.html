@@ -1,0 +1,15 @@
+<div id="lab-list" class="rounded-corners col-sm-2" data-ng-controller="LabChangeModalWindowCtrl">
+    <div class="lab-title">
+    <h4>Laberintos</h4>
+    </div>
+	<ul class="nav nav-pills nav-stacked">
+		<li data-ng-repeat="laberinto in laberintos" data-ng-class="{ active : laberinto === labSelected || laberinto === initiatedLab}">
+			<a href="" data-ng-click="tryChangeLab(laberinto)">{{laberinto.nombreLaberinto}}
+					<span data-ng-show="isInitiatedLab(laberinto)" class="lab-status-active">Activo</span>
+					<span data-ng-show="isCompletedLab(laberinto.idLaberinto)" class="lab-status-completed">Completado</span>
+			</a>
+		</li>
+	</ul>
+	<change-lab-modal-window></change-lab-modal-window>
+
+</div>

@@ -1,0 +1,17 @@
+<div class="col-sm-3">
+    <div class="inventory-title">
+        <h4>Inventario</h4>
+    </div>
+	<ul class="nav nav-pills nav-stacked lab-inventory rounded-corners" >
+		<li data-ng-repeat="item in inventory" data-ng-mouseenter="showDescription(item)" 
+		data-ng-mouseleave="hideDescription()" data-ng-click="selectItem(item)">
+		<a href="" >
+    		{{item.nombre}}
+		</a>
+		</li>
+	</ul>
+	<button type="button" class="btn btn-default" data-ng-click="dropItemSelected()">Tirar</button>
+</div>
+
+
+    

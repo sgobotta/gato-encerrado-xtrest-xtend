@@ -16,20 +16,22 @@ class MainController {
 
     @Get("/laberintos/:id_usuario")
     def listaDeLaberintos() {
-        
+        response.contentType = "application/json"
         ok(GatoEncerradoWebDummyData.getLaberintos(Integer.parseInt(id_usuario)).toJson)
     }
     
-    @Get("/iniciar_laberintos/:id_usuario/:id_laberinto")
+    @Get("/iniciar_laberinto/:id_usuario/:id_laberinto")
     def inciarLaberinto() {
+    	response.contentType = "application/json"
         ok(GatoEncerradoWebDummyData.iniciarLaberinto(Integer.parseInt(id_usuario),Integer.parseInt(id_laberinto), game).toJson)
     }
     
     
-    @Get("/realizar_accion/:id_habitacion/:id_accion")
+    @Get("/realizar_accion/:id_habitacion/:id_accion/:id_usuario")
     def realizarAccionHabitacion() {
-        
-        var res = game.realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_accion))
+        response.contentType = "application/json"
+        var resTemp = game.realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_accion), Integer.parseInt(id_usuario))
+        var res = GatoEncerradoWebDummyData.toMinResponse(resTemp)
         ok(res.toJson)
     }
  

@@ -1,18 +1,53 @@
 @CHARSET "UTF-8";
 
 .ge-container {
+	background-color: silver;
+}
+
+.welcome-panel {
+	width: 100%;
+	border: solid navy;
+	background-color: white;
+	text-align: center;
+}
+
+.ge-modal-window {
+	color: blue;
+	text-align: center;
+}
+
+.ge-change-lab-modal-window {
+	width: 400px;
+	padding:20px;
+}
+
+.ge-modal-window-message {
+	color: black;
+	font-weight: bold;
 }
 
 .ge-header {
-    width:100%;
+	margin-left:-18px;
+	margin-right: -19px;
     margin-top: -5px;
     padding-top:20px;
-    margin-left: 0px;
     background-color: grey;
+    border-style: solid;
+    border-color: silver;
 }
 
-#lab-activo {
+#lab-list {
+	padding-top: 0px; !important
+}
+
+.lab-status-active {
+	color: cyan;
 	float: right;
+}
+
+.lab-status-completed {
+    color: lightgreen;
+    float: right;
 }
 
 #ge-header-title{
@@ -27,40 +62,65 @@
 }
 
 .ge-footer {
-    width:100%;
-    margin-left: 5px;
+    margin-left: -18px;
     bottom:0;
 }
 
 .playground {
-	padding-bottom:100px;	
+	margin-bottom: 20px;
+	height: 100%;
 }
 
-.lab-selection {
-	width: 200px;
+.lab-title {
+    text-align: left;
+}
+
+.initiated-lab-title {
+	text-align: left;
 }
 
 .lab-game {
     margin-left: 15px;
     margin-right: 15px;
-	height: 600px;
-	background-color:silver;
+	height: 100%;
+}
+
+.inventory-title {
+	text-align: center;
 }
 
 .lab-inventory {
     background-color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.hab-scene-title {
+	text-align: center;
+}
+
+.hab-ref {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.hab-name {
+	font-size: 18px;
 }
 
 .hab-display {
-	width: 450px;
-	height: 300px;
 	margin-right: 30px;
 	padding-top: 40px;
 }
 
+.hab-actions-title {
+	text-align: center;
+}
+
 .hab-actions-selection {
-	width: 200px;
 	background-color: white;
+	margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .rounded-corners {
@@ -68,20 +128,29 @@
     padding: 12px; 
 }
 
+.rounded-bottom-corners {
+	padding-left: 20px;
+	border-bottom-left-radius: 40px;
+}
+
 .rounded-corners-img {
+	width: 650px;
+	height: 280px;
 	border-radius: 40px;
 }
 
-.item-hover {
+.banner {
+	text-align:center;
+	margin-top:10px;
 	color: white;
-    position: absolute;
-    top: 0;
-    left: 120px;
     transition: transform 0.4s;
-	background-color: blue;
+	background-color: black;
 	padding-left: 8px;
 	padding-top: 8px;
 	padding-right: 8px;
-	padding-bottom: 8px;
-	width: 140px;
+	padding-bottom: 5px;
+}
+
+.bannerMessage:first-letter {
+	text-transform:capitalize;
 }

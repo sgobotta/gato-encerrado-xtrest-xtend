@@ -1,0 +1,8 @@
+<div class="col-sm-12" data-ng-hide="isGameInitiated">
+    <div class="initiated-lab-title">
+	   <h4>{{labSelected.nombreLaberinto}}</h4>
+	</div>
+	<img class="img-responsive rounded-corners-img" alt="Imagen de Habitacion"
+		data-ng-src="{{labSelected.imagePath}}"> <br>
+	<button type="button" class="btn btn-default" data-ng-click="initiateLab(labSelected)">Iniciar Laberinto</button>
+</div>
