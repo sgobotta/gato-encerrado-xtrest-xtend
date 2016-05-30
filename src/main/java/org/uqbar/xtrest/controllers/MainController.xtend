@@ -17,6 +17,8 @@ import org.uqbar.exceptions.UserCantExecuteActionException
 import org.uqbar.exceptions.PlayerIsNotOnThisRoomException
 import org.uqbar.exceptions.ActionIsNotOnThisRoomException
 import org.uqbar.xtrest.dummyData.LabDoesNotExistException
+import org.uqbar.exceptions.MyLoginException
+import org.uqbar.exceptions.MyRegistracionException
 
 @Controller
 class MainController {
@@ -29,16 +31,23 @@ class MainController {
 	
 	@Post("/login")
 	def logear(@Body String body) {
+		try{
 		val account = body.fromJson(PedidoLogin).account
-		var acc = loginService.login(account.username, account.password)
+		var logedacc = loginService.login(account.username, account.password)
 
-		var res = GatoEncerradoWebDummyData.getRespuestaLogin(acc)
+		var res = GatoEncerradoWebDummyData.getRespuestaLogin(logedacc)
 
 		ok(res.toJson)
+		}catch(MyLoginException e){
+			badRequest(e.message)
+		}
 	}
 
 	@Post("/signup")
 	def registrar(@Body String body) {
+		try{
+			
+		
 		val pedidoSignUp = body.fromJson(PedidoSignUp)
 
 		var cuenta = pedidoSignUp.account
@@ -48,7 +57,11 @@ class MainController {
 
 		loginService.registrarCuenta(cuenta)
 		ok("Cuenta creada satisfactoriamente")
-
+		
+		}
+		catch(MyRegistracionException r){
+			badRequest(r.message)
+		}
 	}
 
 	@Get("/loginpage")
