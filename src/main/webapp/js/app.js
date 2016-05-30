@@ -1,17 +1,17 @@
 (function(){
 	// El wrapping de nuestra app en una funcion anonima es un buen habito segun los tutos, así que...
-	var app = angular.module('ge-main', [ 'ge-controllers', 'ge-services', 'ngResource' ]);
+	var app = angular.module('ge-main', [ 'ge-controllers', 'ge-services', 'ngResource', "ui.router"]);
 
 	app.config(function config($stateProvider) {
 		$stateProvider.state("login", {
 			url : "",
 			controller : "LoginController",
-			templateUrl : "./loginTemp.html"
+			templateUrl : "./views/loginTemp.html"
 		});
 		$stateProvider.state("lobby", {
 			url : "",
 			controller : "LobbyController",
-			templateUrl : "./lobbyTemp.html"
+			templateUrl : "./views/lobbyTemp.html"
 		});
 	});	
 	

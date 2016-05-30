@@ -27,49 +27,6 @@ class LoginWebController {
 		loginService = new LoginService		
 	}
 
-	@Post("/login")
-	def logear(@Body String body){
-		val pedidoLogin = body.fromJson(PedidoLogin)
-		
-		try{
-			var account = loginService.login(pedidoLogin.username, pedidoLogin.password)
-			ok(new RespuestaLogin(account.username,account.password).toJson)
-		}
-		catch(Exception a){
-			badRequest("No se pudo logear a " + pedidoLogin.username)
-		}
-	}
-	
-	@Post("/signup")
-	def registrar(@Body String body){
-		val pedidoSignUp = body.fromJson(PedidoSignUp)
-		val laberintos = new ArrayList<Laberinto>()
-		
-		val lab1 = new Laberinto()
-		lab1.nombreLaberinto = "laberinto"
-		laberintos.add(lab1)
-		val user = new Usuario
-		user.nombre = "admin" 
-		user.laberintos = laberintos
-				
-		val cuenta = new Account() => [
-			username = pedidoSignUp.username
-			password = pedidoSignUp.password
-			usuario = user 
-			]
-			
-		try{
-			if(pedidoSignUp.repeatpassword != pedidoSignUp.password){
-				throw new Exception("sacar del controller")
-			}
-			loginService.registrarCuenta(cuenta)
-			ok("Cuenta creada satisfactoriamente")
-		}
-		catch(Exception a){
-			badRequest("No se pudo crear esa cuenta")
-		}
-		
-	}
 	
     @Get("/loginpage")
     def login() {

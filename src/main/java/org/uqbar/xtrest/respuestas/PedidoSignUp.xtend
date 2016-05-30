@@ -1,11 +1,11 @@
 package org.uqbar.xtrest.respuestas
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.Account
 
 @Accessors
 class PedidoSignUp{
 	
-	String username
-	String password
+	Account account
 	String repeatpassword
 }

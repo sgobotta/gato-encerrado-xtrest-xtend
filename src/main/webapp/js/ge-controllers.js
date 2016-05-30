@@ -2,61 +2,70 @@
 
 	var app = angular.module('ge-controllers', [ 'ge-services' ]);
 
-	app.controller('LoginController', ['$scope', 'LobbyService','LoginService','$state',function($scope, LobbyService, LoginService, $state) {
+	app.controller('LoginController', [
+			'$scope',
+			'LobbyService',
+			'LoginService',
+			'$state',
+			function($scope, LobbyService, LoginService, $state) {
 
-		$scope.login = {};
-		$scope.login.account = {};
-		$scope.login.account.username = "";
-		$scope.login.account.password = "";
+				$scope.login = {};
+				$scope.login.account = {};
+				$scope.login.account.username = "";
+				$scope.login.account.password = "";
 
-		$scope.loginFailure = false;
-		$scope.loginSpanLog = "";
+				$scope.loginFailure = false;
+				$scope.loginSpanLog = "";
 
-		$scope.ingresar = function() {
-			LoginService.login($scope.login, $scope.callbackLogin,
-					$scope.errorHandlerLogin);
-		};
-		$scope.callbackLogin = function(data) {
-			var nuevoUser = data.usuario;
-			var labs = data.laberintos;
-			LobbyService.setUsuario(nuevoUser);
-			LobbyService.setLaberintos(labs);
-			$state.go('lobby');
+				$scope.ingresar = function() {
+					LoginService.login($scope.login, $scope.callbackLogin,
+							$scope.errorHandlerLogin);
+				};
+				$scope.callbackLogin = function(data) {
+					LobbyService.setUsuario(data.usuario);
+					LobbyService.setLaberintos(data.laberintos);
+					$state.go('lobby');
 
-		};
-		$scope.errorHandlerLogin = function(error) {
-			$scope.loginSpanLog = error.descripcion;
-			$scope.loginFailure = true;
-		};
+				};
+				$scope.errorHandlerLogin = function(error) {
+					$scope.loginSpanLog = error.descripcion;
+					$scope.loginFailure = true;
+				};
 
-		// /////////////////////////////////////////////////////////////////////////////////////////////
+				// /////////////////////////////////////////////////////////////////////////////////////////////
 
-		$scope.signup = {};
-		$scope.signup.account = {};
-		$scope.signup.account.username = "";
-		$scope.signup.account.password = "";
-		$scope.signup.repeatpassword = "";
+				$scope.signup = {};
+				$scope.signup.account = {};
+				$scope.signup.account.username = "";
+				$scope.signup.account.password = "";
+				$scope.signup.repeatpassword = "";
 
-		$scope.signUpFailure = false;
-		$scope.signUpSpanLog = "";
+				$scope.signUpFailure = false;
+				$scope.signUpSpanLog = "";
 
-		$scope.registrar = function() {
-			LoginService.signup($scope.signup, $scope.callbackSignUp,
-					$scope.errorHandlerSignUp);
-		};
-		$scope.callbackSignUp = function(data) {
-		};
-		$scope.errorHandlerSignUp = function(error) {
-			$scope.signUpSpanLog = error.descripcion;
-			$scope.signUpFailure = true;
-		};
-	} ]);	
-	
-	app.controller('LobbyController', [ '$scope', 'LobbyService',
-			function($scope, LobbyService) {
+				$scope.registrar = function() {
+					LoginService.signup($scope.signup, $scope.callbackSignUp,
+							$scope.errorHandlerSignUp);
+				};
+				$scope.callbackSignUp = function(data) {
+				};
+				$scope.errorHandlerSignUp = function(error) {
+					$scope.signUpSpanLog = error.descripcion;
+					$scope.signUpFailure = true;
+				};
+			} ]);
 
-				$scope.usuario = LobbyService.usuario;
-				$scope.laberintos = LobbyService.laberintos;
+	app.controller('LobbyController', [ '$scope', 'LobbyService', '$state',
+			function($scope, LobbyService, $state) {
+
+				$scope.user = LobbyService.getUsuario();
+				$scope.laberintos = LobbyService.getLaberintos();
+
+				$scope.exit = function() {
+					$scope.$broadcast('limpiarTodo');
+					$state.go('login');
+
+				};
 			} ]);
 
 	app.controller('LabListCtrl', [ '$scope', 'Laberintos',
@@ -72,7 +81,7 @@
 					if ($scope.isGameInitiated && lab !== $scope.labSelected) {
 						$scope.finalize();
 					}
-					;
+
 					$scope.labSelected = lab;
 					$scope.isLabSelected = true;
 				};
@@ -93,15 +102,15 @@
 					$scope.addCompletedLab(id);
 				});
 
-				this.getListaDeLaberintos = function() {
-					Laberintos.query({
-						id_usuario : $scope.user.id
-					}, function(data) {
-						$scope.laberintos = data.laberintos;
-					});
-				};
-
-				this.getListaDeLaberintos();
+				// this.getListaDeLaberintos = function() {
+				// Laberintos.query({
+				// id_usuario : $scope.user.id
+				// }, function(data) {
+				// $scope.laberintos = data.laberintos;
+				// });
+				// };
+				//
+				// this.getListaDeLaberintos();
 
 			} ]);
 
@@ -119,16 +128,14 @@
 				$scope.tryChangeLab = function(lab) {
 
 					if ($scope.isGameInitiated && lab !== $scope.initiatedLab) {
-						$scope.changeLabAlert = 'Estas saliendo de '
-								+ $scope.initiatedLab.nombreLaberinto;
-						$scope.changeLabMessage = 'Queres comenzar a jugar en '
-								+ lab.nombreLaberinto + '?';
+						$scope.changeLabAlert = 'Estas saliendo de ' + $scope.initiatedLab.nombreLaberinto;
+						$scope.changeLabMessage = 'Queres comenzar a jugar en '	+ lab.nombreLaberinto + '?';
 						$('#changeLabModalWindow').modal('show');
 						$scope.tempLab = lab;
 					} else {
 						$scope.labSelectedChange(lab);
 					}
-					;
+
 				};
 
 				$scope.confirmLabChange = function() {
@@ -157,8 +164,7 @@
 				$scope.modalMessageToDisplay = {};
 
 				$scope.isInitiatedLab = function(lab) {
-					return lab === $scope.initiatedLab
-							&& $scope.isGameInitiated;
+					return lab === $scope.initiatedLab && $scope.isGameInitiated;
 				};
 
 				$scope.initiate = function(lab) {
@@ -173,12 +179,18 @@
 				};
 
 				$scope.$on('gameWon', function() {
-					$scope.modalMessageToDisplay = 'Has conseguido escapar de '
-							+ $scope.initiatedLab.nombreLaberinto;
+					$scope.modalMessageToDisplay = 'Has conseguido escapar de '	+ $scope.initiatedLab.nombreLaberinto;
 					$scope.modalAlertToDisplay = 'Ganaste!';
 					$('#winModalWindow').modal('show');
 					$scope.$broadcast('addCompletedLab',
 							$scope.initiatedLab.idLaberinto);
+					$scope.finalize();
+				});
+				
+				$scope.$on('gameLose', function(){
+					$scope.modalMessageToDisplay = 'No has logrado escapar de '	+ $scope.initiatedLab.nombreLaberinto;
+					$scope.modalAlertToDisplay = 'Suerte la proxima!';
+					$('#winModalWindow').modal('show');
 					$scope.finalize();
 				});
 
@@ -193,7 +205,7 @@
 				$scope.refreshInitialHab = function() {
 					var i;
 					for (i = 0; i < $scope.habitaciones.length; i++) {
-						if ($scope.habitaciones[i].first == true) {
+						if ($scope.habitaciones[i].first) {
 							$scope.habSelected = $scope.habitaciones[i];
 						}
 					}
@@ -230,30 +242,41 @@
 					case "agarrarItem": {
 						$scope.pickItem(data, action);
 					}
-						;
+
 						break;
 					case "usarItem": {
 						$scope.useItem(data, action);
 					}
-						;
+
 						break;
 					case "irAHabitacion": {
 						$scope.changeHabById(data.idHabitacion);
+						$scope.jugador = data.jugador;
+						
 					}
-						;
+
 						break;
 					case "ganar": {
 						$scope.$emit('gameWon');
 					}
-						;
+
 						break;
 					case "sinItem": {
 						$scope.showItemUsageError(data.extra);
 					}
-						;
+						break;
+					case "recargar": {
+						$scope.jugador = data.jugador;
+						$scope.removeActionFromArray(action);
+					}
+						break;
+					case "perder": {
+						$scope.$emit('gameLose');
+					}
+						break;
 					default: {
 					}
-						;
+
 					}
 				};
 
@@ -271,8 +294,7 @@
 				$scope.removeActionFromArray = function(action) {
 					var i = $scope.habSelected.acciones.length;
 					while (i--) {
-						if ($scope.habSelected.acciones[i]
-								&& $scope.habSelected.acciones[i] === action) {
+						if ($scope.habSelected.acciones[i] && $scope.habSelected.acciones[i] === action) {
 							$scope.habSelected.acciones.splice(i, 1);
 						}
 					}
@@ -295,12 +317,28 @@
 				$scope.habitaciones = [];
 				$scope.inventory = [];
 				$scope.itemSelected = {};
-
+				
+				$scope.jugador = {};
+				$scope.jugador.energia = 0;
+				
 				$scope.initiateLab = function(lab) {
 					$scope.initiate(lab);
 					$scope.labInitiation();
-				};
 
+					// cuando se inicia un laberinto se crea un jugador
+					$scope.jugador = {};
+
+				};
+				
+				$scope.getPorcentajeDeVidaActual = function(){
+					if($scope.jugador.energia > 100){
+						return 100;
+					}else{
+						return $scope.jugador.energia;
+					}
+ 
+				};
+				
 				$scope.$on('cleanOldGame', function() {
 					$scope.habitaciones = [];
 					$scope.inventory = [];
@@ -323,6 +361,7 @@
 						lab_id : $scope.labSelected.idLaberinto
 					};
 					IniciarLaberinto.query(urlParams, function(data) {
+						$scope.jugador = data.jugador;
 						$scope.habitaciones = data.habitaciones;
 						$scope.inventory = data.inventario;
 						$scope.$broadcast('refreshHabInicial');
@@ -364,8 +403,7 @@
 				$scope.removeItemFromArray = function(item) {
 					var i = $scope.inventory.length;
 					while (i--) {
-						if ($scope.inventory[i]
-								&& $scope.inventory[i].id === item.id) {
+						if ($scope.inventory[i]	&& $scope.inventory[i].id === item.id) {
 							$scope.inventory.splice(i, 1);
 						}
 					}
@@ -392,8 +430,7 @@
 
 				$scope.showItemUsageError = function(nombreItem) {
 					$timeout.cancel($scope.promiseTimeout);
-					$scope.itemNotification = nombreItem
-							+ " no está en tu inventario!";
+					$scope.itemNotification = nombreItem + " no está en tu inventario!";
 					$scope.descriptionIsVisible = true;
 					$scope.promiseTimeout = $timeout(function() {
 						$scope.hideDescription();
