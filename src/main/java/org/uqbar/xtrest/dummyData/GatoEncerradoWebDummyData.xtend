@@ -18,6 +18,7 @@ import org.uqbar.xtrest.respuestas.RespuestaDeIniciarLaberinto
 import org.uqbar.acciones.RespuestaDeRealizarAccionModel
 import org.uqbar.xtrest.respuestas.RespuestaDeRealizarAccion
 import org.uqbar.Usuario
+import org.uqbar.xtrest.controllers.GEManager
 
 class GatoEncerradoWebDummyData {
 	
@@ -48,14 +49,14 @@ class GatoEncerradoWebDummyData {
 		}
 	}
 	
-	def static iniciarLaberinto(int idUsuario, int idLaberinto, XTRestAppModel game){
+	def static iniciarLaberinto(int idUsuario, int idLaberinto, GEManager gameManager){
 		var user = getUserById(idUsuario)
 		if(idLaberinto <= 4 && idLaberinto >= 1){
 			switch(idLaberinto){
-				case 1: iniciarLaberinto1(game, user)
-				case 2: iniciarLaberinto2(game, user)
-				case 3: iniciarLaberinto3(game, user)
-				case 4: iniciarLaberinto4(game, user)
+				case 1: iniciarLaberinto1(gameManager, user)
+				case 2: iniciarLaberinto2(gameManager, user)
+				case 3: iniciarLaberinto3(gameManager, user)
+				case 4: iniciarLaberinto4(gameManager, user)
 			}
 		} else {
 			throw new LabDoesNotExistException
@@ -65,7 +66,7 @@ class GatoEncerradoWebDummyData {
 	/**
 	 * Laberinto 1
 	 */
-	def static iniciarLaberinto1(XTRestAppModel game, Usuario user){
+	def static iniciarLaberinto1(GEManager gameManager, Usuario user){
         
 		var lab = new Laberinto => [
             nombreLaberinto = "Cueva"
@@ -157,7 +158,7 @@ class GatoEncerradoWebDummyData {
 		
 		val jugador = new Jugador()
 		
-		game.nuevoJuego(user, lab, jugador)
+		gameManager.nuevoJuego(user, lab, jugador)
 		
 		val res = new RespuestaDeIniciarLaberinto(habList, jugador.inventario)
 		res
@@ -166,7 +167,7 @@ class GatoEncerradoWebDummyData {
 	/**
 	 * Laberinto 2
 	 */
-	def static iniciarLaberinto2(XTRestAppModel game, Usuario user){
+	def static iniciarLaberinto2(GEManager gameManager, Usuario user){
         var lab = new Laberinto => [
             nombreLaberinto = "Cascada"
             idLaberinto     = 2
@@ -274,7 +275,7 @@ class GatoEncerradoWebDummyData {
         
         val jugador = new Jugador()
         
-        game.nuevoJuego(user, lab, jugador)
+        gameManager.nuevoJuego(user, lab, jugador)
         
         val res = new RespuestaDeIniciarLaberinto(habList, jugador.inventario)
         res
@@ -283,7 +284,7 @@ class GatoEncerradoWebDummyData {
 	/**
 	 * Laberinto 3
 	 */
-	def static iniciarLaberinto3(XTRestAppModel game, Usuario user){
+	def static iniciarLaberinto3(GEManager gameManager, Usuario user){
         var lab = new Laberinto => [
             nombreLaberinto = "Casa Embrujada"
             idLaberinto     = 3
@@ -425,7 +426,7 @@ class GatoEncerradoWebDummyData {
 		
 		val jugador = new Jugador()
 		
-		game.nuevoJuego(user, lab, jugador)
+		gameManager.nuevoJuego(user, lab, jugador)
 		
 		val res = new RespuestaDeIniciarLaberinto(habList, jugador.inventario)
 		res
@@ -434,13 +435,13 @@ class GatoEncerradoWebDummyData {
 	/**
 	 * Laberinto 4
 	 */
-	def static iniciarLaberinto4(XTRestAppModel game, Usuario user){
+	def static iniciarLaberinto4(GEManager gameManager, Usuario user){
         
         var lab4 = new LaberintoCuatroDummy()
         
         val jugador = new Jugador()
         
-        game.nuevoJuego(user, lab4.lab, jugador)
+        gameManager.nuevoJuego(user, lab4.lab, jugador)
         
         val res = new RespuestaDeIniciarLaberinto(lab4.habList, jugador.inventario)
         res

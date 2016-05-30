@@ -216,8 +216,8 @@
 
 	}]);
 	
-	//app.controller("InventoryAndHabListCtrl", [ '$scope', 'IniciarLaberinto', 'TirarItem', function($scope, IniciarLaberinto, TirarItem) {
-	app.controller("InventoryAndHabListCtrl", [ '$scope', 'IniciarLaberinto', function($scope, IniciarLaberinto) {		
+	app.controller("InventoryAndHabListCtrl", [ '$scope', 'IniciarLaberinto', 'TirarItem', function($scope, IniciarLaberinto, TirarItem) {
+	//app.controller("InventoryAndHabListCtrl", [ '$scope', 'IniciarLaberinto', function($scope, IniciarLaberinto) {		
 		$scope.habitaciones = [];
 		$scope.inventory 	= [];	
 		$scope.itemSelected = {};
@@ -263,15 +263,15 @@
 			// Hay que preguntarles a los profes si sacamos el boton o agregamos "tirar item" al modelo.
 			// -Juanma.
 
-//			var urlParams = { id_usuario : $scope.user.id, id_item : $scope.itemSelected.id }; 
-//			TirarItem.query(urlParams, function(data){
+			var urlParams = { id_usuario : $scope.user.id, id_item : $scope.itemSelected.id }; 
+			TirarItem.query(urlParams, function(data){
 //				
 //				 es al pe que esté acá adentro porque no hacemos nada con la data, pero bue, quizás 
 //				 tengas tiempo de actualizar el inventario con la data de como queda el inventario
 //				 en el XTRestAppModel
-//				$scope.removeItemFromArray($scope.itemSelected);
-//				$scope.showDropItemMessage($scope.itemSelected.nombre);
-//			});
+				$scope.removeItemFromArray($scope.itemSelected);
+				$scope.showDropItemMessage($scope.itemSelected.nombre);
+			});
 
 
 		};
@@ -326,7 +326,7 @@
         };
 
         $scope.setPromiseTimeOut = function(lapseInMiliseconds){
-        	$timeout(function() { 
+        	$scope.promiseTimeout = $timeout(function() { 
         		$scope.hideDescription(); }, lapseInMiliseconds
         )};
 

@@ -33,7 +33,8 @@
     padding-top:20px;
     background-color: grey;
     border-style: solid;
-    border-color: silver;
+    border-width: 3px;
+    border-color: navy;
 }
 
 #lab-list {
@@ -46,8 +47,9 @@
 }
 
 .lab-status-completed {
-    color: lightgreen;
+    color: green;
     float: right;
+    font-weight: bold;
 }
 
 #ge-header-title{

@@ -16,7 +16,8 @@ import org.uqbar.xtrest.dummyData.LabDoesNotExistException
 @Controller
 class MainController {
 
-    static XTRestAppModel game
+//    static XTRestAppModel game
+    static GEManager geManager
 
     extension JSONUtils = new JSONUtils
 
@@ -34,7 +35,7 @@ class MainController {
     def inciarLaberinto() {
     	try{
 	    	response.contentType = "application/json"
-	        ok(GatoEncerradoWebDummyData.iniciarLaberinto(Integer.parseInt(id_usuario),Integer.parseInt(id_laberinto), game).toJson)
+	        ok(GatoEncerradoWebDummyData.iniciarLaberinto(Integer.parseInt(id_usuario),Integer.parseInt(id_laberinto), geManager).toJson)
         } catch(UserDoesNotHaveLabException e){
         	badRequest(e.message)
         } catch(LabDoesNotExistException e){
@@ -47,7 +48,7 @@ class MainController {
     def realizarAccionHabitacion() {
     	try{
 	        response.contentType = "application/json"
-	        var resTemp = game.realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_accion), Integer.parseInt(id_usuario))
+	        var resTemp = geManager.getGameById(Integer.parseInt(id_usuario)).realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_accion), Integer.parseInt(id_usuario))
 	        var res = GatoEncerradoWebDummyData.toMinResponse(resTemp)
 	        ok(res.toJson)
         } catch(UserCantExecuteActionException e){
@@ -64,8 +65,8 @@ class MainController {
     def tirarItem() {
         
             response.contentType = "application/json"
-            game.tirarItem(Integer.parseInt(id_usuario), Integer.parseInt(id_item))
-            ok(response.toJson)
+            geManager.getGameById(Integer.parseInt(id_usuario)).tirarItem(Integer.parseInt(id_usuario), Integer.parseInt(id_item))
+            ok()
     }
     
  
@@ -81,7 +82,7 @@ class MainController {
     }   
     
     def static void main(String[] args) {
-    	game = new XTRestAppModel()
+        geManager = new GEManager
         XTRest.start(MainController, 9001)
     }
 }
