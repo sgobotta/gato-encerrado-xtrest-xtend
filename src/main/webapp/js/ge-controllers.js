@@ -53,8 +53,6 @@
 	}]);
 	
 	app.controller('LabChangeModalWindowCtrl', [ '$scope', function($scope) {
-		
-    	//$('#changeLabModalWindow').modal({ show: false }); probablemente a ser borrado cuando revisemos todo al final.
     	    	
 		$scope.tempLab 			= {};
 		$scope.changeLabAlert 	= {};
@@ -218,7 +216,8 @@
 
 	}]);
 	
-	app.controller("InventoryAndHabListCtrl", [ '$scope', 'IniciarLaberinto', function($scope, IniciarLaberinto) {
+	//app.controller("InventoryAndHabListCtrl", [ '$scope', 'IniciarLaberinto', 'TirarItem', function($scope, IniciarLaberinto, TirarItem) {
+	app.controller("InventoryAndHabListCtrl", [ '$scope', 'IniciarLaberinto', function($scope, IniciarLaberinto) {		
 		$scope.habitaciones = [];
 		$scope.inventory 	= [];	
 		$scope.itemSelected = {};
@@ -235,7 +234,7 @@
 		
 		$scope.executeAction = function(action) {
 			var urlParams = { habitacion_id: $scope.habSelected.id, action_id: action.id , user_id: $scope.user.id};
-			RealizarAccion.query(urlData, function(data){
+			RealizarAccion.query(urlParams, function(data){
 				$scope.handleActionExecutionResponse(data, action);
 			});
 		};
@@ -263,9 +262,21 @@
 			// frontend el item se tiro.
 			// Hay que preguntarles a los profes si sacamos el boton o agregamos "tirar item" al modelo.
 			// -Juanma.
-			//$scope.removeItemFromArray($scope.itemSelected);
+
+//			var urlParams = { id_usuario : $scope.user.id, id_item : $scope.itemSelected.id }; 
+//			TirarItem.query(urlParams, function(data){
+//				
+//				 es al pe que esté acá adentro porque no hacemos nada con la data, pero bue, quizás 
+//				 tengas tiempo de actualizar el inventario con la data de como queda el inventario
+//				 en el XTRestAppModel
+//				$scope.removeItemFromArray($scope.itemSelected);
+//				$scope.showDropItemMessage($scope.itemSelected.nombre);
+//			});
+
+
 		};
 		
+		// fiajte si eliminar éste o no
 		// Esto no se donde se usa tampoco...
 		// No me acuerdo si lo implemente yo, sino fijate si lo usamos y borralo sino lo usamos.
 		// -Juanma.
@@ -304,9 +315,20 @@
         	$timeout.cancel($scope.promiseTimeout);
         	$scope.itemNotification 	= nombreItem + " no está en tu inventario!";
         	$scope.descriptionIsVisible = true;
-        	$scope.promiseTimeout = $timeout(function() { $scope.hideDescription(); }, 2500);
+        	$scope.setPromiseTimeOut(2500);
+        };
+        
+        $scope.showDropItemMessage = function(nombreItem) {
+        	$timeout.cancel($scope.promiseTimeout);
+        	$scope.itemNotification 	= "Has tirado " + nombreItem + "!";
+        	$scope.descriptionIsVisible = true;
+        	$scope.setPromiseTimeOut(2500);
         };
 
+        $scope.setPromiseTimeOut = function(lapseInMiliseconds){
+        	$timeout(function() { 
+        		$scope.hideDescription(); }, lapseInMiliseconds
+        )};
 
     }]);
 	

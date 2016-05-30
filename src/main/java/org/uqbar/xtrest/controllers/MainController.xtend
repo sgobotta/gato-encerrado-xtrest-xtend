@@ -58,8 +58,19 @@ class MainController {
         	badRequest("The action selected doesn't belong to your current room.")
         }
     }
+    
+    // fijate si podes actualizar el inventario del juego con la data que nos llega
+    @Get("/drop_item/:id_usuario/:id_item")
+    def tirarItem() {
+        
+            response.contentType = "application/json"
+            game.tirarItem(Integer.parseInt(id_usuario), Integer.parseInt(id_item))
+            ok(response.toJson)
+    }
+    
  
- 	// Esto quedo de más de cuando estabamos boludeando en xtrest, habria que borrarlo... (creo).
+    // eliminar
+ 	// Esto quedo de mï¿½s de cuando estabamos boludeando en xtrest, habria que borrarlo... (creo).
  	// -Juanma
     @Get("/gato_encerrado")
     def index2() {

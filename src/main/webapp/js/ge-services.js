@@ -34,6 +34,16 @@
             'query' : { method: 'GET' }
 		});
 	});
+	
+	/**
+	 * Tirar item
+	 */
+	app.factory('TirarItem', function($resource) {
+	    return $resource('/drop_item/:id_usuario/:id_item', { 'id_usuario' : '@id_usuario', 
+	    													  'id_item'    : '@id_item'}, {
+	    	'query' : { method: 'GET' }
+	    });
+	});
 
 })();
 
