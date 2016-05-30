@@ -25,7 +25,8 @@ import java.util.List
 
 class GatoEncerradoWebDummyData {
 
-	def static iniciarYResponderLaberintoIniciado(XTRestAppModel game, Usuario u, Laberinto l, Jugador j, List<MinHabitacion> habList) {
+	def static iniciarYResponderLaberintoIniciado(XTRestAppModel game, Usuario u, Laberinto l, Jugador j,
+		List<MinHabitacion> habList) {
 
 		game.nuevoJuego(u, l, j)
 
@@ -104,22 +105,27 @@ class GatoEncerradoWebDummyData {
 
 	def static iniciarLaberinto(int idUsuario, int idLaberinto, XTRestAppModel game) {
 		var user = getUserById(idUsuario)
-		if (user.hasLabOfId(idLaberinto)) {
+		if (idLaberinto <= 4 && idLaberinto >= 1) {
 			switch (idLaberinto) {
 				case 1: iniciarLaberinto1(game, user)
 				case 2: iniciarLaberinto2(game, user)
 				case 3: iniciarLaberinto3(game, user)
 				case 4: iniciarLaberinto4(game, user)
 			}
+		} else {
+			throw new LabDoesNotExistException
 		}
 	}
 
+	/**
+	 * Laberinto 1
+	 */
 	def static iniciarLaberinto1(XTRestAppModel game, Usuario user) {
 
 		var lab = new Laberinto => [
 			nombreLaberinto = "Cueva"
 			idLaberinto = 1
-			imagePath = "http://localhost/static/cueva/cueva_hobbit.jpg"
+			imagePath = "images/cueva/cueva_hobbit.jpg"
 		]
 
 		var habList = new ArrayList<MinHabitacion>()
@@ -127,26 +133,26 @@ class GatoEncerradoWebDummyData {
 		val hab1 = new Habitacion => [
 			nombreHabitacion = "Agujero extraño"
 			id = 1
-			imagePath = "http://localhost/static/cueva/agujero.jpg"
+			imagePath = "images/cueva/agujero.jpg"
 			first = true
 		]
 
 		val hab2 = new Habitacion => [
 			nombreHabitacion = "Tunel"
 			id = 2
-			imagePath = "http://localhost/static/cueva/tunel.jpg"
+			imagePath = "images/cueva/tunel.jpg"
 		]
 
 		val hab3 = new Habitacion => [
 			nombreHabitacion = "Pared enorme"
 			id = 3
-			imagePath = "http://localhost/static/cueva/pared.jpg"
+			imagePath = "images/cueva/pared.jpg"
 		]
 
 		val hab4 = new Habitacion => [
 			nombreHabitacion = "Salida"
 			id = 4
-			imagePath = "http://localhost/static/cueva/salida.jpg"
+			imagePath = "images/cueva/salida.jpg"
 			last = true
 		]
 
@@ -209,11 +215,14 @@ class GatoEncerradoWebDummyData {
 		iniciarYResponderLaberintoIniciado(game, user, lab, jugador, habList)
 	}
 
+	/**
+	 * Laberinto 2
+	 */
 	def static iniciarLaberinto2(XTRestAppModel game, Usuario user) {
 		var lab = new Laberinto => [
 			nombreLaberinto = "Cascada"
 			idLaberinto = 2
-			imagePath = "http://localhost/static/cascada.jpg"
+			imagePath = "images/cascada/cascada.jpg"
 		]
 
 		var habList = new ArrayList<MinHabitacion>()
@@ -221,26 +230,26 @@ class GatoEncerradoWebDummyData {
 		val hab1 = new Habitacion => [
 			nombreHabitacion = "Lago"
 			id = 1
-			imagePath = "http://localhost/static/cascada/lago.jpg"
+			imagePath = "images/cascada/lago.jpg"
 			first = true
 		]
 
 		val hab2 = new Habitacion => [
 			nombreHabitacion = "Precipicio"
 			id = 2
-			imagePath = "http://localhost/static/cascada/precipicio.jpg"
+			imagePath = "images/cascada/precipicio.jpg"
 		]
 
 		val hab3 = new Habitacion => [
 			nombreHabitacion = "Bosque"
 			id = 3
-			imagePath = "http://localhost/static/cascada/bosque.jpg"
+			imagePath = "images/cascada/bosque.jpg"
 		]
 
 		val hab4 = new Habitacion => [
 			nombreHabitacion = "Entrada a cueva"
 			id = 4
-			imagePath = "http://localhost/static/cascada/entrada_cueva.jpg"
+			imagePath = "images/cascada/entrada_cueva.jpg"
 			last = true
 		]
 
@@ -316,15 +325,17 @@ class GatoEncerradoWebDummyData {
 		habList.add(toMinHabitacion(hab4))
 
 		val jugador = new Jugador()
-
 		iniciarYResponderLaberintoIniciado(game, user, lab, jugador, habList)
 	}
 
+	/**
+	 * Laberinto 3
+	 */
 	def static iniciarLaberinto3(XTRestAppModel game, Usuario user) {
 		var lab = new Laberinto => [
 			nombreLaberinto = "Casa Embrujada"
 			idLaberinto = 3
-			imagePath = "http://localhost/static/casa.jpg"
+			imagePath = "images/casa/casa.jpg"
 		]
 
 		var habList = new ArrayList<MinHabitacion>()
@@ -332,26 +343,26 @@ class GatoEncerradoWebDummyData {
 		val hab1 = new Habitacion => [
 			nombreHabitacion = "Puerta ensangrentada"
 			id = 1
-			imagePath = ""
+			imagePath = "images/casa/puerta-ensangrentada.jpg"
 			first = true
 		]
 
 		val hab2 = new Habitacion => [
 			nombreHabitacion = "Pasillo"
 			id = 2
-			imagePath = ""
+			imagePath = "images/casa/pasillo.jpg"
 		]
 
 		val hab3 = new Habitacion => [
 			nombreHabitacion = "Habitacion de la ninia"
 			id = 3
-			imagePath = ""
+			imagePath = "images/casa/habitacion-nina.jpg"
 		]
 
 		val hab4 = new Habitacion => [
 			nombreHabitacion = "Habitacion de los padres"
 			id = 4
-			imagePath = ""
+			imagePath = "images/casa/habitacion-padres.jpg"
 		]
 
 		val hab5 = new Habitacion => [
@@ -494,8 +505,15 @@ class GatoEncerradoWebDummyData {
 		iniciarYResponderLaberintoIniciado(game, user, lab, jugador, habList)
 	}
 
+	/**
+	 * Laberinto 4
+	 */
 	def static iniciarLaberinto4(XTRestAppModel game, Usuario user) {
-		// TODO
+
+		var lab4 = new LaberintoCuatroDummy()
+
+		val jugador = new Jugador()
+		iniciarYResponderLaberintoIniciado(game, user, lab4.lab, jugador, lab4.habList)
 	}
 
 	def static toMinLaberinto(Laberinto lab) {
@@ -563,25 +581,25 @@ class GatoEncerradoWebDummyData {
 		var lab1 = new Laberinto => [
 			nombreLaberinto = "Cueva"
 			idLaberinto = 01
-			imagePath = "http://localhost/static/cueva/cueva_hobbit.jpg"
+			imagePath = "images/cueva/cueva_hobbit.jpg"
 		]
 
 		var lab2 = new Laberinto => [
 			nombreLaberinto = "Cascada"
 			idLaberinto = 02
-			imagePath = "http://localhost/static/cascada/cascada.jpg"
+			imagePath = "images/cascada/cascada.jpg"
 		]
 
 		var lab3 = new Laberinto => [
 			nombreLaberinto = "Casa Embrujada"
 			idLaberinto = 03
-			imagePath = "http://localhost/static/casa/casa.jpg"
+			imagePath = "images/casa/casa.jpg"
 		]
 
 		var lab4 = new Laberinto => [
 			nombreLaberinto = "Cementerio"
 			idLaberinto = 04
-			imagePath = "http://localhost/static/cementerio/cementerio.jpg"
+			imagePath = "images/cementerio/cementerio.jpg"
 		]
 
 		var list = new ArrayList<Usuario>
@@ -599,5 +617,4 @@ class GatoEncerradoWebDummyData {
 
 		list
 	}
-
 }
