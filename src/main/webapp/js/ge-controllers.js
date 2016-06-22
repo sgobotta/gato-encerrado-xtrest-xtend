@@ -98,7 +98,7 @@
 
 	}]);
 	
-	app.controller('LabChangeModalWindowCtrl', [ '$scope', function($scope) {
+	app.controller('LabChangeModalWindowCtrl', [ '$scope', 'QuitGame', function($scope, QuitGame) {
     	    	
 		$scope.tempLab 			= {};
 		$scope.changeLabAlert 	= {};
@@ -120,6 +120,7 @@
 		$scope.confirmLabChange = function(){
 			$scope.labSelectedChange($scope.tempLab);
 			$scope.tempLab = {};
+			QuitGame.query({user_id : $scope.user.id}, function(data){});
 		};
 		
 		$scope.deny = function(){

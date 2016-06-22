@@ -63,6 +63,15 @@
 	});	
 	
 	/**
+	 * Quit game
+	 */
+	app.factory('QuitGame', function($resource) {
+		return $resource('/quitgame/:user_id', { 'user_id'	 : '@user_id' }, {
+            'query' : { method: 'GET' }
+		});
+	});		
+	
+	/**
 	 * Tirar item
 	 */
 	app.factory('TirarItem', function($resource) {
