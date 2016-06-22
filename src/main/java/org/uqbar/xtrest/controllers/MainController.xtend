@@ -89,6 +89,12 @@ class MainController {
     	ok()
     }     
     
+    @Get("/quitgame/:id_usuario")
+    def quitGame(){
+    	geManager.deleteGamesFromUserWithId(Integer.parseInt(id_usuario))
+    	ok()
+    }
+    
     // API para android especificamente
     @Get("/users/playing")
     def usuariosJugando(){
