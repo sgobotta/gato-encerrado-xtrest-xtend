@@ -2,10 +2,51 @@
 	
 	var app = angular.module('ge-controllers', ['ge-services']);
 	
-	app.controller('UserCtrl', [ '$scope', function($scope){
+	app.controller('UserCtrl', [ '$scope', 'GetUsuarios' , 'LogoutUser' , 'LoginUser' , '$window', '$timeout',  
+	                             function($scope, GetUsuarios, LogoutUser, LoginUser, $window, $timeout){
 		
-		$scope.user = usuario;
+		$scope.user = null;
+		$scope.userList = [];
 	
+		$scope.userIsSelected = false;
+		
+		$scope.getUsers = function(){
+			GetUsuarios.query(function(data){
+				$scope.userList = data;
+				$scope.user = $scope.userList[0];
+			});
+		};
+		
+		$scope.confirmUserChange = function(){
+			$scope.userIsSelected = true;
+			$scope.logIn();
+			$scope.$broadcast('getLaberintos');
+		};
+		
+		$scope.getUsers();
+		
+		$scope.logIn = function(){
+			LoginUser.query({user_id : $scope.user.id}, function(data){
+			});				
+		};
+		
+		$scope.logOut = function(){
+			LogoutUser.query({user_id : $scope.user.id}, function(data){
+			});
+			$timeout(function(){
+				$scope.clearSession();
+			}, 50);
+		};
+		
+		$scope.clearSession = function(){
+			$scope.user = null;
+			$scope.userIsSelected = false;
+			$scope.getUsers();			
+		};
+		
+		$window.onbeforeunload = function(event){
+			$scope.logOut();
+		};
 	}]);
 	
 	app.controller('LabListCtrl', [ '$scope', 'Laberintos', function($scope, Laberintos){
@@ -42,14 +83,16 @@
 			$scope.addCompletedLab(id);
 		});
 		
-		this.getListaDeLaberintos = function() {
+		$scope.getListaDeLaberintos = function() {
 			Laberintos.query({id_usuario : $scope.user.id}, function(data){
 				$scope.laberintos = data.laberintos;
 			});
 		};
 
-		this.getListaDeLaberintos();
-		
+		$scope.$on('getLaberintos', function(){
+			$scope.getListaDeLaberintos();			
+		});
+
 	}]);
 	
 	app.controller('LabChangeModalWindowCtrl', [ '$scope', function($scope) {
@@ -332,10 +375,10 @@
 
     }]);
 	
-	var usuario = {
-		id: 1,
-		nombre: "Pepe",
-		pass: "1234"
-	};
+//	var usuario = {
+//		id: 1,
+//		nombre: "Pepe",
+//		pass: "1234"
+//	};
 	
 })();

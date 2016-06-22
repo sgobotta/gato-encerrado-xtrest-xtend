@@ -34,6 +34,33 @@
             'query' : { method: 'GET' }
 		});
 	});
+
+	/**
+	 * Get Usuarios
+	 */
+	app.factory('GetUsuarios', function($resource) {
+		return $resource('/users', {}, {
+            'query' : { method: 'GET' , isArray: true}
+		});
+	});
+	
+	/**
+	 * Login
+	 */
+	app.factory('LoginUser', function($resource) {
+		return $resource('/login/:user_id', { 'user_id'	 : '@user_id' }, {
+            'query' : { method: 'GET' }
+		});
+	});
+	
+	/**
+	 * Logout
+	 */
+	app.factory('LogoutUser', function($resource) {
+		return $resource('/logout/:user_id', { 'user_id'	 : '@user_id' }, {
+            'query' : { method: 'GET' }
+		});
+	});	
 	
 	/**
 	 * Tirar item

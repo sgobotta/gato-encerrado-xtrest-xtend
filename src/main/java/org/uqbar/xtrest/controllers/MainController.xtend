@@ -4,7 +4,6 @@ import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.api.XTRest
 import org.uqbar.xtrest.json.JSONUtils
-import org.uqbar.appmodel.XTRestAppModel
 import org.uqbar.xtrest.dummyData.GatoEncerradoWebDummyData
 import org.uqbar.xtrest.dummyData.UserDoesNotExistException
 import org.uqbar.exceptions.UserDoesNotHaveLabException
@@ -16,7 +15,7 @@ import org.uqbar.xtrest.dummyData.LabDoesNotExistException
 @Controller
 class MainController {
 
-//    static XTRestAppModel game
+//  static XTRestAppModel game
     static GEManager geManager
 
     extension JSONUtils = new JSONUtils
@@ -48,7 +47,7 @@ class MainController {
     def realizarAccionHabitacion() {
     	try{
 	        response.contentType = "application/json"
-	        var resTemp = geManager.getGameById(Integer.parseInt(id_usuario)).realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_accion), Integer.parseInt(id_usuario))
+	        var resTemp = geManager.realizarAccion(Integer.parseInt(id_habitacion), Integer.parseInt(id_accion), Integer.parseInt(id_usuario))
 	        var res = GatoEncerradoWebDummyData.toMinResponse(resTemp)
 	        ok(res.toJson)
         } catch(UserCantExecuteActionException e){
@@ -56,7 +55,7 @@ class MainController {
         } catch(PlayerIsNotOnThisRoomException e) {
         	badRequest(e.message)
         } catch(ActionIsNotOnThisRoomException e) {
-        	badRequest("The action selected doesn't belong to your current room.")
+        	badRequest(e.message)
         }
     }
     
@@ -79,7 +78,28 @@ class MainController {
             
         }
         render('gatoencerrado.html', data)
-    }   
+    }
+    
+    
+    @Get("/users")
+    def usuarios(){
+    	response.contentType = "application/json"	
+    	var res = geManager.getUsersAvailable
+    	ok(res.toJson)
+
+    }
+
+    @Get("/login/:id_usuario")
+    def logIn(){
+    	geManager.logIn(Integer.parseInt(id_usuario))
+    	ok()
+    } 
+    
+    @Get("/logout/:id_usuario")
+    def logOut(){
+    	geManager.logOut(Integer.parseInt(id_usuario))
+    	ok()
+    }         
     
     def static void main(String[] args) {
         geManager = new GEManager

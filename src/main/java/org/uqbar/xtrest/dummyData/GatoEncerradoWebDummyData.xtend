@@ -2,7 +2,6 @@ package org.uqbar.xtrest.dummyData
 
 import java.util.ArrayList
 import org.uqbar.xtrest.respuestas.RespuestaDeLaberintos
-import org.uqbar.appmodel.XTRestAppModel
 import org.uqbar.xtrest.minModelObjects.MinLaberinto
 import org.uqbar.Habitacion
 import org.uqbar.Laberinto
@@ -19,6 +18,7 @@ import org.uqbar.acciones.RespuestaDeRealizarAccionModel
 import org.uqbar.xtrest.respuestas.RespuestaDeRealizarAccion
 import org.uqbar.Usuario
 import org.uqbar.xtrest.controllers.GEManager
+import org.uqbar.xtrest.minModelObjects.MinUser
 
 class GatoEncerradoWebDummyData {
 	
@@ -47,6 +47,22 @@ class GatoEncerradoWebDummyData {
 		} else {
 			throw new UserDoesNotExistException
 		}
+	}
+	
+	def static getMinUserById(int id){
+		toMinUser(getUserById(id))
+	}
+	
+	def static getMinUsers(){
+		getUsers().map[u | toMinUser(u)]
+	}
+	
+	def static toMinUser(Usuario usuario) {
+		var user = new MinUser => [
+			id 		= usuario.id
+			nombre 	= usuario.nombre
+		]
+		user
 	}
 	
 	def static iniciarLaberinto(int idUsuario, int idLaberinto, GEManager gameManager){

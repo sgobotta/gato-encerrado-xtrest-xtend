@@ -6,11 +6,31 @@ import java.util.ArrayList
 import org.uqbar.Usuario
 import org.uqbar.Laberinto
 import org.uqbar.jugador.Jugador
+import org.uqbar.xtrest.dummyData.GatoEncerradoWebDummyData
+import org.uqbar.xtrest.minModelObjects.MinUser
 
 class GEManager {
  
     List<XTRestAppModel> games = new ArrayList<XTRestAppModel>
+    List<MinUser> usersThatLoggedIn = new ArrayList<MinUser>
    
+    def logIn(int id){
+    	this.usersThatLoggedIn.add(new MinUser(id))
+    }
+    
+    def logOut(int id){
+    	this.usersThatLoggedIn.remove(getUserById(id))
+    }
+    
+    def getUserById(int id){
+    	var MinUser res = null
+    	for(user : usersThatLoggedIn){
+    		if(user.id == id){
+    			res = user
+    		}
+    	}
+    	res
+    }
     
     def getGameById(int idUsuario) {
         var XTRestAppModel gameRes = null
@@ -22,10 +42,34 @@ class GEManager {
         gameRes
     }
     
+    def getGames(){
+    	games.size()
+    }
+    
+    def getUsersAvailable(){
+    	var res = new ArrayList<MinUser>
+    	for(user : GatoEncerradoWebDummyData.getMinUsers){
+    		if(getUserById(user.id) == null){
+    			res.add(user)
+    		}
+    	}
+    	res
+    }
+    
     def nuevoJuego(Usuario user, Laberinto lab, Jugador jug){
+    	if(getGameById(user.id) != null){
+    		games.remove(getGameById(user.id))
+    	}
         var game = new XTRestAppModel
         game.nuevoJuego(user, lab, jug)
         games.add(game)
     }
     
+    def realizarAccion(int idHabitacion, int idAccion, int idUsuario){
+	    var res = this.getGameById(idUsuario).realizarAccion(idHabitacion, idAccion, idUsuario)
+	    if(res.type == 'ganar'){
+	    	this.games.remove(this.getGameById(idUsuario))
+	    }
+	    res
+    }
 }
