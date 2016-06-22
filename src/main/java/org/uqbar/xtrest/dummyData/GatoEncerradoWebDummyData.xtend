@@ -93,7 +93,7 @@ class GatoEncerradoWebDummyData {
 		var habList = new ArrayList<MinHabitacion>()
 		
 		val hab1 = new Habitacion => [
-			nombreHabitacion 	= "Agujero extraño"
+			nombreHabitacion 	= "Agujero extra&ntilde;o"
 			id 					= 1
 			imagePath			= "images/cueva/agujero.jpg"
 			first 				= true
@@ -119,7 +119,7 @@ class GatoEncerradoWebDummyData {
 		]
 		
 		val piqueta = new Elemento() => [
-				nombre 		= "piqueta para escalar"
+				nombre 		= "Piqueta para escalar"
 				descripcion	= "Esto seria muy util para escalar una pared muy alta..."
 				id			= 1
 		]
@@ -323,7 +323,7 @@ class GatoEncerradoWebDummyData {
 		]
 		
 		val hab3 = new Habitacion => [
-			nombreHabitacion 	= "Habitacion de la ninia"
+			nombreHabitacion 	= "Habitacion de la ni&ntilde;a"
 			id 					= 3
 			imagePath			= "images/casa/habitacion-nina.jpg"
 		]

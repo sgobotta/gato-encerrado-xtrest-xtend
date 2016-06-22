@@ -11,6 +11,7 @@ import org.uqbar.exceptions.UserCantExecuteActionException
 import org.uqbar.exceptions.PlayerIsNotOnThisRoomException
 import org.uqbar.exceptions.ActionIsNotOnThisRoomException
 import org.uqbar.xtrest.dummyData.LabDoesNotExistException
+import org.uqbar.xtrest.dummyData.UserIsNotLoggedException
 
 @Controller
 class MainController {
@@ -39,6 +40,8 @@ class MainController {
         	badRequest(e.message)
         } catch(LabDoesNotExistException e){
         	badRequest(e.message)
+        } catch(UserIsNotLoggedException e){
+        	badRequest(e.message) // Muy raro que llegue a esto, pero por si acaso, esta el bad request...
         }
     }
     
@@ -59,27 +62,12 @@ class MainController {
         }
     }
     
-    // fijate si podes actualizar el inventario del juego con la data que nos llega
     @Get("/drop_item/:id_usuario/:id_item")
     def tirarItem() {
-        
             response.contentType = "application/json"
             geManager.getGameById(Integer.parseInt(id_usuario)).tirarItem(Integer.parseInt(id_usuario), Integer.parseInt(id_item))
             ok()
     }
-    
- 
-    // eliminar
- 	// Esto quedo de m�s de cuando estabamos boludeando en xtrest, habria que borrarlo... (creo).
- 	// -Juanma
-    @Get("/gato_encerrado")
-    def index2() {
-        val data = #{
-            
-        }
-        render('gatoencerrado.html', data)
-    }
-    
     
     @Get("/users")
     def usuarios(){
@@ -99,7 +87,15 @@ class MainController {
     def logOut(){
     	geManager.logOut(Integer.parseInt(id_usuario))
     	ok()
-    }         
+    }     
+    
+    // API para android especificamente
+    @Get("/users/playing")
+    def usuariosJugando(){
+    	response.contentType = "application/json"	   	
+    	var res = geManager.getUsersPlaying()
+    	ok(res.toJson)
+    }    
     
     def static void main(String[] args) {
         geManager = new GEManager

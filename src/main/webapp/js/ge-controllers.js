@@ -90,7 +90,10 @@
 		};
 
 		$scope.$on('getLaberintos', function(){
-			$scope.getListaDeLaberintos();			
+			$scope.getListaDeLaberintos();
+			$scope.laberintosCompletados = [];
+			$scope.labSelected = {};
+			$scope.isLabSelected = false;			
 		});
 
 	}]);

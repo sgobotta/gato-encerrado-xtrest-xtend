@@ -8,6 +8,7 @@ import org.uqbar.Laberinto
 import org.uqbar.jugador.Jugador
 import org.uqbar.xtrest.dummyData.GatoEncerradoWebDummyData
 import org.uqbar.xtrest.minModelObjects.MinUser
+import org.uqbar.xtrest.dummyData.UserIsNotLoggedException
 
 class GEManager {
  
@@ -20,7 +21,20 @@ class GEManager {
     
     def logOut(int id){
     	this.usersThatLoggedIn.remove(getUserById(id))
+    	this.deleteGamesFromUserWithId(id)
     }
+	
+	def deleteGamesFromUserWithId(int id) {
+		var toDelete = new ArrayList<XTRestAppModel>
+		for(game : games){
+			if(game.usuario.id == id){
+				toDelete.add(game)
+			}
+		}
+		for(game : toDelete){
+			games.remove(game)
+		}
+	}
     
     def getUserById(int id){
     	var MinUser res = null
@@ -42,10 +56,6 @@ class GEManager {
         gameRes
     }
     
-    def getGames(){
-    	games.size()
-    }
-    
     def getUsersAvailable(){
     	var res = new ArrayList<MinUser>
     	for(user : GatoEncerradoWebDummyData.getMinUsers){
@@ -57,12 +67,17 @@ class GEManager {
     }
     
     def nuevoJuego(Usuario user, Laberinto lab, Jugador jug){
-    	if(getGameById(user.id) != null){
-    		games.remove(getGameById(user.id))
-    	}
-        var game = new XTRestAppModel
-        game.nuevoJuego(user, lab, jug)
-        games.add(game)
+		if(getUserById(user.id) != null){
+			if(getGameById(user.id) != null){
+				games.remove(getGameById(user.id))
+			}
+		    var game = new XTRestAppModel
+		    game.nuevoJuego(user, lab, jug)
+		    games.add(game)
+		    
+		} else {
+			throw new UserIsNotLoggedException
+		}
     }
     
     def realizarAccion(int idHabitacion, int idAccion, int idUsuario){
@@ -71,5 +86,9 @@ class GEManager {
 	    	this.games.remove(this.getGameById(idUsuario))
 	    }
 	    res
+    }
+    
+    def getUsersPlaying(){
+    	games.map[GatoEncerradoWebDummyData.toMinUser(it.usuario)]
     }
 }
