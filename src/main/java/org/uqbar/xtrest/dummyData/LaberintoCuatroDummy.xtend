@@ -95,7 +95,7 @@ class LaberintoCuatroDummy {
         
         // va al patio de gengi
         val hab11 = new Habitacion => [
-            nombreHabitacion    = "Atmosfera de extra&ntilde;a atraccion"
+            nombreHabitacion    = "Atmosfera de extraña atraccion"
             id                  = 11
             imagePath           = "images/cementerio/11_atmosfera.jpg"
         ]
