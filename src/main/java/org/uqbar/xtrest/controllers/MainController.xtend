@@ -113,6 +113,12 @@ class MainController {
         }
     }       
     
+    @Get("/android/inventario/:id_usuario/:id_laberinto")
+    def inventario(){
+    	response.contentType = "application/json"
+    	ok(geManager.getInventoryById(Integer.parseInt(id_usuario), Integer.parseInt(id_laberinto)).toJson)
+    }
+    
     def static void main(String[] args) {
         geManager = new GEManager
         XTRest.start(MainController, 9001)

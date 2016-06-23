@@ -9,6 +9,7 @@ import org.uqbar.jugador.Jugador
 import org.uqbar.xtrest.dummyData.GatoEncerradoWebDummyData
 import org.uqbar.xtrest.minModelObjects.MinUser
 import org.uqbar.xtrest.dummyData.UserIsNotLoggedException
+import org.uqbar.jugador.Elemento
 
 class GEManager {
  
@@ -54,6 +55,15 @@ class GEManager {
             }  
         }
         gameRes
+    }
+    
+    def getInventoryById(int idUsuario, int idLaberinto){
+    	if(getGameById(idUsuario) != null && getGameById(idUsuario).laberintoActual.idLaberinto == idLaberinto){
+	    	var game = getGameById(idUsuario)
+	    	game.jugador.inventario
+    	} else {
+    		new ArrayList<Elemento>
+    	}
     }
     
     def getUsersAvailable(){
