@@ -96,7 +96,10 @@
 			<select name="user" id="user" 
 			data-ng-options="us.nombre for us in userList track by us.id" data-ng-model="user">
 			</select>
-			<button type="button" class="btn btn-default" data-ng-click="confirmUserChange()">Confirmar Usuario</button>
+			<button type="button" class="btn btn-default" data-ng-click="confirmUserChange()">Confirmar Usuario</button><br>
+			<div data-ng-show="showError">
+				<span id="errorMessage" class="rounded-corners">{{errorMessage}}</span>
+			</div>
 		</div>
 	</div>
 </body>

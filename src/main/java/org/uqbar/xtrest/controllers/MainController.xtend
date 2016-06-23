@@ -96,12 +96,22 @@ class MainController {
     }
     
     // API para android especificamente
-    @Get("/users/playing")
+    @Get("/android/users/playing")
     def usuariosJugando(){
     	response.contentType = "application/json"	   	
     	var res = geManager.getUsersPlaying()
     	ok(res.toJson)
-    }    
+    } 
+    
+    @Get("/android/laberintos/:id_usuario")
+    def listaDeLaberintosAndroid() {
+    	try{
+	        response.contentType = "application/json"
+	        ok(GatoEncerradoWebDummyData.getLaberintos(Integer.parseInt(id_usuario)).getLaberintos.toJson)
+        } catch(UserDoesNotExistException e){
+        	badRequest(e.message)
+        }
+    }       
     
     def static void main(String[] args) {
         geManager = new GEManager

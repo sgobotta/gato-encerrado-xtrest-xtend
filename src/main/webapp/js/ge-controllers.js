@@ -7,20 +7,31 @@
 		
 		$scope.user = null;
 		$scope.userList = [];
-	
+		
 		$scope.userIsSelected = false;
+		
+		$scope.showError = false;
+		$scope.errorMessage = null;
 		
 		$scope.getUsers = function(){
 			GetUsuarios.query(function(data){
-				$scope.userList = data;
-				$scope.user = $scope.userList[0];
+				if(data[0] != null){
+					$scope.userList = data;
+					$scope.user = $scope.userList[0];
+				} else {
+					$scope.triggerErrorMessage("No hay usuarios disponibles.");
+				}
 			});
 		};
 		
 		$scope.confirmUserChange = function(){
-			$scope.userIsSelected = true;
-			$scope.logIn();
-			$scope.$broadcast('getLaberintos');
+			if($scope.user){
+				$scope.userIsSelected = true;
+				$scope.logIn();
+				$scope.$broadcast('getLaberintos');
+			} else {
+				$scope.triggerErrorMessage("No seleccionaste un usuario.");
+			}
 		};
 		
 		$scope.getUsers();
@@ -35,7 +46,7 @@
 			});
 			$timeout(function(){
 				$scope.clearSession();
-			}, 50);
+			}, 100);
 		};
 		
 		$scope.clearSession = function(){
@@ -47,6 +58,16 @@
 		$window.onbeforeunload = function(event){
 			$scope.logOut();
 		};
+		
+		$scope.timeoutPromise = {};
+		
+		$scope.triggerErrorMessage = function(message){
+			$timeout.cancel($scope.timeoutPromise);
+			$scope.showError = true;
+			$scope.errorMessage = message;
+			$scope.timeoutPromise = $timeout(function(){ $scope.showError = false; }, 2000);
+		};
+		
 	}]);
 	
 	app.controller('LabListCtrl', [ '$scope', 'Laberintos', function($scope, Laberintos){
