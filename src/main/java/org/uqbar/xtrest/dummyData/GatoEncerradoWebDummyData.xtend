@@ -19,11 +19,9 @@ import org.uqbar.xtrest.respuestas.RespuestaDeRealizarAccion
 import org.uqbar.Usuario
 import org.uqbar.xtrest.controllers.GEManager
 import org.uqbar.xtrest.minModelObjects.MinUser
+import org.uqbar.xtrest.minModelObjects.AndroidLaberinto
 
 class GatoEncerradoWebDummyData {
-	
-	// Si pudiera hacer un static { } para instanciar los laberintos y dejarlos staticos lo haria. 
-	// Por alguna razon no puedo
 	
 	def static getLaberintos(int idUsuario){
 		var list = new ArrayList<MinLaberinto>()
@@ -33,6 +31,38 @@ class GatoEncerradoWebDummyData {
 		}     
         
         new RespuestaDeLaberintos(list)
+	}
+	
+	def static isValidUserId(int idToValidate){
+		var res = false
+		for(user : getUsers){
+			if(user.id == idToValidate){
+				res = true
+			}
+		}
+		res
+	}
+	
+	def static androidLaberintos(int idUsuario, GEManager geManager){
+		var game = geManager.getGameById(idUsuario)
+		var labIdOfGame = -1
+		if(game != null){		
+			labIdOfGame = game.laberintoActual.idLaberinto
+		}
+		
+		val labId = labIdOfGame
+		var labs = getUserById(idUsuario).laberintos.map[toAndroidLaberinto(it, it.idLaberinto == labId)]
+		labs
+	}
+	
+	def static toAndroidLaberinto(Laberinto laberinto, boolean bool) {
+		var lab = new AndroidLaberinto => [
+			nombreLaberinto	= laberinto.nombreLaberinto
+			idLaberinto		= laberinto.idLaberinto
+			imagePath		= laberinto.imagePath
+			isPlaying		= laberinto.isPlaying || bool
+		]
+		lab
 	}
 	
 	def static getUserById(int id) {

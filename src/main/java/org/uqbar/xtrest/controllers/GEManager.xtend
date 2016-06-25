@@ -9,7 +9,8 @@ import org.uqbar.jugador.Jugador
 import org.uqbar.xtrest.dummyData.GatoEncerradoWebDummyData
 import org.uqbar.xtrest.minModelObjects.MinUser
 import org.uqbar.xtrest.dummyData.UserIsNotLoggedException
-import org.uqbar.jugador.Elemento
+import org.uqbar.xtrest.dummyData.UserNotPlayingThatLabException
+import org.uqbar.xtrest.dummyData.UserDoesNotExistException
 
 class GEManager {
  
@@ -17,7 +18,11 @@ class GEManager {
     List<MinUser> usersThatLoggedIn = new ArrayList<MinUser>
    
     def logIn(int id){
-    	this.usersThatLoggedIn.add(new MinUser(id))
+    	if(GatoEncerradoWebDummyData.isValidUserId(id)){
+    		this.usersThatLoggedIn.add(new MinUser(id))
+    	} else {
+    		throw new UserDoesNotExistException
+    	}
     }
     
     def logOut(int id){
@@ -62,7 +67,7 @@ class GEManager {
 	    	var game = getGameById(idUsuario)
 	    	game.jugador.inventario
     	} else {
-    		new ArrayList<Elemento>
+    		throw new UserNotPlayingThatLabException()
     	}
     }
     
@@ -100,5 +105,10 @@ class GEManager {
     
     def getUsersPlaying(){
     	games.map[GatoEncerradoWebDummyData.toMinUser(it.usuario)]
+    }
+    
+    def getUsersLogged(){
+    	var userList = usersThatLoggedIn
+    	userList.map[GatoEncerradoWebDummyData.getMinUserById(it.id)]
     }
 }

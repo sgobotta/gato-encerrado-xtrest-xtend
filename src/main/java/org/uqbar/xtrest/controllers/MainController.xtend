@@ -12,6 +12,7 @@ import org.uqbar.exceptions.PlayerIsNotOnThisRoomException
 import org.uqbar.exceptions.ActionIsNotOnThisRoomException
 import org.uqbar.xtrest.dummyData.LabDoesNotExistException
 import org.uqbar.xtrest.dummyData.UserIsNotLoggedException
+import org.uqbar.xtrest.dummyData.UserNotPlayingThatLabException
 
 @Controller
 class MainController {
@@ -79,8 +80,12 @@ class MainController {
 
     @Get("/login/:id_usuario")
     def logIn(){
-    	geManager.logIn(Integer.parseInt(id_usuario))
-    	ok()
+    	try{
+	    	geManager.logIn(Integer.parseInt(id_usuario))
+	    	ok()
+    	} catch (UserDoesNotExistException e){
+    		badRequest(e.message)
+    	}
     } 
     
     @Get("/logout/:id_usuario")
@@ -103,11 +108,18 @@ class MainController {
     	ok(res.toJson)
     } 
     
+    @Get("/android/users/logged")
+    def usuariosLogeados(){
+    	response.contentType = "application/json"	   	
+    	var res = geManager.getUsersLogged()
+    	ok(res.toJson)
+    }  
+       
     @Get("/android/laberintos/:id_usuario")
     def listaDeLaberintosAndroid() {
     	try{
 	        response.contentType = "application/json"
-	        ok(GatoEncerradoWebDummyData.getLaberintos(Integer.parseInt(id_usuario)).getLaberintos.toJson)
+	        ok(GatoEncerradoWebDummyData.androidLaberintos(Integer.parseInt(id_usuario), geManager).toJson)
         } catch(UserDoesNotExistException e){
         	badRequest(e.message)
         }
@@ -115,8 +127,12 @@ class MainController {
     
     @Get("/android/inventario/:id_usuario/:id_laberinto")
     def inventario(){
-    	response.contentType = "application/json"
-    	ok(geManager.getInventoryById(Integer.parseInt(id_usuario), Integer.parseInt(id_laberinto)).toJson)
+    	try{
+	    	response.contentType = "application/json"
+	    	ok(geManager.getInventoryById(Integer.parseInt(id_usuario), Integer.parseInt(id_laberinto)).toJson)
+    	} catch (UserNotPlayingThatLabException e){
+    		badRequest(e.message)
+    	}
     }
     
     def static void main(String[] args) {
